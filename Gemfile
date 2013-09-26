@@ -8,7 +8,7 @@ gem 'rails', '3.2.14'
 gem 'sqlite3'
 
 # eve related gems
-gem 'eve',			:git => "git@github.com:martin-schmidt/eve.git"
+gem 'eve',			:path => "/home/islador/eveTools/icras/eve"
 
 
 # Gems used only for assets and not required
