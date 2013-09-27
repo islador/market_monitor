@@ -3,10 +3,11 @@
 # Prioritized List
 
 1. User Account API Validated Authentication
-2. Market Stock Level Monitoring
-3. Market Velocity Calculating
-4. Contract Monitoring
-5. Item in Transit Monitoring
+2. User Profile Page
+3. Market Stock Level Monitoring
+4. Market Velocity Calculating
+5. Contract Monitoring
+6. Item in Transit Monitoring
 
 
 ## Full List
@@ -74,3 +75,8 @@
   	* Rows are ordered alphabetically by default but may be ordered in the browser by any
   	  column element.
     * Contract Classes without any active contracts are displayed at the bottom of the list.
+
+13. User Profile Page
+  * Display user account page.
+  * Allows editing of all attributes except email.
+  * Displays a list of which APIs are accessible to the application.

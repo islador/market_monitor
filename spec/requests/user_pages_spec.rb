@@ -9,8 +9,17 @@ describe "UserPages" do
 
 		it{should have_title(full_title('Sign Up'))}
 
-		#it { should have_selector('title', :text 'Sign Up') }
 		
+		
+	end
+
+	describe "user pages" do
+		let(:user) {FactoryGirl.create(:user)}
+
+		before {visit user_path(user)}
+
+		it {should have_title(full_title('User Information'))}
+
 	end
 
 	describe "market order overview page" do
