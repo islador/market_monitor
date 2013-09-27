@@ -1,9 +1,10 @@
 <% provide(:title, 'Sign Up') %>
-<h1>This is the signup page</h1>
 
 <div class="row">
 	<div class="span6 offset3">
+		All fields are required.
 		<%= form_for(@user) do |f| %>
+			<%= render 'shared/error_messages' %>
 
 			<%=f.label :email %>
 			<%=f.text_field :email %>
@@ -17,10 +18,10 @@
 			<%=f.label :password %>
 			<%=f.password_field :password %>
 
-			<%=f.label :password_confirmation %>
+			<%=f.label :password_confirmation, 'Password Confirmation' %>
 			<%=f.password_field :password_confirmation %>
 
-			<%=f.submit "Register" %>
+			<%=f.submit "Register my Account" %>
 		<% end %>
 	</div>
 </div>

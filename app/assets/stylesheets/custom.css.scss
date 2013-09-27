@@ -10,6 +10,7 @@ html {
 body {
   padding-top: 60px;
   background-color: black;
+  color: white;
 }
 
 section {
@@ -22,14 +23,11 @@ textarea {
 
 .center {
   text-align: center;
+  color: gray;
 }
 
 .center h1 {
   margin-bottom: 10px;
-}
-
-background-color {
-  color: black;
 }
 
 /* header */
@@ -48,4 +46,10 @@ background-color {
     color: white;
     text-decoration: none;
   }
+}
+
+/* Flash Styles */
+.alert alert-success {
+  color: Green;
+  background-color: black;
 }

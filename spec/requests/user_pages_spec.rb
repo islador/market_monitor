@@ -9,14 +9,34 @@ describe "UserPages" do
 
 		it{should have_title(full_title('Sign Up'))}
 
-		
-		
+		describe "for non-signed-in users" do
+			it{should have_selector('label',	text: 'Email')}
+			it{should have_selector('label',	text: 'Key ID')}
+			it{should have_selector('label',	text: 'Verification Code')}
+			it{should have_selector('label',	text: 'Password')}
+			it{should have_selector('label',	text: 'Password Confirmation')}
+		end
+
+		describe "for signed-in users" do
+			let(:user) {FactoryGirl.create(:user)}
+
+			before do
+				sign_in user
+				visit signup_path
+			end
+
+			it{should have_title(full_title('User Information'))}
+			it{should have_selector('div.alert.alert-error',	text: 'Signed in users may not register new accounts.')}
+		end
 	end
 
 	describe "user pages" do
 		let(:user) {FactoryGirl.create(:user)}
 
-		before {visit user_path(user)}
+		before do
+			sign_in user
+			visit user_path(user)
+		end
 
 		it {should have_title(full_title('User Information'))}
 
