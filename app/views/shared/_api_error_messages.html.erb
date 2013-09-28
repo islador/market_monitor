@@ -1,0 +1,12 @@
+<% if @api.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-error">
+      The form contains <%= pluralize(@api.errors.count, "error") %>.
+    </div>
+    <ul>
+    <% @api.errors.full_messages.each do |msg| %>
+      <li>* <%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
