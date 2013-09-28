@@ -1,6 +1,5 @@
-GIT
-  remote: git@github.com:martin-schmidt/eve.git
-  revision: 549fca1afcf5d28e334ba0820a33d86b8fdf8369
+PATH
+  remote: /home/islador/eveTools/icras/eve
   specs:
     eve (2.0.1)
       activesupport (~> 3)
