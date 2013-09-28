@@ -46,6 +46,21 @@ describe Api do
   	it {should_not be_valid}
   end
 
+  describe "when key_id is not present" do
+    before {@api.key_id = nil}
+    it {should_not be_valid}
+  end
+
+  describe "when v_code is not present" do
+    before {@api.v_code = nil}
+    it {should_not be_valid}
+  end
+
+  describe "when accessmask is not present" do
+    before {@api.accessmask = nil}
+    it {should_not be_valid}
+  end
+
   describe "accessible attributes" do
   	it "should not allow access to user_id" do
   		expect do

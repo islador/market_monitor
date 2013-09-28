@@ -11,7 +11,7 @@ class ApisController < ApplicationController
   end
 
   def create
-  	@api = current_user.apis.build(params[:apis])
+  	@api = current_user.apis.build(params[:api])
   	if @api.save
   		flash[:success] = "Api #{@api.key_id} Created"
   		redirect_to user_path(current_user)
