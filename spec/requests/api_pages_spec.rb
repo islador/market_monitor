@@ -29,6 +29,7 @@ describe "APIPages" do
 
 	describe "api list page" do
 		let(:user) {FactoryGirl.create(:user)}
+		let(:api) {FactoryGirl.create(:character_api, user: @user)}
 
 		describe "for non-signed-in users" do
 			before {visit apilist_path}
