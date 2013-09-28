@@ -22,5 +22,5 @@ class Api < ActiveRecord::Base
   validates :user_id, presence: true
   validates :key_id, presence: true, uniqueness: true
   validates :v_code, presence: true, length: {minimum: 64}
-  validates :accessmask, presence: true, numericality: { only_integer: true }
+  #validates :accessmask, presence: true, numericality: { only_integer: true }
 end

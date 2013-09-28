@@ -1,1 +1,11 @@
 <% provide(:title, "API List") %>
+
+<div class="span8">
+    <% if current_user.apis.any? %>
+      <h3>APIs (<%= current_user.apis.count %>)</h3>
+      <ol class="apis">
+        <%= render 'apis' %>
+      </ol>
+      <%= will_paginate @apis %>
+    <% end %>
+  </div>

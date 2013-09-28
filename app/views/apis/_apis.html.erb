@@ -1,0 +1,14 @@
+<li>
+	<span class="Key ID"><%= current_user.apis.find_by_user_id(current_user.id).key_id %></span>
+	<span class="Verification Code"><%= current_user.apis.find_by_user_id(current_user.id).v_code %></span>
+	<span class="Access Mask"><%= current_user.apis.find_by_user_id(current_user.id).accessmask %></span>
+	<span class="Type">
+		<% if current_user.apis.find_by_user_id(current_user.id).type == 1 %>
+			Corporation
+			<% else%>
+			Character
+		<% end %></span>
+	<span class="timestamp">
+	Enrolled <%= time_ago_in_words(current_user.apis.find_by_user_id(current_user.id).created_at) %> ago.
+	</span>
+</li>

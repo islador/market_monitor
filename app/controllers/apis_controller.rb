@@ -22,6 +22,7 @@ class ApisController < ApplicationController
 
   def show
     if signed_in?
+      @apis = current_user.apis.paginate(page: params[:page])
       render 'api_list'
     else
       flash[:error] = "You must be signed in to view this page."
