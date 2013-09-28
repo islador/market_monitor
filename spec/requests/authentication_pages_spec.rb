@@ -24,6 +24,6 @@ describe "AuthenticationPages" do
   		end
 
   		it {should have_title(full_title('User Information'))}
-  		
+  	end
   end
 end
