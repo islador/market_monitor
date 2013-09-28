@@ -15,4 +15,10 @@
 
 class Api < ActiveRecord::Base
   attr_accessible :accessmask, :key_id, :type, :user_id, :v_code, :active
+
+
+  validates :user_id, presence: true
+  validates :key_id, presence: true, numericality: { only_integer: true }
+  validates :v_code, presence: true, length: {minimum: 64, maximum: 64}
+  validates :accessmask, presence: true, numericality: { only_integer: true }
 end

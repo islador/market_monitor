@@ -32,4 +32,11 @@ describe Api do
   it {should respond_to(:v_code)}
   it {should respond_to(:accessmask)}
   it {should respond_to(:active)}
+
+  it {should be_valid}
+
+  describe "when user_id is not present" do
+  	before { @api.user_id = nil}
+  	it {should_not be_valid}
+  end
 end
