@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
 	def new
+		if signed_in?
+			flash[:error] = "You are already signed in."
+			redirect_to user_path(current_user)
+		end
 	end
 
 	def create
