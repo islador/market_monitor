@@ -1,4 +1,6 @@
 MarketMonitor::Application.routes.draw do
+  get "apis/new"
+
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
 
