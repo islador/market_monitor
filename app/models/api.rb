@@ -14,7 +14,9 @@
 #
 
 class Api < ActiveRecord::Base
-  attr_accessible :accessmask, :key_id, :type, :user_id, :v_code, :active
+  attr_accessible :accessmask, :key_id, :type, :v_code, :active
+
+  belongs_to :user
 
 
   validates :user_id, presence: true
