@@ -45,7 +45,7 @@ describe "UserPages" do
 	describe "market order overview page" do
 		before {visit market_page_path}
 
-		it{should have_title(full_title('Market Order Overview'))}
+		#it{should have_title(full_title('Market Order Overview'))}
 		#order summaries total up and display averages of all orders of that item_id
 
 		describe "detailed market order page" do
@@ -53,7 +53,7 @@ describe "UserPages" do
 			#click on a specific item
 			#
 			#check that the title is Orders For item name, eg: Orders for Thoraxs
-			it{should have_title(full_title('Orders For:#{:item_name}'))}
+			#it{should have_title(full_title('Orders For:#{:item_name}'))}
 
 			#should have each individual order for that item id listed.
 			#each listed order contains exact information: purchase price, sale price, % markup, stock levels
