@@ -22,7 +22,7 @@ describe "UserPages" do
 				sign_in user
 				visit signup_path
 			end
-			# they should be redirected to the root path.
+			# they should be redirected to the account info page.
 			it{should have_title(full_title('User Information'))}
 			it{should have_selector('div.alert.alert-error',	text: 'Signed in users may not register new accounts.')}
 		end
