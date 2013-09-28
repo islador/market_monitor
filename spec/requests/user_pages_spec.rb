@@ -94,6 +94,25 @@ describe "UserPages" do
 		end
 	end
 
+	describe "home page" do
+		let(:user) {FactoryGirl.create(:user)}
+
+		describe "for non-signed-in users" do
+			before {visit root_path}
+
+			it {should have_title(full_title(''))}
+		end
+
+		describe "for signed-in users" do
+			before do
+				sign_in user
+				visit root_path
+			end
+
+			it {should have_title(full_title(''))}
+		end
+	end
+
 	describe "market order overview page" do
 		before {visit market_page_path}
 
