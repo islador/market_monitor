@@ -21,6 +21,7 @@
   * Displays the host's original market stock before sales.
   * Displays and highlights orders that have sold out.
   * Each displayed order includes average purchase price, average sale price, average %markup, existing stock, order original stock
+  * Handles corporation and/or charater APIs
 
 3. Market Velocity calculating 
   * Calculates the average market velocity for each item id sold.
