@@ -11,8 +11,6 @@ describe "UserPages" do
 
 		describe "for non-signed-in users" do
 			it{should have_selector('label',	text: 'Email')}
-			#it{should have_selector('label',	text: 'Key ID')}
-			#it{should have_selector('label',	text: 'Verification Code')}
 			it{should have_selector('label',	text: 'Password')}
 			it{should have_selector('label',	text: 'Password Confirmation')}
 		end
