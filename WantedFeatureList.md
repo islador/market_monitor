@@ -3,10 +3,11 @@
 # Prioritized List
 
 1. User Account API Validated Authentication
-2. Market Stock Level Monitoring
-3. Market Velocity Calculating
-4. Contract Monitoring
-5. Item in Transit Monitoring
+2. User Profile Page
+3. Market Stock Level Monitoring
+4. Market Velocity Calculating
+5. Contract Monitoring
+6. Item in Transit Monitoring
 
 
 ## Full List
@@ -19,7 +20,8 @@
   * Displays the host's existing stock on market for each item id.
   * Displays the host's original market stock before sales.
   * Displays and highlights orders that have sold out.
-  * Each displayed order includes purchase price, sale price, %markup, existing stock, order original stock
+  * Each displayed order includes average purchase price, average sale price, average %markup, existing stock, order original stock
+  * Handles corporation and/or charater APIs
 
 3. Market Velocity calculating 
   * Calculates the average market velocity for each item id sold.
@@ -74,3 +76,8 @@
   	* Rows are ordered alphabetically by default but may be ordered in the browser by any
   	  column element.
     * Contract Classes without any active contracts are displayed at the bottom of the list.
+
+13. User Profile Page
+  * Display user account page.
+  * Allows editing of all attributes except email.
+  * Displays a list of which APIs are accessible to the application.

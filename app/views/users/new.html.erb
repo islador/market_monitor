@@ -1,0 +1,22 @@
+<% provide(:title, 'Sign Up') %>
+
+<div class="row">
+	<div class="span6 offset3">
+		All fields are required. 
+		<%= link_to "Predefined API Key", 'http://community.eveonline.com/support/api-key/CreatePredefined?accessMask=71307264' %>
+		<%= form_for(@user) do |f| %>
+			<%= render 'shared/error_messages' %>
+
+			<%=f.label :email %>
+			<%=f.text_field :email %>
+
+			<%=f.label :password %>
+			<%=f.password_field :password %>
+
+			<%=f.label :password_confirmation, 'Password Confirmation' %>
+			<%=f.password_field :password_confirmation %>
+
+			<%=f.submit "Register my Account" %>
+		<% end %>
+	</div>
+</div>

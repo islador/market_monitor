@@ -1,0 +1,18 @@
+<% provide(:title, 'Sign In') %>
+
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for(:session, url: sessions_path) do |f| %>
+
+			<%= f.label :email, 'Email' %>
+			<%= f.text_field :email %>
+
+			<%= f.label :password, 'Password' %>
+			<%= f.password_field :password %>
+
+			<%= f.submit "Sign In" %>
+		<% end %>
+
+		<p> New User? <%= link_to "Sign Up", signup_path %></p>
+	</div>
+</div>
