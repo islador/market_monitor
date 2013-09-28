@@ -10,7 +10,10 @@ MarketMonitor::Application.routes.draw do
   match "/signup", to: 'users#new'
   match "/signin", to: 'sessions#new'
   match "/signout", to: 'sessions#destroy', via: :delete
+
   match "/newcharacterapi", to: 'apis#new'
+
+  match "/apilist", to: 'apis#show'
 
   match "/home", to: 'static_pages#home'
   match "/help", to: 'static_pages#help'

@@ -19,4 +19,13 @@ class ApisController < ApplicationController
   		render 'new'
   	end
   end
+
+  def show
+    if signed_in?
+      render 'api_list'
+    else
+      flash[:error] = "You must be signed in to view this page."
+      redirect_to signin_path
+    end
+  end
 end

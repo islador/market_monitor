@@ -4,7 +4,7 @@ describe "APIPages" do
 
 	subject {page}
 
-	describe "new-api page" do
+	describe "newcharacterapi page" do
 		let(:user) {FactoryGirl.create(:user)}
 
 		describe "for non-signed-in users" do
@@ -21,9 +21,31 @@ describe "APIPages" do
 				visit newcharacterapi_path
 			end
 
-			it {should have_title(full_title('Create new API'))}
+			it {should have_title(full_title('Create new Character API'))}
 			it {should have_selector('label', text: 'Key ID')}
 			it {should have_selector('label', text: 'Verification Code')}
+		end
+	end
+
+	describe "api list page" do
+		let(:user) {FactoryGirl.create(:user)}
+
+		describe "for non-signed-in users" do
+			before {visit apilist_path}
+
+			it "should redirect to the signin page" do
+				should have_title(full_title('Sign In'))
+				should have_selector('div.alert.alert-error', text: "You must be signed in to view this page.")
+			end
+		end
+
+		describe "for signed-in users" do
+			before do
+				sign_in user
+				visit apilist_path
+			end
+
+			it {should have_title(full_title('API List'))}
 		end
 	end
 end
