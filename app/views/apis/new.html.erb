@@ -6,10 +6,10 @@
 			<%= render 'shared/api_error_messages' %>
 
 			<%= link_to "Predefined API Key", 'http://community.eveonline.com/support/api-key/CreatePredefined?accessMask=71307264' %>
-			<%= f.label :key_id %>
+			<%= f.label :key_id, "Key ID"%>
 			<%= f.text_field :key_id %>
 
-			<%= f.label :v_code %>
+			<%= f.label :v_code, "Verification Code" %>
 			<%= f.text_field :v_code %>
 
 			<%= f.submit "Submit New Key" %>

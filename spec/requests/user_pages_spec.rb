@@ -9,6 +9,20 @@ describe "UserPages" do
 
 		it{should have_title(full_title('Sign Up'))}
 
+		describe "to make an account" do
+			it {should have_title(full_title('Sign Up'))}
+
+			#fill_in "Email", with: "jack@jack.com"
+			#fill_in "Password", with: "Jackolantern"
+			#fill_in "Password Confirmation", with: "Jackolantern"
+			#click_button "Register my Account"
+
+			it "should redirect to user_path(user)" do
+				should have_title(full_title('User Information'))
+			end
+
+		end
+
 		describe "for non-signed-in users" do
 			it{should have_selector('label',	text: 'Email')}
 			it{should have_selector('label',	text: 'Password')}

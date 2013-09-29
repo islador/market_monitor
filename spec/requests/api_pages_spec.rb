@@ -55,11 +55,11 @@ describe "APIPages" do
 
 			it {should have_title(full_title('Create new Character API'))}
 			it {should_not have_title(full_title('Sign In'))}
-			it {should have_selector('label',	text: "Key")}
-			it {should have_selector('label',	text: "V code")}
+			it {should have_selector('label',	text: "Key ID")}
+			it {should have_selector('label',	text: "Verification Code")}
 			it {should have_selector('input')}
-			fill_in "Key",	with: "123456789"
-			fill_in "V code",	with: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+			#fill_in "Key ID",	with: "123456789"
+			#fill_in "Verification Code",	with: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 			#click_button "Submit New Key"
 
 			#visit apilist_path
