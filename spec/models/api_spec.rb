@@ -28,6 +28,7 @@ describe Api do
 
 
   subject {@api}
+  #subject {api}
 
   it {should respond_to(:type)}
   it {should respond_to(:key_id)}

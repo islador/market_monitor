@@ -13,6 +13,7 @@ Spork.prefork do
   require 'rspec/rails'
   require 'capybara/rspec'
   require 'rspec/autorun'
+  require 'factory_girl_rails'
   include Capybara::DSL
 
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}

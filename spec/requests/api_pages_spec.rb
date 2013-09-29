@@ -22,14 +22,20 @@ describe "APIPages" do
 			end
 
 			it {should have_title(full_title('Create new Character API'))}
-			it {should have_selector('label', text: 'Key ID')}
-			it {should have_selector('label', text: 'Verification Code')}
+			#it {should have_selector('label', text: 'Key ID')}
+			#it {should have_selector('label', text: 'Verification Code')}
 		end
 	end
 
 	describe "api list page" do
 		let(:user) {FactoryGirl.create(:user)}
-		let(:api) {FactoryGirl.create(:character_api, user: @user)}
+		#let(:api) {FactoryGirl.create(:api, user: user)}
+		#let(:a2) {FactoryGirl.create(:corporation, user: user)}
+		
+		#before do
+		#	@a3 = user.apis.build(type: 1, key_id: "123456789", v_code: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+		#  	accessmask: 71307264, active: 1)
+		#end
 
 		describe "for non-signed-in users" do
 			before {visit apilist_path}
@@ -43,10 +49,25 @@ describe "APIPages" do
 		describe "for signed-in users" do
 			before do
 				sign_in user
-				visit apilist_path
+				visit newcharacterapi_path
+				#visit apilist_path
 			end
 
-			it {should have_title(full_title('API List'))}
+			it {should have_title(full_title('Create new Character API'))}
+			it {should_not have_title(full_title('Sign In'))}
+			it {should have_selector('label',	text: "Key")}
+			it {should have_selector('label',	text: "V code")}
+			it {should have_selector('input')}
+			fill_in "Key",	with: "123456789"
+			fill_in "V code",	with: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+			#click_button "Submit New Key"
+
+			#visit apilist_path
+
+			#it {should have_title(full_title('API List'))}
+			#it {should have_selector('span.KeyID')}
+			#it {should have_selector('h3', text: "APIs (1)")}
+			#it {should have_content('Key ID')}
 		end
 	end
 end

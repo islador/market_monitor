@@ -1,8 +1,8 @@
 <% provide(:title, "API List") %>
 
 <div class="span8">
+    <h3>APIs (<%= current_user.apis.count %>)</h3>
     <% if current_user.apis.any? %>
-      <h3>APIs (<%= current_user.apis.count %>)</h3>
       	<ol class="apis">
         	<% array = current_user.apis %>
         	<% array.each do |a| %>
@@ -10,10 +10,11 @@
         		<li>
 	        	<span class="KeyID"> Key ID: <%= a.key_id %></span>
 	        	<span class="VCode"> Verification Code: <%= a.v_code %></span>
+                <span class="AccessMask"> Access Mask: <%= a.accessmask %></span>
 	        	<% if a.type == 1 %>
-        			<span class="Type"> Type: Corporation </span>
+        		<span class="Type"> Type: Corporation </span>
         		<% else %>
-        			<span class="Type"> Type: Character </span>
+        		<span class="Type"> Type: Character </span>
         		<% end %>
         		<span class="Enrolled"> Enrolled: <%= a.created_at %></span>
         		</li>
