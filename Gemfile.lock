@@ -202,7 +202,6 @@ DEPENDENCIES
   rb-inotify
   rspec-rails
   sass-rails (~> 3.2.3)
-  spork
   sqlite3
   uglifier (>= 1.0.3)
   will_paginate
