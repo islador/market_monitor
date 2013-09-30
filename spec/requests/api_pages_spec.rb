@@ -29,7 +29,7 @@ describe "APIPages" do
 
 	describe "api list page" do
 		let(:user) {FactoryGirl.create(:user)}
-		#let(:api) {FactoryGirl.create(:api, user: user)}
+		let(:api) {FactoryGirl.create(:api, user: user)}
 		#let(:a2) {FactoryGirl.create(:corporation, user: user)}
 		
 		#before do
@@ -58,9 +58,14 @@ describe "APIPages" do
 				visit apilist_path
 			end
 
+			it "should run a factory" do
+				FactoryGirl.create(:api, user: user)
+				visit apilist_path
+			end
+
 			it {should have_title(full_title('API List'))}
 			it {should have_selector('span.KeyID', text: "123456789")}
-			it {should have_selector('h3', text: "APIs (2)")}
+			it {should have_selector('h3', text: "APIs (3)")}
 			#it {should have_content('Key ID')}
 		end
 	end
