@@ -10,11 +10,17 @@
 			<%= f.text_field :key_id %>
 
 			<%= f.label :v_code, "Verification Code" %>
-			<%= f.text_field :v_code %>
+			<div onkeyup="countChar()" onkeydown="countChar()" class="field">		
+				<%= f.text_field :v_code %>
+			</div>
 
 			<%= f.hidden_field :entity, :value => 0 %>
 
 			<%= f.submit "Submit New Key" %>
+
+			<div class="counter" id="counter">	
+			0/64
+			</div>
 		<% end %>
 	</div>
 </div>
