@@ -12,13 +12,17 @@ Spork.prefork do
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
   require 'capybara/rspec'
+  require 'capybara/rails'
   require 'rspec/autorun'
   require 'factory_girl_rails'
-  include Capybara::DSL
+  #include Capybara::DSL
 
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
   RSpec.configure do |config|
+    config.include Capybara::DSL
+    # http://stackoverflow.com/questions/19023520/capybara-results-in-a-no-method-error-when-its-methods-are-referenced-by-rspec
+    # Starkers' post gave me the idea to move the capybara include down from global to rspec.configure.
     # == Mock Framework
     #
     # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
