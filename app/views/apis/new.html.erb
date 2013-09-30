@@ -1,11 +1,12 @@
-<% provide(:title, 'Enroll new Character API') %>
+<% provide(:title, 'Enroll new API') %>
 
 <div class="row">
 	<div class="span6 offset3">
 		<%= form_for(@api) do |f| %>
 			<%= render 'shared/api_error_messages' %>
 
-			<%= link_to "Predefined API Key", 'http://community.eveonline.com/support/api-key/CreatePredefined?accessMask=71307264' %>
+			<%= link_to "Predefined Character API Key", 'http://community.eveonline.com/support/api-key/CreatePredefined?accessMask=71307264' %><br></br>
+			<%= link_to "Corporation Key Guide", '#' %>
 			<%= f.label :key_id, "Key ID"%>
 			<%= f.text_field :key_id %>
 
@@ -13,8 +14,6 @@
 			<div onkeyup="countChar()" onkeydown="countChar()" class="field">		
 				<%= f.text_field :v_code %>
 			</div>
-
-			<%= f.hidden_field :entity, :value => 0 %>
 
 			<%= f.submit "Submit New Key" %>
 
