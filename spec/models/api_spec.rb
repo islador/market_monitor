@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  user_id    :integer
-#  type       :integer
+#  entity     :integer
 #  key_id     :string(255)
 #  v_code     :string(255)
 #  accessmask :integer
@@ -20,7 +20,7 @@ describe Api do
   #let(:api) {FactoryGirl.create(:character_api, user: user)}
 
   before do
-  	@api = user.apis.build(type: 1, key_id: "123456789", v_code: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  	@api = user.apis.build(entity: 1, key_id: "123456789", v_code: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
 	  	accessmask: 71307264, active: 1)
   	#@api = Api.new(type: 1, user_id: user.id, key_id: "123456789", v_code: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
 	#  	accessmask: 71307264, active: 1)
@@ -30,7 +30,7 @@ describe Api do
   subject {@api}
   #subject {api}
 
-  it {should respond_to(:type)}
+  it {should respond_to(:entity)}
   it {should respond_to(:key_id)}
   it {should respond_to(:v_code)}
   it {should respond_to(:accessmask)}

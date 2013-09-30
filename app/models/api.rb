@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  user_id    :integer
-#  type       :integer
+#  entity     :integer
 #  key_id     :string(255)
 #  v_code     :string(255)
 #  accessmask :integer
@@ -14,7 +14,7 @@
 #
 
 class Api < ActiveRecord::Base
-  attr_accessible :accessmask, :key_id, :type, :v_code, :active
+  attr_accessible :accessmask, :key_id, :entity, :v_code, :active
 
   belongs_to :user
 

@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130928065157) do
+ActiveRecord::Schema.define(:version => 20130930081439) do
 
   create_table "apis", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "type"
+    t.integer  "entity"
     t.string   "key_id"
     t.string   "v_code"
     t.integer  "accessmask"

@@ -60,7 +60,7 @@ describe "APIPages" do
 
 			it {should have_title(full_title('API List'))}
 			it {should have_selector('span.KeyID', text: "123456789")}
-			#it {should have_selector('h3', text: "APIs (1)")}
+			it {should have_selector('h3', text: "APIs (2)")}
 			#it {should have_content('Key ID')}
 		end
 	end

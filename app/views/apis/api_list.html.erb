@@ -11,7 +11,7 @@
 	        	<span class="KeyID"> Key ID: <%= a.key_id %></span>
 	        	<span class="VCode"> Verification Code: <%= a.v_code %></span>
                 <span class="AccessMask"> Access Mask: <%= a.accessmask %></span>
-	        	<% if a.type == 1 %>
+	        	<% if a.entity == 1 %>
         		<span class="Type"> Type: Corporation </span>
         		<% else %>
         		<span class="Type"> Type: Character </span>

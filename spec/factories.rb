@@ -7,7 +7,7 @@ FactoryGirl.define do
 	end
 
 	factory :api do
-		type 0
+		entity 0
 		sequence(:key_id) {|n| "#{n}234789"}
 		v_code "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 		accessmask 71307264
@@ -15,7 +15,7 @@ FactoryGirl.define do
 		user
 
 		factory :corporation do
-			type 1
+			entity 1
 		end
 	end
 
