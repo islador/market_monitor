@@ -4,11 +4,11 @@ describe "APIPages" do
 
 	subject {page}
 
-	describe "newcharacterapi page" do
+	describe "enroll new API page" do
 		let(:user) {FactoryGirl.create(:user)}
 
 		describe "non-signed-in users" do
-			before {visit newcharacterapi_path}
+			before {visit enrollnewapi_path}
 
 			it "should redirect to the signin page" do
 				should have_title(full_title('Sign In'))
@@ -18,44 +18,12 @@ describe "APIPages" do
 		describe "signed-in users" do
 			before do
 				sign_in user
-				visit newcharacterapi_path
+				visit enrollnewapi_path
 			end
 
-			it {should have_title(full_title('Enroll new Character API'))}
+			it {should have_title(full_title('Enroll new API'))}
 			#it {should have_selector('label', text: 'Key ID')}
 			#it {should have_selector('label', text: 'Verification Code')}
-		end
-	end
-
-	describe "newcorporationapi page" do
-		let(:user) {FactoryGirl.create(:user)}
-
-		describe "non-signed-in users" do
-			before {visit newcorporationapi_path}
-
-			it "should redirect to the signin page" do
-				should have_title(full_title('Sign In'))
-			end
-		end
-
-		describe "signed-in users" do
-			before do
-				sign_in user
-				visit newcorporationapi_path
-			end
-
-			it {should have_title(full_title('Enroll new Corporation API'))}
-
-			describe "should be able to enroll APIs" do
-				before do
-					fill_in 'Key ID', with: "123456789"
-					fill_in "Verification Code",	with: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-					click_button "Submit New Key"
-				end
-				it "should redirect to the api list" do
-					should have_title(full_title('API List'))
-				end
-			end
 		end
 	end
 
