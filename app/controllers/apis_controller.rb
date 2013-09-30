@@ -33,9 +33,13 @@ class ApisController < ApplicationController
     result = api.account.apikeyinfo
     if @@accessmasks.include?(result.key.accessMask)
       @api.accessmask = result.key.accessMask
+      if result.key.accessMask == @@accessmasks[0]
+        @api.entity = 0
+      else
+        @api.entity = 1
+      end
   	 if @api.save
   		flash[:success] = "Api #{@api.key_id} Created"
-      flash[:success] = "Access Mask: #{@api.accessmask}"
   		redirect_to apilist_path
   	 else
   		render 'new'
