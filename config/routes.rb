@@ -12,6 +12,7 @@ MarketMonitor::Application.routes.draw do
   match "/signout", to: 'sessions#destroy', via: :delete
 
   match "/newcharacterapi", to: 'apis#new'
+  match "/newcorporationapi", to: 'apis#corporation'
 
   match "/apilist", to: 'apis#show'
 

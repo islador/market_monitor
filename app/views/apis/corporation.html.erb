@@ -1,0 +1,21 @@
+<% provide(:title, 'Create new Corporation API') %>
+
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for(@api) do |f| %>
+			<%= render 'shared/api_error_messages' %>
+
+			<%= link_to "Corporation Key Guide", '#' %>
+			<%= f.label :key_id, "Key ID"%>
+			<%= f.text_field :key_id %>
+
+			<%= f.label :v_code, "Verification Code" %>
+			<%= f.text_field :v_code %>
+
+			<%= f.hidden_field :entity, :value => 1 %>
+
+			<%= f.submit "Submit New Key" %>
+		<% end %>
+	</div>
+</div>
+

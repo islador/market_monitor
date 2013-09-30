@@ -10,11 +10,20 @@ class ApisController < ApplicationController
   	end
   end
 
+  def corporation
+    if signed_in?
+      @api = current_user.apis.build
+    else
+      flash[:error] = "You must be signed in to create an API."
+      redirect_to signin_path
+    end
+  end
+
   def create
   	@api = current_user.apis.build(params[:api])
   	if @api.save
   		flash[:success] = "Api #{@api.key_id} Created"
-  		redirect_to user_path(current_user)
+  		redirect_to apilist_path
   	else
   		render 'new'
   	end
