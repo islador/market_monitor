@@ -19,11 +19,14 @@ describe "HeaderPages" do
 
 			it {should have_link('Sign Out')}
 			it {should have_link('Edit Account')}
+			it {should have_link('APIs')}
+			it {should have_link('Enroll new Api')}
+			it {should have_link('API List')}
+
 		end
 
 		describe "as non-signed-in user" do
 			
-			it {should have_link('Home')}
 			it {should have_link('Sign In')}
 			it {should have_link('Sign Up')}
 		end
