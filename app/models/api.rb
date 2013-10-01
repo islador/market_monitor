@@ -13,6 +13,15 @@
 #  updated_at :datetime         not null
 #
 
+# API to Model Map
+# | API | Model | Reason |
+# |:---:|:-----:|:------:|
+# | Key ID | key_id | |
+# | Verification Code | v_code | |
+# | Access Mask | accessmask | |
+# | | entity | Set to 1 for corporation, 0 for character, infered at time of enrollment by the access mask. |
+# | | active | Whether the API returned data on the last query. |
+
 class Api < ActiveRecord::Base
   attr_accessible :accessmask, :key_id, :entity, :v_code, :active
 
