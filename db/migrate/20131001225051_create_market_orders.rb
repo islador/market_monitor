@@ -21,5 +21,6 @@ class CreateMarketOrders < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :market_orders, [:user_id, :api_id]
   end
 end
