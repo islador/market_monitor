@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130930081439) do
+ActiveRecord::Schema.define(:version => 20131001232506) do
 
   create_table "apis", :force => true do |t|
     t.integer  "user_id"
@@ -25,6 +25,31 @@ ActiveRecord::Schema.define(:version => 20130930081439) do
   end
 
   add_index "apis", ["user_id", "active"], :name => "index_apis_on_user_id_and_valid"
+
+  create_table "market_orders", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "api_id"
+    t.integer  "market_summary_id"
+    t.integer  "order_id"
+    t.integer  "station_id"
+    t.integer  "vol_entered"
+    t.integer  "vol_remaining"
+    t.integer  "min_volume"
+    t.integer  "order_state"
+    t.integer  "type_id"
+    t.integer  "reach"
+    t.integer  "account_key"
+    t.integer  "duration"
+    t.decimal  "escrow"
+    t.decimal  "price"
+    t.boolean  "bid"
+    t.datetime "issued"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "char_id"
+  end
+
+  add_index "market_orders", ["user_id", "api_id"], :name => "index_market_orders_on_user_id_and_api_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
