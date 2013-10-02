@@ -6,6 +6,7 @@ class MarketOrdersController < ApplicationController
 
 		#Assemble a hash for use in inserting into the database.
 		@temphash = {"user_id" => nil, "api_id" => nil, "market_summary_id" => nil, "order_id" => nil, "char_id" => nil, "station_id" => nil, "vol_entered" => nil, "vol_remaining" => nil, "min_volume" => nil, "order_state" => nil, "type_id" => nil, "reach" => nil, "account_key" => nil, "duration" => nil, "escrow" => nil, "price" => nil, "bid" => nil, "issued" => nil }
+		#Assemble a hash for use in updating existing orders.
 		@updatehash = {"vol_remaining" => nil, "order_state" => nil, "escrow" => nil, "price" => nil}
 		#Increment through the array loading each API's data into the database.
 		@apilist.each do |n|
