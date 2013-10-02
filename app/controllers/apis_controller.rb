@@ -13,15 +13,6 @@ class ApisController < ApplicationController
   	end
   end
 
-  def corporation
-    if signed_in?
-      @api = current_user.apis.build
-    else
-      flash[:error] = "You must be signed in to create an API."
-      redirect_to signin_path
-    end
-  end
-
   def create
   	@api = current_user.apis.build(params[:api])
     api = Eve::API.new(:key_id => @api.key_id, :v_code => @api.v_code)
