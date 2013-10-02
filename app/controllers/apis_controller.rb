@@ -7,11 +7,6 @@ class ApisController < ApplicationController
   def new
   	if signed_in?
   		@api = current_user.apis.build
-      #api = Eve::API.new(:key_id => @api.key_id, :v_code => @api.v_code)
-      #puts "Api Loaded"
-      #result = api.account.apikeyinfo
-      #puts "API Key Info API Selected"
-      #puts result.key.accessMask
   	else
   		flash[:error] = "You must be signed in to create an API."
   		redirect_to signin_path
