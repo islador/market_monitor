@@ -26,7 +26,7 @@ class Api < ActiveRecord::Base
   attr_accessible :accessmask, :key_id, :entity, :v_code, :active
 
   belongs_to :user
-
+  has_many :market_orders
 
   validates :user_id, presence: true
   validates :key_id, presence: true, uniqueness: true

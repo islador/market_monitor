@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   has_many :apis
+  has_many :market_orders
 
   before_save { |user| user.email = email.downcase}
   before_save :create_remember_token
