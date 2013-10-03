@@ -3,7 +3,7 @@ module CorpMarketOrders
 
 		#Assemble a hash for use in updating existing orders.
 		@updatehash = {"vol_remaining" => nil, "order_state" => nil, "escrow" => nil, "price" => nil}
-
+		puts "Called update method"
 		#Extract the active status from the database.
 		@active = Api.find_by_id(id)
 
@@ -27,7 +27,7 @@ module CorpMarketOrders
 			#pull the API ID out of the @apilist variable before looping.
 
 			#Iterate through each returnd order.
-			result.each do |o|
+			result.orders.each do |o|
 
 				#load the hash with the variables that change from query to query.
 				@updatehash["vol_remaining"] = o.volRemaining
@@ -39,6 +39,7 @@ module CorpMarketOrders
 				MarketOrder.find_by_order_id(o.orderID).update_attributes(@updatehash)
 			end
 		end
+		puts "finished update method"
 	end
 
 	def self.input_orders(id)
@@ -78,7 +79,6 @@ module CorpMarketOrders
 			result.orders.each do |o|
 				#Check for existing order, if found, execute the update method.
 				if MarketOrder.find_by_order_id(o.orderID) != nil
-					puts "Found an existing order ID"
 					update(id)			
 				else
 					puts "Creating a new order."
