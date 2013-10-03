@@ -40,9 +40,14 @@ class CacheTimesController < ApplicationController
 
 				# If call_type is 4, fire CharacterMarketOrders
 				if CacheTimers.find_by_id(n).call_type == 4
-					CharMarketOrders.input_orders(CacheTimes.find_by_id(n).api_id)
+					CharMarketOrders.input_char_orders(CacheTimes.find_by_id(n).api_id)
 				end
-					
 
+				# If call_type is 5, fire CharacterWalletTransactions
+				if CacheTimes.find_by_id(n).call_type == 5
+					CharWalletTransactions.retrieve_char_transactions(CacheTimes.find_by_id(n).api_id)
+				end
+			end
+		end
 	end
 end
