@@ -1,5 +1,5 @@
 module CorpMarketOrders
-	def update(id)
+	def self.update(id)
 
 		#Assemble a hash for use in updating existing orders.
 		@updatehash = {"vol_remaining" => nil, "order_state" => nil, "escrow" => nil, "price" => nil}
@@ -41,37 +41,47 @@ module CorpMarketOrders
 		end
 	end
 
-	def input_orders(id)
+	def self.input_orders(id)
 		#Assemble a hash for use in inserting into the database.
 		@temphash = {"user_id" => nil, "api_id" => nil, "market_summary_id" => nil, "order_id" => nil, "char_id" => nil, "station_id" => nil, "vol_entered" => nil, "vol_remaining" => nil, "min_volume" => nil, "order_state" => nil, "type_id" => nil, "reach" => nil, "account_key" => nil, "duration" => nil, "escrow" => nil, "price" => nil, "bid" => nil, "issued" => nil }
+		puts "Built temphash CorpMarketOrders.input_orders(id)"
 		#Extract the active status from the database.
-		@active = Api.find_by_id(id)
+		@active = Api.find_by_id(id).active
+		puts "Built active variable."
 
 		#Check for activity to ensure dead APIs aren't hammered.
 		if @active == 1
+			puts "Passed active test."
 
 			#Assemble the API for the EVE Gem.
 			api = Eve::API.new(:key_id => Api.find_by_id(id).key_id, :v_code => Api.find_by_id(id).v_code)
+			puts "Assembled API"
 
 			#Load Characters to retrieve character IDs
 			result = api.account.characters
+			puts "loaded Characters"
 
 			#select the user from the API assocation
 			@user = User.find_by_id(Api.find_by_id(id).user_id)
+			puts "Selected user from the API association."
 				
 			# Build and make the API Call
 			api.set( :character_id => result.characters[0].character_id)
 			result = api.corporation.market_orders
+			puts "Built and made the API call to corporation.market_orders."
 
 			#set the api_id before looping as it is static.
-					@temphash["api_id"] = id 
+			@temphash["api_id"] = id 
+			puts "set the temphash api_id variable."
 
 			#Iterate through each returnd order.
-			result.each do |o|
+			result.orders.each do |o|
 				#Check for existing order, if found, execute the update method.
 				if MarketOrder.find_by_order_id(o.orderID) != nil
+					puts "Found an existing order ID"
 					update(id)			
 				else
+					puts "Creating a new order."
 					#Load each order attribute into a hash for easy database insertion.
 					@temphash["order_id"] = o.orderID
 					@temphash["char_id"] = o.charID
@@ -90,9 +100,13 @@ module CorpMarketOrders
 					@temphash["issued"] = o.issued
 
 					#Insert into the database
-					@user.market_orders.build(@temphash)
+					@order = @user.market_orders.build(@temphash)
+					@order.save
+					puts "Saved @order."
 				end
 			end
+			puts "exited result loop."
 		end
+		puts "Finished executing CorpMarketOrders.input_orders."
 	end
 end

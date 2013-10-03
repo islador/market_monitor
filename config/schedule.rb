@@ -4,7 +4,7 @@ set :output, "log/cron.log"
 set :environment, 'development' 
 
 every 5.minutes do
-	runner "CacheTimes.checktimes"
+	runner "CacheTimers.checktimes"
 end
 
 # Example:
