@@ -32,6 +32,11 @@ class CacheTimesController < ApplicationController
 				if CacheTimes.find_by_id(n).call_type == 2
 					CorpMarketOrders.input_orders(CacheTimes.find_by_id(n).api_id)
 				end
+
+				# If call_type is 3, fire CorpWalletTransactions
+				if CacheTimes.find_by_id(n).call_type == 3
+					CorpWalletTransactions.retrieve_corp_transactions(CacheTimes.find_by_id(n).api_id)
+				end
 					
 
 	end
