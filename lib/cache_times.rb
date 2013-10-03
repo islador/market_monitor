@@ -7,9 +7,12 @@
 # | 4 | Character Market Order |
 # | 5 | Character Wallet Transactions |
 
-class CacheTimesController < ApplicationController
+class CacheTimesController
 	include ApiActiveChecker
 	include CorpMarketOrders
+	include CorpWalletTransactions
+	include CharMarketOrders
+	include CharWalletTransactions
 
 	def checktimes
 
