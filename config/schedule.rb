@@ -1,6 +1,7 @@
 # Use this file to easily define all of your cron jobs.
 
-set :output "log/cron.log"
+set :output, "log/cron.log"
+set :environment, 'development' 
 
 every 5.minutes do
 	runner "CacheTimes.checktimes"
