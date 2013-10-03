@@ -1,4 +1,9 @@
 class ApisController < ApplicationController
+  include ApiActiveChecker
+  include CorpMarketOrders
+  include CorpWalletTransactions
+  include CharMarketOrders
+  include CharWalletTransactions
 	#before_filter :signed_in_user
 
   @@accessmasks = []
