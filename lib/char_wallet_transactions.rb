@@ -1,5 +1,5 @@
 module CharWalletTransactions
-	def retrieve_char_transactions(id)
+	def self.retrieve_char_transactions(id)
 		
 	end
 end

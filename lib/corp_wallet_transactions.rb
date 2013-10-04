@@ -1,5 +1,5 @@
 module CorpWalletTransactions
-	def retrieve_corp_transactions(id)
+	def self.retrieve_corp_transactions(id)
 		
 	end
 end

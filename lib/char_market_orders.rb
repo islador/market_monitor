@@ -1,10 +1,10 @@
-Module CharMarketOrders
+module CharMarketOrders
 	def update_char_orders(id)
 		#Assemble a hash for use in updating existing orders.
 		@updatehash = {"vol_remaining" => nil, "order_state" => nil, "escrow" => nil, "price" => nil}
 
 		#Extract the active status from the database.
-		@active = Api.find_by_id(id)
+		@active = Api.find_by_id(id).active
 
 		#Check for activity to ensure dead APIs aren't hammered.
 		if @active == 1
@@ -16,9 +16,9 @@ Module CharMarketOrders
 			result = api.account.characters
 
 			#select the user from the API assocation
-			@user = User.find_by_id(Api.find_by_id(id).user_id)
+			#@user = User.find_by_id(Api.find_by_id(id).user_id)
 				
-			# Build and make the API Call
+			#Build and make the API Call
 			#Iterate through each character accessible on the API
 			result.characters.each do |c|
 
@@ -45,12 +45,13 @@ Module CharMarketOrders
 	def input_char_orders(id)
 		#Assemble a hash for use in inserting into the database.
 		@temphash = {"user_id" => nil, "api_id" => nil, "market_summary_id" => nil, "order_id" => nil, "char_id" => nil, "station_id" => nil, "vol_entered" => nil, "vol_remaining" => nil, "min_volume" => nil, "order_state" => nil, "type_id" => nil, "reach" => nil, "account_key" => nil, "duration" => nil, "escrow" => nil, "price" => nil, "bid" => nil, "issued" => nil }
+		puts "Built Temphash"
 		#Extract the active status from the database.
-		@active = Api.find_by_id(id)
+		@active = Api.find_by_id(id).active
 
 		#Check for activity to ensure dead APIs aren't hammered.
 		if @active == 1
-
+			puts "API found to be active"
 			#Assemble the API for the EVE Gem.
 			api = Eve::API.new(:key_id => Api.find_by_id(id).key_id, :v_code => Api.find_by_id(id).v_code)
 
@@ -68,8 +69,8 @@ Module CharMarketOrders
 				api.set( :character_id => result.characters[c].character_id)
 				result = api.character.market_orders
 
-				#pull the API ID out of the @apilist variable before looping.
-				@temphash["api_id"] = n 
+				#Set the api_id variable before looping since it is static.
+				@temphash["api_id"] = id
 
 				#Iterate through each returnd order.
 				result.each do |o|

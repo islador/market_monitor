@@ -107,15 +107,18 @@ module CorpMarketOrders
 					puts "Saved @order."
 				end
 			end
-			puts "exited result loop."
+			#Create and save a new CacheTimes model based on the cachedUntil datetime 
+			#returned by the API pulled in this invocation. This is executed regardless
+			#of whether a new order is created or an existing order is updated.
 			@newTimer = CacheTimes.new(user_id: @user.id, api_id: api_id, call_type: 2, cached_time: result.cachedUntil)
 			puts @newTimer
 			@newTimer.save
 		end
-		
-		puts "CacheTimes id: #{cache_time_id}"
+
+		#Delete the CacheTimes model that caused this method to be invoked.
+		#This is called outside of the API's active check, so the first time an
+		#API is called after being inactive, it is deleted.
 		CacheTimes.delete(cache_time_id)
-		puts "CacheTimes id: #{cache_time_id}"
 		puts "Finished executing CorpMarketOrders.input_orders."
 	end
 end
