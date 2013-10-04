@@ -107,7 +107,6 @@ module CharMarketOrders
 				#returned by the API pulled in this invocation. This is executed regardless
 				#of whether a new order is created or an existing order is updated.
 				@newTimer = CacheTimes.new(user_id: @user.id, api_id: api_id, call_type: 4, cached_time: result.cachedUntil)
-				puts @newTimer
 				@newTimer.save
 			end
 
