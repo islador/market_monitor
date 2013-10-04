@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
 
   has_many :apis
   has_many :market_orders
+  has_many :cache_times
 
   before_save { |user| user.email = email.downcase}
   before_save :create_remember_token

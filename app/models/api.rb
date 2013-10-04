@@ -27,6 +27,7 @@ class Api < ActiveRecord::Base
 
   belongs_to :user
   has_many :market_orders
+  has_many :cache_times
 
   validates :user_id, presence: true
   validates :key_id, presence: true, uniqueness: true
