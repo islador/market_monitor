@@ -5,17 +5,21 @@ module ApiActiveChecker
 	def self.checkactive(api_id, cache_time_id)
 		@user_id = api_id.user_id
 		@api = Api.find_by_id(api_id)
+		@active = @api.active
 
 		puts "Unfinished ApiActiveChecker.checkactive fired at #{DateTime.now}"
 
-		api = Eve::API.new(:key_id => @api.key_id, :v_code => @api.v_code)
-    	result = api.account.apikeyinfo
+		if @active == 1
 
-		@newTimer = CacheTimes.new(user_id: @user.id, api_id: api_id, call_type: 1, cached_time: result.cachedUntil)
-		puts @newTimer
-		@newTimer.save
+			api = Eve::API.new(:key_id => @api.key_id, :v_code => @api.v_code)
+	    	result = api.account.apikeyinfo
+
+			@newTimer = CacheTimes.new(user_id: @user.id, api_id: api_id, call_type: 1, cached_time: result.cachedUntil)
+			puts @newTimer
+			@newTimer.save
+			
+		end
 
 		CacheTimes.delete(cache_time_id)
 	end
-
 end
