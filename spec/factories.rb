@@ -15,6 +15,7 @@ FactoryGirl.define do
 		user
 
 		factory :corporation do
+			accessmask 10489856
 			entity 1
 		end
 	end
