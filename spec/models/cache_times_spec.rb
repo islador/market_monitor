@@ -29,4 +29,25 @@ describe CacheTimes do
 	it {should respond_to(:cached_time)}
 	it {should respond_to(:call_type)}
 	it {should respond_to(:user)}
+	it {should respond_to(:api)}
+
+	describe "when user_id is not present" do
+		before { @time.user_id = nil}
+		it {should_not be_valid}
+	end
+
+	describe "when api_id is not present" do
+		before { @time.api_id = nil }
+		it { should_not be_valid}
+	end
+
+	describe "when cached_time is not present" do
+		before { @time.cached_time = nil }
+		it { should_not be_valid }
+	end
+
+	describe "when call_type is not present" do
+		before { @time.call_type = nil }
+		it { should_not be_valid }
+	end
 end
