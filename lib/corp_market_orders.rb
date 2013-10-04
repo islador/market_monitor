@@ -3,7 +3,7 @@ module CorpMarketOrders
 
 		#Assemble a hash for use in updating existing orders.
 		@updatehash = {"vol_remaining" => nil, "order_state" => nil, "escrow" => nil, "price" => nil}
-		puts "Called update method"
+		#puts "Called update method"
 		#Extract the active status from the database.
 		@active = Api.find_by_id(api_id)
 
@@ -41,41 +41,41 @@ module CorpMarketOrders
 			@newTimer = CacheTime.new(user_id: @user.id, api_id: api_id, cached_time: result.cachedUntil, call_type: 2)
 			@new.save
 		end
-		puts "finished update method"
+		puts "Finished CorpMarketOrders.update at #{DateTime.now}"
 	end
 
 	def self.input_orders(api_id,cache_time_id)
 		#Assemble a hash for use in inserting into the database.
 		@temphash = {"user_id" => nil, "api_id" => nil, "market_summary_id" => nil, "order_id" => nil, "char_id" => nil, "station_id" => nil, "vol_entered" => nil, "vol_remaining" => nil, "min_volume" => nil, "order_state" => nil, "type_id" => nil, "reach" => nil, "account_key" => nil, "duration" => nil, "escrow" => nil, "price" => nil, "bid" => nil, "issued" => nil }
-		puts "Built temphash CorpMarketOrders.input_orders(id)"
+		#puts "Built temphash CorpMarketOrders.input_orders(id)"
 		#Extract the active status from the database.
 		@active = Api.find_by_id(api_id).active
-		puts "Built active variable."
+		#puts "Built active variable."
 
 		#Check for activity to ensure dead APIs aren't hammered.
 		if @active == 1
-			puts "Passed active test."
+			#puts "Passed active test."
 
 			#Assemble the API for the EVE Gem.
 			api = Eve::API.new(:key_id => Api.find_by_id(api_id).key_id, :v_code => Api.find_by_id(api_id).v_code)
-			puts "Assembled API"
+			#puts "Assembled API"
 
 			#Load Characters to retrieve character IDs
 			result = api.account.characters
-			puts "loaded Characters"
+			#puts "loaded Characters"
 
 			#select the user from the API assocation
 			@user = User.find_by_id(Api.find_by_id(api_id).user_id)
-			puts "Selected user from the API association."
+			#puts "Selected user from the API association."
 				
 			# Build and make the API Call
 			api.set( :character_id => result.characters[0].character_id)
 			result = api.corporation.market_orders
-			puts "Built and made the API call to corporation.market_orders."
+			#puts "Built and made the API call to corporation.market_orders."
 
 			#set the api_id before looping as it is static.
 			@temphash["api_id"] = api_id 
-			puts "set the temphash api_id variable."
+			#puts "set the temphash api_id variable."
 
 			#Iterate through each returnd order.
 			result.orders.each do |o|
@@ -83,7 +83,7 @@ module CorpMarketOrders
 				if MarketOrder.find_by_order_id(o.orderID) != nil
 					update(api_id)			
 				else
-					puts "Creating a new order."
+					#puts "Creating a new order."
 					#Load each order attribute into a hash for easy database insertion.
 					@temphash["order_id"] = o.orderID
 					@temphash["char_id"] = o.charID
@@ -104,7 +104,7 @@ module CorpMarketOrders
 					#Insert into the database
 					@order = @user.market_orders.build(@temphash)
 					@order.save
-					puts "Saved @order."
+					#puts "Saved @order."
 				end
 			end
 			#Create and save a new CacheTimes model based on the cachedUntil datetime 
@@ -119,6 +119,6 @@ module CorpMarketOrders
 		#This is called outside of the API's active check, so the first time an
 		#API is called after being inactive, it is deleted.
 		CacheTimes.delete(cache_time_id)
-		puts "Finished executing CorpMarketOrders.input_orders."
+		puts "Finished executing CorpMarketOrders.input_orders at #{DateTime.now}"
 	end
 end
