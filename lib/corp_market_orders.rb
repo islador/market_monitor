@@ -1,23 +1,23 @@
 module CorpMarketOrders
-	def self.update(id)
+	def self.update(api_id)
 
 		#Assemble a hash for use in updating existing orders.
 		@updatehash = {"vol_remaining" => nil, "order_state" => nil, "escrow" => nil, "price" => nil}
 		puts "Called update method"
 		#Extract the active status from the database.
-		@active = Api.find_by_id(id)
+		@active = Api.find_by_id(api_id)
 
 		#Check for activity to ensure dead APIs aren't hammered.
 		if @active == 1
 
 			#Assemble the API for the EVE Gem.
-			api = Eve::API.new(:key_id => Api.find_by_id(id).key_id, :v_code => Api.find_by_id(id).v_code)
+			api = Eve::API.new(:key_id => Api.find_by_id(api_id).key_id, :v_code => Api.find_by_id(api_id).v_code)
 
 			#Load Characters to retrieve character IDs
 			result = api.account.characters
 
 			#select the user from the API assocation
-			@user = User.find_by_id(Api.find_by_id(id).user_id)
+			@user = User.find_by_id(Api.find_by_id(api_id).user_id)
 				
 			# Build and make the API Call
 			api.set( :character_id => result.characters[0].character_id)
@@ -38,16 +38,18 @@ module CorpMarketOrders
 				#Update the existing order.
 				MarketOrder.find_by_order_id(o.orderID).update_attributes(@updatehash)
 			end
+			@newTimer = CacheTime.new(user_id: @user.id, api_id: api_id, cached_time: result.cachedUntil, call_type: 2)
+			@new.save
 		end
 		puts "finished update method"
 	end
 
-	def self.input_orders(id)
+	def self.input_orders(api_id,cache_time_id)
 		#Assemble a hash for use in inserting into the database.
 		@temphash = {"user_id" => nil, "api_id" => nil, "market_summary_id" => nil, "order_id" => nil, "char_id" => nil, "station_id" => nil, "vol_entered" => nil, "vol_remaining" => nil, "min_volume" => nil, "order_state" => nil, "type_id" => nil, "reach" => nil, "account_key" => nil, "duration" => nil, "escrow" => nil, "price" => nil, "bid" => nil, "issued" => nil }
 		puts "Built temphash CorpMarketOrders.input_orders(id)"
 		#Extract the active status from the database.
-		@active = Api.find_by_id(id).active
+		@active = Api.find_by_id(api_id).active
 		puts "Built active variable."
 
 		#Check for activity to ensure dead APIs aren't hammered.
@@ -55,7 +57,7 @@ module CorpMarketOrders
 			puts "Passed active test."
 
 			#Assemble the API for the EVE Gem.
-			api = Eve::API.new(:key_id => Api.find_by_id(id).key_id, :v_code => Api.find_by_id(id).v_code)
+			api = Eve::API.new(:key_id => Api.find_by_id(api_id).key_id, :v_code => Api.find_by_id(api_id).v_code)
 			puts "Assembled API"
 
 			#Load Characters to retrieve character IDs
@@ -63,7 +65,7 @@ module CorpMarketOrders
 			puts "loaded Characters"
 
 			#select the user from the API assocation
-			@user = User.find_by_id(Api.find_by_id(id).user_id)
+			@user = User.find_by_id(Api.find_by_id(api_id).user_id)
 			puts "Selected user from the API association."
 				
 			# Build and make the API Call
@@ -72,14 +74,14 @@ module CorpMarketOrders
 			puts "Built and made the API call to corporation.market_orders."
 
 			#set the api_id before looping as it is static.
-			@temphash["api_id"] = id 
+			@temphash["api_id"] = api_id 
 			puts "set the temphash api_id variable."
 
 			#Iterate through each returnd order.
 			result.orders.each do |o|
 				#Check for existing order, if found, execute the update method.
 				if MarketOrder.find_by_order_id(o.orderID) != nil
-					update(id)			
+					update(api_id)			
 				else
 					puts "Creating a new order."
 					#Load each order attribute into a hash for easy database insertion.
@@ -106,7 +108,14 @@ module CorpMarketOrders
 				end
 			end
 			puts "exited result loop."
+			@newTimer = CacheTimes.new(user_id: @user.id, api_id: api_id, call_type: 2, cached_time: result.cachedUntil)
+			puts @newTimer
+			@newTimer.save
 		end
+		
+		puts "CacheTimes id: #{cache_time_id}"
+		CacheTimes.delete(cache_time_id)
+		puts "CacheTimes id: #{cache_time_id}"
 		puts "Finished executing CorpMarketOrders.input_orders."
 	end
 end
