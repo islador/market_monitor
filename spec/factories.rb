@@ -19,12 +19,27 @@ FactoryGirl.define do
 		end
 	end
 
-	#factory :corporation_api do
-	#	type 1
-	#	sequence(:key_id) {|n| "#{n}234789"}
-	#	v_code "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-	#	accessmask 10489856
-	#	active 1
-	#	user
-	#end
+	factory :cache_timer do
+		cached_time DateTime.now
+		call_type 1
+		user
+		api
+
+		factory :corpMarketOrder do
+			call_type 2
+		end
+
+		factory :corpWalletTransactions do
+			call_type 3
+		end
+
+		factory :charMarketOrder do
+			call_type 4
+		end
+
+		factory :charWalletTransactions do
+			call_type 5
+		end
+	end
+
 end
