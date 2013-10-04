@@ -30,6 +30,28 @@ class ApisController < ApplicationController
         @api.entity = 1
       end
   	 if @api.save
+      #Create a new cache times object to query if the key is active.
+      @newActiveTimer = CacheTimes.new(user_id: current_user.id, api_id: @api.id, call_type: 1, cached_time: result.cachedUntil)
+      @newActiveTimer.save
+
+      #Create a new cache times object for corp market orders and wallet transactions.
+      if @api.entity == 1
+        @newCorpMarketOrdersTimer = CacheTimes.new(user_id: current_user.id, api_id: @api.id, call_type: 2, cached_time: DateTime.now)
+        @newCorpMarketOrdersTimer.save
+
+        @newCorpWalletTransactionsTimer = CacheTimes.new(user_id: current_user.id, api_id: @api.id, call_type: 3, cached_time: DateTime.now)
+        @newCorpWalletTransactionsTimer.save
+      end
+
+      #Create a new cache times object for char market orders and wallet transactions.
+      if @api.entity == 0
+        @newCharMarketOrdersTimer = CacheTimes.new(user_id: current_user.id, api_id: @api.id, call_type: 4, cached_time: DateTime.now)
+        @newCharMarketOrdersTimer.save
+
+        @newCharWalletTransactionsTimer = CacheTimes.new(user_id: current_user.id, api_id: @api.id, call_type: 5, cached_time: DateTime.now)
+        @newCharWalletTransactionsTimer.save
+      end
+
   		flash[:success] = "Api #{@api.key_id} Created"
   		redirect_to apilist_path
   	 else
