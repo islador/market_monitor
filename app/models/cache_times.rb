@@ -23,8 +23,8 @@
 class CacheTimes < ActiveRecord::Base
   attr_accessible :api_id, :cached_time, :call_type, :user_id
 
-  belongs_to :apis
-  belongs_to :users
+  belongs_to :api
+  belongs_to :user
 
   validates :user_id, presence: true
   validates :api_id, presence: true
