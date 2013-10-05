@@ -1,0 +1,275 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.eve-online.com/corp/MarketOrders.xml.aspx
+    body:
+      encoding: US-ASCII
+      string: Submodules&KeyId=2638835&VCode=HGo53iK9v7nPHJ1rTMsNYBiQ4JISjP1vR2rM44KNNj4wAcVtNIJnWaWmeWheFuSo&Includes=corporation&CharacterId=90327777
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/xml; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Sat, 05 Oct 2013 06:21:16 GMT
+    body:
+      encoding: UTF-8
+      string: "<?xml version='1.0' encoding='UTF-8'?>\r\n<eveapi version=\"2\">\r\n
+        \ <currentTime>2013-10-05 06:21:16</currentTime>\r\n  <result>\r\n    <rowset
+        name=\"orders\" key=\"orderID\" columns=\"orderID,charID,stationID,volEntered,volRemaining,minVolume,orderState,typeID,range,accountKey,duration,escrow,price,bid,issued\">\r\n
+        \     <row orderID=\"3116753699\" charID=\"1865521514\" stationID=\"60003760\"
+        volEntered=\"189100\" volRemaining=\"189100\" minVolume=\"1\" orderState=\"0\"
+        typeID=\"16640\" range=\"32767\" accountKey=\"1000\" duration=\"90\" escrow=\"0.00\"
+        price=\"1500.00\" bid=\"0\" issued=\"2013-08-09 03:06:57\" />\r\n      <row
+        orderID=\"3162437170\" charID=\"601261354\" stationID=\"61000056\" volEntered=\"5\"
+        volRemaining=\"5\" minVolume=\"1\" orderState=\"0\" typeID=\"21889\" range=\"32767\"
+        accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"60000000.00\"
+        bid=\"0\" issued=\"2013-09-05 09:19:02\" />\r\n      <row orderID=\"3162437334\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"5\" volRemaining=\"5\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"21888\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"68000000.00\" bid=\"0\" issued=\"2013-09-05
+        09:19:16\" />\r\n      <row orderID=\"3162437977\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"4\" volRemaining=\"3\" minVolume=\"1\" orderState=\"0\" typeID=\"11978\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"150000001.00\"
+        bid=\"0\" issued=\"2013-09-05 09:20:05\" />\r\n      <row orderID=\"3162438238\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"4\" volRemaining=\"1\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"11985\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"140000000.00\" bid=\"0\" issued=\"2013-09-05
+        09:20:26\" />\r\n      <row orderID=\"3162439438\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"15\" volRemaining=\"4\" minVolume=\"1\" orderState=\"0\" typeID=\"11186\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"13500000.00\"
+        bid=\"0\" issued=\"2013-09-05 09:21:48\" />\r\n      <row orderID=\"3162439680\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"15\" volRemaining=\"1\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"11202\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"20000000.00\" bid=\"0\" issued=\"2013-09-05
+        09:22:06\" />\r\n      <row orderID=\"3162442611\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"100\" volRemaining=\"93\" minVolume=\"1\" orderState=\"0\" typeID=\"31346\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"200000.00\"
+        bid=\"0\" issued=\"2013-09-05 09:25:32\" />\r\n      <row orderID=\"3162442812\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"50\" volRemaining=\"18\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"31298\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"200000.00\" bid=\"0\" issued=\"2013-09-05
+        09:25:45\" />\r\n      <row orderID=\"3162442992\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"50\" volRemaining=\"26\" minVolume=\"1\" orderState=\"0\" typeID=\"31262\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"1200000.00\"
+        bid=\"0\" issued=\"2013-09-05 09:25:58\" />\r\n      <row orderID=\"3162444693\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"100\" volRemaining=\"76\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"31754\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"300000.00\" bid=\"0\" issued=\"2013-09-05
+        09:28:02\" />\r\n      <row orderID=\"3162444964\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"50\" volRemaining=\"30\" minVolume=\"1\" orderState=\"0\" typeID=\"12221\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"2000000.00\"
+        bid=\"0\" issued=\"2013-09-05 09:28:22\" />\r\n      <row orderID=\"3162446568\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"150\" volRemaining=\"54\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"21640\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"850000.00\" bid=\"0\" issued=\"2013-09-05
+        09:30:20\" />\r\n      <row orderID=\"3162446752\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"50\" volRemaining=\"42\" minVolume=\"1\" orderState=\"0\" typeID=\"16511\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"800000.00\"
+        bid=\"0\" issued=\"2013-09-05 09:30:35\" />\r\n      <row orderID=\"3162447360\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"100\" volRemaining=\"9\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"19939\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"550000.00\" bid=\"0\" issued=\"2013-09-05
+        09:31:24\" />\r\n      <row orderID=\"3162447498\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"100\" volRemaining=\"56\" minVolume=\"1\" orderState=\"0\" typeID=\"19952\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"550000.00\"
+        bid=\"0\" issued=\"2013-09-05 09:31:36\" />\r\n      <row orderID=\"3162447666\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"100\" volRemaining=\"44\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"19927\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"550000.00\" bid=\"0\" issued=\"2013-09-05
+        09:31:49\" />\r\n      <row orderID=\"3162448156\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"100\" volRemaining=\"60\" minVolume=\"1\" orderState=\"0\" typeID=\"19933\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"550000.00\"
+        bid=\"0\" issued=\"2013-09-05 09:32:25\" />\r\n      <row orderID=\"3162448331\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"100\" volRemaining=\"75\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"25565\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"550000.00\" bid=\"0\" issued=\"2013-09-05
+        09:32:39\" />\r\n      <row orderID=\"3162450308\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"500000\" volRemaining=\"165699\" minVolume=\"1\" orderState=\"0\"
+        typeID=\"230\" range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\"
+        price=\"110.00\" bid=\"0\" issued=\"2013-09-05 09:35:15\" />\r\n      <row
+        orderID=\"3162450610\" charID=\"601261354\" stationID=\"61000056\" volEntered=\"100\"
+        volRemaining=\"6\" minVolume=\"1\" orderState=\"0\" typeID=\"31718\" range=\"32767\"
+        accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"300000.00\" bid=\"0\"
+        issued=\"2013-09-05 09:35:40\" />\r\n      <row orderID=\"3162451343\" charID=\"601261354\"
+        stationID=\"61000056\" volEntered=\"10\" volRemaining=\"2\" minVolume=\"1\"
+        orderState=\"0\" typeID=\"4290\" range=\"32767\" accountKey=\"1004\" duration=\"90\"
+        escrow=\"0.00\" price=\"5000000.00\" bid=\"0\" issued=\"2013-09-05 09:36:41\"
+        />\r\n      <row orderID=\"3162452043\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"50\" volRemaining=\"37\" minVolume=\"1\" orderState=\"0\" typeID=\"2580\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"1250000.00\"
+        bid=\"0\" issued=\"2013-09-05 09:37:34\" />\r\n      <row orderID=\"3162452207\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"50\" volRemaining=\"30\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"20224\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"250000.00\" bid=\"0\" issued=\"2013-09-05
+        09:37:46\" />\r\n      <row orderID=\"3162452379\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"100\" volRemaining=\"7\" minVolume=\"1\" orderState=\"0\" typeID=\"1447\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"850000.00\"
+        bid=\"0\" issued=\"2013-09-05 09:38:00\" />\r\n      <row orderID=\"3162452869\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"200\" volRemaining=\"165\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"2605\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"750000.00\" bid=\"0\" issued=\"2013-09-05
+        09:38:40\" />\r\n      <row orderID=\"3162453511\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"150\" volRemaining=\"126\" minVolume=\"1\" orderState=\"0\" typeID=\"31358\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"2230898.24\"
+        bid=\"0\" issued=\"2013-09-05 09:39:28\" />\r\n      <row orderID=\"3162453675\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"150\" volRemaining=\"101\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"31788\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"1128528.29\" bid=\"0\" issued=\"2013-09-05
+        09:39:41\" />\r\n      <row orderID=\"3167099208\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"33\" volRemaining=\"25\" minVolume=\"1\" orderState=\"0\" typeID=\"12005\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"230000000.00\"
+        bid=\"0\" issued=\"2013-09-08 07:42:01\" />\r\n      <row orderID=\"3167101624\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"40\" volRemaining=\"40\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"5443\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"3500000.00\" bid=\"0\" issued=\"2013-09-08
+        07:44:14\" />\r\n      <row orderID=\"3167106389\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"500\" volRemaining=\"213\" minVolume=\"1\" orderState=\"0\" typeID=\"29015\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"75000.00\"
+        bid=\"0\" issued=\"2013-09-08 07:48:38\" />\r\n      <row orderID=\"3167106739\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"15\" volRemaining=\"15\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"11182\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"26000000.00\" bid=\"0\" issued=\"2013-09-08
+        07:48:59\" />\r\n      <row orderID=\"3167112419\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"15\" volRemaining=\"5\" minVolume=\"1\" orderState=\"0\" typeID=\"11188\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"21500000.00\"
+        bid=\"0\" issued=\"2013-09-08 07:54:49\" />\r\n      <row orderID=\"3185361091\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"15\" volRemaining=\"14\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"4302\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"72000000.00\" bid=\"0\" issued=\"2013-09-20
+        20:20:51\" />\r\n      <row orderID=\"3185362288\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"50\" volRemaining=\"8\" minVolume=\"1\" orderState=\"0\" typeID=\"31179\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"3500000.00\"
+        bid=\"0\" issued=\"2013-09-20 20:21:47\" />\r\n      <row orderID=\"3185363712\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"200000\" volRemaining=\"26694\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"23025\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"900.00\" bid=\"0\" issued=\"2013-09-20
+        20:23:02\" />\r\n      <row orderID=\"3185364595\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"200\" volRemaining=\"200\" minVolume=\"1\" orderState=\"0\" typeID=\"1447\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"950000.00\"
+        bid=\"0\" issued=\"2013-09-20 20:23:44\" />\r\n      <row orderID=\"3185365652\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"103\" volRemaining=\"41\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"3512\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"1150000.00\" bid=\"0\" issued=\"2013-09-20
+        20:24:36\" />\r\n      <row orderID=\"3185368229\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"20\" volRemaining=\"14\" minVolume=\"1\" orderState=\"0\" typeID=\"11377\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"25000000.00\"
+        bid=\"0\" issued=\"2013-09-20 20:26:42\" />\r\n      <row orderID=\"3185368915\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"40\" volRemaining=\"16\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"5839\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"10000000.00\" bid=\"0\" issued=\"2013-09-20
+        20:27:10\" />\r\n      <row orderID=\"3185369412\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"10\" volRemaining=\"10\" minVolume=\"1\" orderState=\"0\" typeID=\"11188\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"21500001.00\"
+        bid=\"0\" issued=\"2013-09-20 20:27:37\" />\r\n      <row orderID=\"3185370088\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"20\" volRemaining=\"6\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"11198\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"19000000.00\" bid=\"0\" issued=\"2013-09-20
+        20:28:08\" />\r\n      <row orderID=\"3185370771\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"150\" volRemaining=\"147\" minVolume=\"1\" orderState=\"0\" typeID=\"8585\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"550001.00\"
+        bid=\"0\" issued=\"2013-09-20 20:28:42\" />\r\n      <row orderID=\"3185371132\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"75\" volRemaining=\"1\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"31894\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"3500001.00\" bid=\"0\" issued=\"2013-09-20
+        20:29:01\" />\r\n      <row orderID=\"3185372128\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"50\" volRemaining=\"38\" minVolume=\"1\" orderState=\"0\" typeID=\"24427\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"1250000.00\"
+        bid=\"0\" issued=\"2013-09-20 20:29:50\" />\r\n      <row orderID=\"3185372492\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"10\" volRemaining=\"3\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"13209\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"65000000.00\" bid=\"0\" issued=\"2013-09-20
+        20:30:07\" />\r\n      <row orderID=\"3185373737\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"15\" volRemaining=\"15\" minVolume=\"1\" orderState=\"0\" typeID=\"4268\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"3500000.00\"
+        bid=\"0\" issued=\"2013-09-20 20:31:06\" />\r\n      <row orderID=\"3185373935\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"15\" volRemaining=\"15\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"4270\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"3000000.00\" bid=\"0\" issued=\"2013-09-20
+        20:31:17\" />\r\n      <row orderID=\"3185374277\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"10\" volRemaining=\"10\" minVolume=\"1\" orderState=\"0\" typeID=\"4272\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"8000000.00\"
+        bid=\"0\" issued=\"2013-09-20 20:31:32\" />\r\n      <row orderID=\"3185374553\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"15\" volRemaining=\"9\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"4266\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"2750000.00\" bid=\"0\" issued=\"2013-09-20
+        20:31:46\" />\r\n      <row orderID=\"3185374807\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"15\" volRemaining=\"2\" minVolume=\"1\" orderState=\"0\" typeID=\"4264\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"2833333.33\"
+        bid=\"0\" issued=\"2013-09-20 20:31:57\" />\r\n      <row orderID=\"3185374946\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"15\" volRemaining=\"4\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"4262\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"2750000.00\" bid=\"0\" issued=\"2013-09-20
+        20:32:04\" />\r\n      <row orderID=\"3185375262\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"15\" volRemaining=\"10\" minVolume=\"1\" orderState=\"0\" typeID=\"4282\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"3500000.00\"
+        bid=\"0\" issued=\"2013-09-20 20:32:19\" />\r\n      <row orderID=\"3185375512\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"15\" volRemaining=\"10\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"4284\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"3700000.00\" bid=\"0\" issued=\"2013-09-20
+        20:32:32\" />\r\n      <row orderID=\"3185375771\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"15\" volRemaining=\"6\" minVolume=\"1\" orderState=\"0\" typeID=\"4280\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"3150000.00\"
+        bid=\"0\" issued=\"2013-09-20 20:32:44\" />\r\n      <row orderID=\"3185376971\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"15\" volRemaining=\"2\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"11202\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"18000000.00\" bid=\"0\" issued=\"2013-09-20
+        20:33:43\" />\r\n      <row orderID=\"3185377206\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"20\" volRemaining=\"17\" minVolume=\"1\" orderState=\"0\" typeID=\"4306\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"70000000.00\"
+        bid=\"0\" issued=\"2013-09-20 20:33:55\" />\r\n      <row orderID=\"3185529742\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"150\" volRemaining=\"38\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"8173\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"650000.00\" bid=\"0\" issued=\"2013-09-20
+        22:39:01\" />\r\n      <row orderID=\"3185530876\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"4\" volRemaining=\"1\" minVolume=\"1\" orderState=\"0\" typeID=\"11985\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"135000000.00\"
+        bid=\"0\" issued=\"2013-09-20 22:39:58\" />\r\n      <row orderID=\"3185531646\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"50\" volRemaining=\"24\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"2024\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"950000.00\" bid=\"0\" issued=\"2013-09-20
+        22:40:39\" />\r\n      <row orderID=\"3185531853\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"15\" volRemaining=\"2\" minVolume=\"1\" orderState=\"0\" typeID=\"11186\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"13475000.00\"
+        bid=\"0\" issued=\"2013-09-20 22:40:51\" />\r\n      <row orderID=\"3185534654\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"100\" volRemaining=\"90\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"19946\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"550001.00\" bid=\"0\" issued=\"2013-09-20
+        22:43:10\" />\r\n      <row orderID=\"3185535168\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"100\" volRemaining=\"100\" minVolume=\"1\" orderState=\"0\" typeID=\"19939\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"550001.00\"
+        bid=\"0\" issued=\"2013-09-20 22:43:37\" />\r\n      <row orderID=\"3185536294\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"50\" volRemaining=\"18\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"4027\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"2500000.00\" bid=\"0\" issued=\"2013-09-20
+        22:44:33\" />\r\n      <row orderID=\"3185536676\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"100\" volRemaining=\"88\" minVolume=\"1\" orderState=\"0\" typeID=\"4395\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"500001.00\"
+        bid=\"0\" issued=\"2013-09-20 22:44:52\" />\r\n      <row orderID=\"3185537341\"
+        charID=\"601261354\" stationID=\"61000056\" volEntered=\"150\" volRemaining=\"89\"
+        minVolume=\"1\" orderState=\"0\" typeID=\"11563\" range=\"32767\" accountKey=\"1004\"
+        duration=\"90\" escrow=\"0.00\" price=\"450001.00\" bid=\"0\" issued=\"2013-09-20
+        22:45:23\" />\r\n      <row orderID=\"3185538914\" charID=\"601261354\" stationID=\"61000056\"
+        volEntered=\"20\" volRemaining=\"15\" minVolume=\"1\" orderState=\"0\" typeID=\"584\"
+        range=\"32767\" accountKey=\"1004\" duration=\"90\" escrow=\"0.00\" price=\"900000.00\"
+        bid=\"0\" issued=\"2013-09-20 22:46:43\" />\r\n    </rowset>\r\n  </result>\r\n
+        \ <cachedUntil>2013-10-05 07:18:16</cachedUntil>\r\n</eveapi>"
+    http_version: 
+  recorded_at: Sat, 05 Oct 2013 06:21:16 GMT
+recorded_with: VCR 2.6.0
