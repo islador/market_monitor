@@ -1,11 +1,6 @@
-# call_type translations
-# | Code | Translation |
-# |:----:|:-----------:|
-# | 1 | Api Status |
-# | 2 | Corp Market Order |
-# | 3 | Corp Wallet Transactions |
-# | 4 | Character Market Order |
-# | 5 | Character Wallet Transactions |
+# CacheTimers and the associate modules are abstracted out of controllers
+# in order to be accessible to whenever for use in cron jobs and potential
+# integration into other controllers.
 
 module CacheTimers
 	include ApiActiveChecker

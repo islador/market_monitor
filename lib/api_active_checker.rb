@@ -3,7 +3,7 @@ module ApiActiveChecker
 	# http://wiki.eve-id.net/APIv2_Eve_ErrorList_XML looks like
 	# a good place to start to define that logic.
 	def self.checkactive(api_id, cache_time_id)
-		@user_id = api_id.user_id
+		@user_id = Api.find_by_id(api_id).user_id
 		@api = Api.find_by_id(api_id)
 		@active = @api.active
 
