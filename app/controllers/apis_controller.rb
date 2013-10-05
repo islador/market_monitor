@@ -29,35 +29,38 @@ class ApisController < ApplicationController
       else
         @api.entity = 1
       end
-      @api.active =1
-  	 if @api.save
-      #Create a new cache times object to query if the key is active.
-      @newActiveTimer = CacheTimes.new(user_id: current_user.id, api_id: @api.id, call_type: 1, cached_time: result.cachedUntil)
-      @newActiveTimer.save
 
-      #Create a new cache times object for corp market orders and wallet transactions.
-      if @api.entity == 1
-        @newCorpMarketOrdersTimer = CacheTimes.new(user_id: current_user.id, api_id: @api.id, call_type: 2, cached_time: DateTime.now)
-        @newCorpMarketOrdersTimer.save
+      #Set the API to Active since it provided an accessmask.
+      @api.active = 1
+      
+      if @api.save
+        #Create a new cache times object to query if the key is active.
+        @newActiveTimer = CacheTimes.new(user_id: current_user.id, api_id: @api.id, call_type: 1, cached_time: result.cachedUntil)
+        @newActiveTimer.save
 
-        @newCorpWalletTransactionsTimer = CacheTimes.new(user_id: current_user.id, api_id: @api.id, call_type: 3, cached_time: DateTime.now)
-        @newCorpWalletTransactionsTimer.save
-      end
+        #Create a new cache times object for corp market orders and wallet transactions.
+        if @api.entity == 1
+          @newCorpMarketOrdersTimer = CacheTimes.new(user_id: current_user.id, api_id: @api.id, call_type: 2, cached_time: DateTime.now)
+          @newCorpMarketOrdersTimer.save
 
-      #Create a new cache times object for char market orders and wallet transactions.
-      if @api.entity == 0
-        @newCharMarketOrdersTimer = CacheTimes.new(user_id: current_user.id, api_id: @api.id, call_type: 4, cached_time: DateTime.now)
-        @newCharMarketOrdersTimer.save
+          @newCorpWalletTransactionsTimer = CacheTimes.new(user_id: current_user.id, api_id: @api.id, call_type: 3, cached_time: DateTime.now)
+          @newCorpWalletTransactionsTimer.save
+        end
 
-        @newCharWalletTransactionsTimer = CacheTimes.new(user_id: current_user.id, api_id: @api.id, call_type: 5, cached_time: DateTime.now)
-        @newCharWalletTransactionsTimer.save
-      end
+        #Create a new cache times object for char market orders and wallet transactions.
+        if @api.entity == 0
+          @newCharMarketOrdersTimer = CacheTimes.new(user_id: current_user.id, api_id: @api.id, call_type: 4, cached_time: DateTime.now)
+          @newCharMarketOrdersTimer.save
 
-  		flash[:success] = "Api #{@api.key_id} Created"
-  		redirect_to apilist_path
-  	 else
-  		render 'new'
-  	 end
+          @newCharWalletTransactionsTimer = CacheTimes.new(user_id: current_user.id, api_id: @api.id, call_type: 5, cached_time: DateTime.now)
+          @newCharWalletTransactionsTimer.save
+        end
+
+    		flash[:success] = "Api #{@api.key_id} Created"
+    		redirect_to apilist_path
+    	 else
+    		render 'new'
+    	end
     else
       flash[:error] = "You have not configured the API correctly."
       render 'new'
