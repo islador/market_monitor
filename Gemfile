@@ -25,6 +25,8 @@ group :test do
 	gem 'rb-inotify'
 	gem 'libnotify'
 	gem 'factory_girl_rails'
+	gem 'webmock'
+	gem 'vcr'
 end
 
 # Gems used only for assets and not required
