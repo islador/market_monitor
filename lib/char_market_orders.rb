@@ -67,14 +67,14 @@ module CharMarketOrders
 			result.characters.each do |c|
 
 				#Build and make the API Call
-				api.set( :character_id => result.characters[c].character_id)
-				result = api.character.market_orders
+				api.set(:character_id => c.character_id)
+				charidresult = api.character.market_orders
 
 				#Set the api_id variable before looping since it is static.
 				@temphash["api_id"] = api_id
 
 				#Iterate through each returnd order.
-				result.orders.each do |o|
+				charidresult.orders.each do |o|
 
 					#Check for existing order, if found, update it with new data.
 					#add an index to MarketOrder order_id to optimize this.
@@ -103,18 +103,19 @@ module CharMarketOrders
 						@order.save
 					end
 				end
-				#Create and save a new CacheTimes model based on the cachedUntil datetime 
-				#returned by the API pulled in this invocation. This is executed regardless
-				#of whether a new order is created or an existing order is updated.
-				@newTimer = CacheTimes.new(user_id: @user.id, api_id: api_id, call_type: 4, cached_time: result.cachedUntil)
-				@newTimer.save
 			end
 
-			#Delete the CacheTimes model that caused this method to be invoked.
-			#This is called outside of the API's active check, so the first time an
-			#API is called after being inactive, it is deleted.
-			CacheTimes.delete(cache_time_id)
-			puts "Finished executing CharMarketOrders.input_orders at #{DateTime.now}"
+			#Create and save a new CacheTimes model based on the cachedUntil datetime 
+			#returned by the API pulled in this invocation. This is executed regardless
+			#of whether a new order is created or an existing order is updated.
+			@newTimer = CacheTimes.new(user_id: @user.id, api_id: api_id, call_type: 4, cached_time: result.cachedUntil)
+			@newTimer.save
 		end
+
+		#Delete the CacheTimes model that caused this method to be invoked.
+		#This is called outside of the API's active check, so the first time an
+		#API is called after being inactive, it is deleted.
+		#CacheTimes.delete(cache_time_id)
+		puts "Finished executing CharMarketOrders.input_orders at #{DateTime.now}"
 	end
 end

@@ -43,7 +43,7 @@ module CacheTimers
 				end
 
 				# If call_type is 4, fire CharacterMarketOrders
-				if CacheTimers.find_by_id(n).call_type == 4
+				if CacheTimes.find_by_id(n).call_type == 4
 					puts "Fired call_type 4 - CharMarketOrders.input_char_orders."
 					CharMarketOrders.input_char_orders(CacheTimes.find_by_id(n).api_id, n)
 				end
@@ -53,8 +53,11 @@ module CacheTimers
 					puts "Fired call_type 5 - CharWalletTransactions.retrieve_char_transactions."
 					CharWalletTransactions.retrieve_char_transactions(CacheTimes.find_by_id(n).api_id, n)
 				end
+
+				# Delete the CacheTimes model that initiated this loop.
+				CacheTimes.destroy(n)
 			end
 		end
-		puts "Finished CheckTimers.checktimes at #{DateTime.now}"
+		puts "Finished CacheTimers.checktimes at #{DateTime.now}"
 	end
 end

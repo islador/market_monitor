@@ -38,8 +38,6 @@ module CorpMarketOrders
 				#Update the existing order.
 				MarketOrder.find_by_order_id(o.orderID).update_attributes(@updatehash)
 			end
-			@newTimer = CacheTime.new(user_id: @user.id, api_id: api_id, cached_time: result.cachedUntil, call_type: 2)
-			@new.save
 		end
 		puts "Finished CorpMarketOrders.update at #{DateTime.now}"
 	end
@@ -111,14 +109,13 @@ module CorpMarketOrders
 			#returned by the API pulled in this invocation. This is executed regardless
 			#of whether a new order is created or an existing order is updated.
 			@newTimer = CacheTimes.new(user_id: @user.id, api_id: api_id, call_type: 2, cached_time: result.cachedUntil)
-			puts @newTimer
 			@newTimer.save
 		end
 
 		#Delete the CacheTimes model that caused this method to be invoked.
 		#This is called outside of the API's active check, so the first time an
 		#API is called after being inactive, it is deleted.
-		CacheTimes.delete(cache_time_id)
+		#CacheTimes.delete(cache_time_id)
 		puts "Finished executing CorpMarketOrders.input_orders at #{DateTime.now}"
 	end
 end
