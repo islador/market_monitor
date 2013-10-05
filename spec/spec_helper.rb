@@ -15,7 +15,12 @@ Spork.prefork do
   require 'capybara/rails'
   require 'rspec/autorun'
   require 'factory_girl_rails'
+  require 'webmock/rspec'
   #include Capybara::DSL
+
+  RSpec.configure do |config|
+    config.include WebMock::API
+  end
 
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
