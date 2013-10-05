@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.eve-online.com/corp/MarketOrders.xml.aspx
+    uri: https://api.eve-online.com/account/Characters.xml.aspx
     body:
       encoding: US-ASCII
-      string: Submodules&KeyId=2638835&VCode=HGo53iK9v7nPHJ1rTMsNYBiQ4JISjP1vR2rM44KNNj4wAcVtNIJnWaWmeWheFuSo&Includes=corporation&CharacterId=90327777
+      string: Submodules&KeyId=2638835&VCode=HGo53iK9v7nPHJ1rTMsNYBiQ4JISjP1vR2rM44KNNj4wAcVtNIJnWaWmeWheFuSo&Includes=account
     headers:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
@@ -27,11 +27,49 @@ http_interactions:
       Vary:
       - Accept-Encoding
       Date:
-      - Sat, 05 Oct 2013 06:21:16 GMT
+      - Sat, 05 Oct 2013 07:07:21 GMT
     body:
       encoding: UTF-8
       string: "<?xml version='1.0' encoding='UTF-8'?>\r\n<eveapi version=\"2\">\r\n
-        \ <currentTime>2013-10-05 06:21:16</currentTime>\r\n  <result>\r\n    <rowset
+        \ <currentTime>2013-10-05 07:07:22</currentTime>\r\n  <result>\r\n    <rowset
+        name=\"characters\" key=\"characterID\" columns=\"name,characterID,corporationName,corporationID\">\r\n
+        \     <row name=\"islador\" characterID=\"601261354\" corporationName=\"Frontier
+        Explorer's League\" corporationID=\"1416434476\" />\r\n    </rowset>\r\n  </result>\r\n
+        \ <cachedUntil>2013-10-05 08:04:22</cachedUntil>\r\n</eveapi>"
+    http_version: 
+  recorded_at: Sat, 05 Oct 2013 07:07:22 GMT
+- request:
+    method: post
+    uri: https://api.eve-online.com/corp/MarketOrders.xml.aspx
+    body:
+      encoding: US-ASCII
+      string: Submodules&KeyId=2638835&VCode=HGo53iK9v7nPHJ1rTMsNYBiQ4JISjP1vR2rM44KNNj4wAcVtNIJnWaWmeWheFuSo&Includes=corporation&CharacterId=601261354
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/xml; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Sat, 05 Oct 2013 07:07:24 GMT
+    body:
+      encoding: UTF-8
+      string: "<?xml version='1.0' encoding='UTF-8'?>\r\n<eveapi version=\"2\">\r\n
+        \ <currentTime>2013-10-05 07:07:25</currentTime>\r\n  <result>\r\n    <rowset
         name=\"orders\" key=\"orderID\" columns=\"orderID,charID,stationID,volEntered,volRemaining,minVolume,orderState,typeID,range,accountKey,duration,escrow,price,bid,issued\">\r\n
         \     <row orderID=\"3116753699\" charID=\"1865521514\" stationID=\"60003760\"
         volEntered=\"189100\" volRemaining=\"189100\" minVolume=\"1\" orderState=\"0\"
@@ -271,5 +309,5 @@ http_interactions:
         bid=\"0\" issued=\"2013-09-20 22:46:43\" />\r\n    </rowset>\r\n  </result>\r\n
         \ <cachedUntil>2013-10-05 07:18:16</cachedUntil>\r\n</eveapi>"
     http_version: 
-  recorded_at: Sat, 05 Oct 2013 06:21:16 GMT
+  recorded_at: Sat, 05 Oct 2013 07:07:24 GMT
 recorded_with: VCR 2.6.0
