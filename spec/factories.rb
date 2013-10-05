@@ -10,6 +10,9 @@ FactoryGirl.define do
 		entity 0
 		sequence(:key_id) {|n| "#{n}234789"}
 		v_code "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		#Modified to create cassettes for testing.
+		#key_id "2638835"
+		#v_code "HGo53iK9v7nPHJ1rTMsNYBiQ4JISjP1vR2rM44KNNj4wAcVtNIJnWaWmeWheFuSo"
 		accessmask 71307264
 		active 1
 		user
@@ -20,8 +23,8 @@ FactoryGirl.define do
 		end
 	end
 
-	factory :cache_timer do
-		cached_time DateTime.now
+	factory :cache_times do
+		cached_time DateTime.now #This forces any cache timers generated to immediately trigger the CacheTimers machinery.
 		call_type 1
 		user
 		api
