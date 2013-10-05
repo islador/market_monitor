@@ -1,0 +1,42 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.eve-online.com/account/Apikeyinfo.xml.aspx
+    body:
+      encoding: US-ASCII
+      string: Submodules&KeyId=2638832&VCode=rFhvKwpQnuVkIj0BmB8vgyYssR760i7a1pcTxxr4TPIlEiTwj8xXMRyAWpQsJ6Zi&Includes=account
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/xml; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Sat, 05 Oct 2013 04:32:43 GMT
+    body:
+      encoding: UTF-8
+      string: "<?xml version='1.0' encoding='UTF-8'?>\r\n<eveapi version=\"2\">\r\n
+        \ <currentTime>2013-10-05 04:32:43</currentTime>\r\n  <result>\r\n    <key
+        accessMask=\"71307264\" type=\"Character\" expires=\"\">\r\n      <rowset
+        name=\"characters\" key=\"characterID\" columns=\"characterID,characterName,corporationID,corporationName\">\r\n
+        \       <row characterID=\"601261354\" characterName=\"islador\" corporationID=\"1416434476\"
+        corporationName=\"Frontier Explorer's League\" />\r\n      </rowset>\r\n    </key>\r\n
+        \ </result>\r\n  <cachedUntil>2013-10-05 04:37:43</cachedUntil>\r\n</eveapi>"
+    http_version: 
+  recorded_at: Sat, 05 Oct 2013 04:32:43 GMT
+recorded_with: VCR 2.6.0

@@ -1,0 +1,152 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.eve-online.com/account/Characters.xml.aspx
+    body:
+      encoding: US-ASCII
+      string: Submodules&KeyId=2638832&VCode=rFhvKwpQnuVkIj0BmB8vgyYssR760i7a1pcTxxr4TPIlEiTwj8xXMRyAWpQsJ6Zi&Includes=account
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/xml; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Sat, 05 Oct 2013 05:45:12 GMT
+    body:
+      encoding: UTF-8
+      string: "<?xml version='1.0' encoding='UTF-8'?>\r\n<eveapi version=\"2\">\r\n
+        \ <currentTime>2013-10-05 05:45:12</currentTime>\r\n  <result>\r\n    <rowset
+        name=\"characters\" key=\"characterID\" columns=\"name,characterID,corporationName,corporationID\">\r\n
+        \     <row name=\"Midita Sunji\" characterID=\"90327777\" corporationName=\"Frontier
+        Explorer's League\" corporationID=\"1416434476\" />\r\n      <row name=\"islador\"
+        characterID=\"601261354\" corporationName=\"Frontier Explorer's League\" corporationID=\"1416434476\"
+        />\r\n      <row name=\"hiyadog\" characterID=\"742587794\" corporationName=\"Unending
+        Fires\" corporationID=\"98130165\" />\r\n    </rowset>\r\n  </result>\r\n
+        \ <cachedUntil>2013-10-05 06:27:00</cachedUntil>\r\n</eveapi>"
+    http_version: 
+  recorded_at: Sat, 05 Oct 2013 05:45:12 GMT
+- request:
+    method: post
+    uri: https://api.eve-online.com/char/MarketOrders.xml.aspx
+    body:
+      encoding: US-ASCII
+      string: Submodules&KeyId=2638832&VCode=rFhvKwpQnuVkIj0BmB8vgyYssR760i7a1pcTxxr4TPIlEiTwj8xXMRyAWpQsJ6Zi&Includes=character&CharacterId=90327777
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/xml; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Sat, 05 Oct 2013 05:45:13 GMT
+    body:
+      encoding: UTF-8
+      string: "<?xml version='1.0' encoding='UTF-8'?>\r\n<eveapi version=\"2\">\r\n
+        \ <currentTime>2013-10-05 05:45:14</currentTime>\r\n  <result>\r\n    <rowset
+        name=\"orders\" key=\"orderID\" columns=\"orderID,charID,stationID,volEntered,volRemaining,minVolume,orderState,typeID,range,accountKey,duration,escrow,price,bid,issued\"
+        />\r\n  </result>\r\n  <cachedUntil>2013-10-05 06:31:42</cachedUntil>\r\n</eveapi>"
+    http_version: 
+  recorded_at: Sat, 05 Oct 2013 05:45:13 GMT
+- request:
+    method: post
+    uri: https://api.eve-online.com/char/MarketOrders.xml.aspx
+    body:
+      encoding: US-ASCII
+      string: Submodules&KeyId=2638832&VCode=rFhvKwpQnuVkIj0BmB8vgyYssR760i7a1pcTxxr4TPIlEiTwj8xXMRyAWpQsJ6Zi&Includes=character&CharacterId=601261354
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/xml; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Sat, 05 Oct 2013 05:45:15 GMT
+    body:
+      encoding: UTF-8
+      string: "<?xml version='1.0' encoding='UTF-8'?>\r\n<eveapi version=\"2\">\r\n
+        \ <currentTime>2013-10-05 05:45:15</currentTime>\r\n  <result>\r\n    <rowset
+        name=\"orders\" key=\"orderID\" columns=\"orderID,charID,stationID,volEntered,volRemaining,minVolume,orderState,typeID,range,accountKey,duration,escrow,price,bid,issued\"
+        />\r\n  </result>\r\n  <cachedUntil>2013-10-05 06:31:57</cachedUntil>\r\n</eveapi>"
+    http_version: 
+  recorded_at: Sat, 05 Oct 2013 05:45:15 GMT
+- request:
+    method: post
+    uri: https://api.eve-online.com/char/MarketOrders.xml.aspx
+    body:
+      encoding: US-ASCII
+      string: Submodules&KeyId=2638832&VCode=rFhvKwpQnuVkIj0BmB8vgyYssR760i7a1pcTxxr4TPIlEiTwj8xXMRyAWpQsJ6Zi&Includes=character&CharacterId=742587794
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/xml; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Sat, 05 Oct 2013 05:45:16 GMT
+    body:
+      encoding: UTF-8
+      string: "<?xml version='1.0' encoding='UTF-8'?>\r\n<eveapi version=\"2\">\r\n
+        \ <currentTime>2013-10-05 05:45:16</currentTime>\r\n  <result>\r\n    <rowset
+        name=\"orders\" key=\"orderID\" columns=\"orderID,charID,stationID,volEntered,volRemaining,minVolume,orderState,typeID,range,accountKey,duration,escrow,price,bid,issued\"
+        />\r\n  </result>\r\n  <cachedUntil>2013-10-05 06:32:03</cachedUntil>\r\n</eveapi>"
+    http_version: 
+  recorded_at: Sat, 05 Oct 2013 05:45:16 GMT
+recorded_with: VCR 2.6.0
