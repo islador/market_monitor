@@ -29,6 +29,7 @@ class ApisController < ApplicationController
       else
         @api.entity = 1
       end
+      @api.active =1
   	 if @api.save
       #Create a new cache times object to query if the key is active.
       @newActiveTimer = CacheTimes.new(user_id: current_user.id, api_id: @api.id, call_type: 1, cached_time: result.cachedUntil)
