@@ -13,6 +13,9 @@ FactoryGirl.define do
 		#Modified to create cassettes for testing.
 		#key_id "2638835"
 		#v_code "HGo53iK9v7nPHJ1rTMsNYBiQ4JISjP1vR2rM44KNNj4wAcVtNIJnWaWmeWheFuSo"
+		#second cassette API
+		#key_id "2638832"
+		#v_code "rFhvKwpQnuVkIj0BmB8vgyYssR760i7a1pcTxxr4TPIlEiTwj8xXMRyAWpQsJ6Zi"
 		accessmask 71307264
 		active 1
 		user
