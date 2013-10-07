@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131003005537) do
+ActiveRecord::Schema.define(:version => 20131007074526) do
 
   create_table "apis", :force => true do |t|
     t.integer  "user_id"
@@ -36,6 +36,21 @@ ActiveRecord::Schema.define(:version => 20131003005537) do
   end
 
   add_index "cache_times", ["user_id", "api_id"], :name => "index_cache_times_on_user_id_and_api_id"
+
+  create_table "market_item_summaries", :force => true do |t|
+    t.integer  "user_id"
+    t.decimal  "average_purchase_price"
+    t.decimal  "average_sale_price"
+    t.decimal  "average_percent_markup"
+    t.integer  "total_vol_entered"
+    t.integer  "total_vol_remaining"
+    t.integer  "type_id"
+    t.integer  "station_id"
+    t.integer  "char_id"
+    t.integer  "entity"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
 
   create_table "market_orders", :force => true do |t|
     t.integer  "user_id"
