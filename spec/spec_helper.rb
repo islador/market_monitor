@@ -15,6 +15,7 @@ Spork.prefork do
   require 'capybara/rails'
   require 'rspec/autorun'
   require 'factory_girl_rails'
+  require 'lib/pma_factory_patch'
   require 'webmock/rspec'
   #include Capybara::DSL
 
