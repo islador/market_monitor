@@ -92,6 +92,14 @@ FactoryGirl.define do
 			bid true
 			sequence(:escrow, (12345.11..98765.99).step(0.1).to_enum) {|n| n}
 		end
+	end
 
+	#Generates a contained summary, accepts user, API parameter and market order input, or creates it's own.
+	factory :market_item_summary do
+		#Creates a new model unless one is passed in
+		user
+		
+		# This factory may not be necesssary because the logic that will create summaries may best be tested by
+		# Feeding raw orders into said logic and testing the output rather then testing pre-made perfect objects.
 	end
 end
