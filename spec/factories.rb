@@ -32,19 +32,19 @@ FactoryGirl.define do
 		user
 		api
 
-		factory :corpMarketOrder do
+		factory :corp_market_order do
 			call_type 2
 		end
 
-		factory :corpWalletTransactions do
+		factory :corp_wallet_transactions do
 			call_type 3
 		end
 
-		factory :charMarketOrder do
+		factory :char_market_order do
 			call_type 4
 		end
 
-		factory :charWalletTransactions do
+		factory :char_wallet_transactions do
 			call_type 5
 		end
 	end

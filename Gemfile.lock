@@ -1,5 +1,6 @@
-PATH
-  remote: /home/islador/eveTools/icras/eve
+GIT
+  remote: https://github.com/islador/eve
+  revision: cdc4ce1307d6c0be7fded1969951f2ed470718b7
   specs:
     eve (2.0.1)
       activesupport (~> 3)
