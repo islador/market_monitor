@@ -51,6 +51,7 @@ FactoryGirl.define do
 
 	#Example Call
 	# FactoryGirl.create(:market_order, :set_state => 1, :set_key => 1005, :set_station => rand(1000..1010), :set_type => rand(1000..1010), :set_char => rand(1000..1010))
+	# FactoryGirl.create(:market_order, user: <user object>, api: <api object>) # uses the objects passed in to build the MarketOrder.
 	# Defaults to the set_state/key values.
 	factory :market_order do
 		ignore do
@@ -73,36 +74,32 @@ FactoryGirl.define do
 		char_id {set_char}
 
 		#Fixed or sequenced values acceptable for all testing.
-		vol_entered 200
-		sequence(:vol_remaining, (100..199).step(1).to_enum) {|n| n}
+		sequence (:vol_entered) {|n| n}
+		sequence(:vol_remaining) {|n| n}
 		min_volume 1
 		reach 32767
-		sequence(:duration, (0..84).step(1).to_enum) {|n| n}
+		duration 84
 		escrow nil
 		sequence(:price, (12345.11..98765.99).step(0.1).to_enum) {|n| n}
 		bid false
 		issued DateTime.now
-		user #Seems to create a new user and new API instead of using an existing one.
-		api #Same as user, could be bad.
+		
+		# Creates a new model unless one is passed in.
+		user
+		api
 
 		factory :buy_order do
 			bid true
 			sequence(:escrow, (12345.11..98765.99).step(0.1).to_enum) {|n| n}
 		end
-
 	end
 
-	#  min_volume        :integer
-#  order_state       :integer
-#  type_id           :integer
-#  reach             :integer
-#  account_key       :integer
-#  duration          :integer
-#  escrow            :decimal(, )
-#  price             :decimal(, )
-#  bid               :boolean
-#  issued            :datetime
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  char_id           :integer
+	#Generates a contained summary, accepts user, API parameter and market order input, or creates it's own.
+	factory :market_item_summary do
+		#Creates a new model unless one is passed in
+		user
+		
+		# This factory may not be necesssary because the logic that will create summaries may best be tested by
+		# Feeding raw orders into said logic and testing the output rather then testing pre-made perfect objects.
+	end
 end
