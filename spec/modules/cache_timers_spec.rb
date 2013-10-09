@@ -24,10 +24,8 @@ describe "CacheTimers" do
 	let(:derp) {DummyClass.new}
 
 	describe "should fire ApiActiveChecker" do
-    before(:each) do
-      FactoryGirl.create(:cache_times)
-    end
-
+      	let!(:timer) {FactoryGirl.create(:cache_times)}
+      	
 		it "should find call_type 1 and fire ApiActiveChecker.checkactive" do
 			#Define which cassette to use to avoid testing CCP's APIs
 			expect do
