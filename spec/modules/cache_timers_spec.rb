@@ -51,7 +51,7 @@ describe "CacheTimers" do
 					derp.checktimes
 				end
 			end.not_to change(CacheTimes, :count)
-			expect(CacheTimes.where(:id => corp_order_timer.id)).to have(0).records
+			expect(CacheTimes.where(:id => corp_order_timer.id)).to have(0).record
 		end
 	end
 
