@@ -49,4 +49,60 @@ FactoryGirl.define do
 		end
 	end
 
+	#Example Call
+	# FactoryGirl.create(:market_order, :set_state => 1, :set_key => 1005, :set_station => rand(1000..1010), :set_type => rand(1000..1010), :set_char => rand(1000..1010))
+	# Defaults to the set_state/key values.
+	factory :market_order do
+		ignore do
+			set_state 0 #possible values => 0, 1, 2, 3
+			set_key 1000 #possible values => 1000, 1001, 1002, 1003, 1004, 1005, 1006
+			set_station 1000 #Accepts any value, suggested: rand(1000..1010)
+			set_type 1000 #Accepts any value, suggested: rand(1000..1010)
+			set_char 1000 #Accepts any value, suggested: rand(1000..1010)
+		end
+		#Must be unique.
+		sequence(:order_id) {|n| n}
+
+		#Dynamic, but limited values needed for MarketItemSummaries testing.
+		order_state {set_state}
+		account_key {set_key} 
+
+		#Moderate - Light duplication necessary for MarketItemSummaries testing.
+		station_id {set_station} #When combo'd with rand advice, allows for predictable collisions.
+		type_id {set_type} 
+		char_id {set_char}
+
+		#Fixed or sequenced values acceptable for all testing.
+		vol_entered 200
+		sequence(:vol_remaining, (100..199).step(1).to_enum) {|n| n}
+		min_volume 1
+		reach 32767
+		sequence(:duration, (0..84).step(1).to_enum) {|n| n}
+		escrow nil
+		sequence(:price, (12345.11..98765.99).step(0.1).to_enum) {|n| n}
+		bid false
+		issued DateTime.now
+		user #Seems to create a new user and new API instead of using an existing one.
+		api #Same as user, could be bad.
+
+		factory :buy_order do
+			bid true
+			sequence(:escrow, (12345.11..98765.99).step(0.1).to_enum) {|n| n}
+		end
+
+	end
+
+	#  min_volume        :integer
+#  order_state       :integer
+#  type_id           :integer
+#  reach             :integer
+#  account_key       :integer
+#  duration          :integer
+#  escrow            :decimal(, )
+#  price             :decimal(, )
+#  bid               :boolean
+#  issued            :datetime
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  char_id           :integer
 end
