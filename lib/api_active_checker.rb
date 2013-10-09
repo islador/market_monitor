@@ -11,9 +11,9 @@ module ApiActiveChecker
 		if @active == 1
 
 			api = Eve::API.new(:key_id => Api.find_by_id(api_id).key_id, :v_code => Api.find_by_id(api_id).v_code)
-	    result = api.account.apikeyinfo
+	    	result = api.account.apikeyinfo
       
-	    if result.accessMask != nil
+	    if result.key.accessMask != nil
 				@newTimer = CacheTimes.new(user_id: @user.id, api_id: api_id, call_type: 1, cached_time: result.cachedUntil)
 				@newTimer.save
 			else 
