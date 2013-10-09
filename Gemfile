@@ -10,7 +10,7 @@ gem 'whenever'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 # EVE Gems
-gem 'eve',			:path => "/home/islador/eveTools/icras/eve"
+gem 'eve',			:git => "https://github.com/islador/eve"
 
 group :development, :test do
 	gem 'sqlite3'
