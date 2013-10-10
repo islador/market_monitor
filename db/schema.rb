@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131008151712) do
+ActiveRecord::Schema.define(:version => 20131010180458) do
 
   create_table "apis", :force => true do |t|
     t.integer  "user_id"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(:version => 20131008151712) do
   create_table "market_orders", :force => true do |t|
     t.integer  "user_id"
     t.integer  "api_id"
-    t.integer  "market_summary_id"
+    t.integer  "market_item_summary_id"
     t.integer  "order_id"
     t.integer  "station_id"
     t.integer  "vol_entered"
@@ -71,8 +71,8 @@ ActiveRecord::Schema.define(:version => 20131008151712) do
     t.decimal  "price"
     t.boolean  "bid"
     t.datetime "issued"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
     t.integer  "char_id"
   end
 
