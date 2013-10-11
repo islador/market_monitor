@@ -9,6 +9,8 @@ module MISBuilder
 		puts "Destroyed all APIs"
 		MarketOrder.destroy_all
 		puts "Destroyed all MOs"
+		MarketItemSummary.destroy_all
+		puts "Destroyed all MISs"
 
 		#Then create two new users
 		@@user1 = FactoryGirl.create(:user)
@@ -22,16 +24,17 @@ module MISBuilder
 
 		#Add Market Orders
 		#100 orders for each user, 50 for each API.
-		50.times{FactoryGirl.create(:market_order, user: @@user1, api: @@api1, :set_station => rand(1000..1020), :set_type => rand(1000..1200), :set_char => 600500)}
+		50.times{FactoryGirl.create(:market_order, user: @@user1, api: @@api1, :set_station => rand(1000..1002), :set_type => rand(1000..1010), :set_char => 600500)}
 		puts "Built out 50 MOs for User1 Api1"
-		50.times{FactoryGirl.create(:market_order, user: @@user1, api: @@corpapi1, :set_station => rand(1000..1020), :set_type => rand(1000..1200), :set_char => 600500)}
+		50.times{FactoryGirl.create(:market_order, user: @@user1, api: @@corpapi1, :set_station => rand(1000..1002), :set_type => rand(1000..1010), :set_char => 600500)}
 		puts "Built out 50 MOs for User1 CorpApi1"
-		50.times{FactoryGirl.create(:market_order, user: @@user2, api: @@api2, :set_station => rand(1000..1020), :set_type => rand(1000..1200), :set_char => 600750)}
+		50.times{FactoryGirl.create(:market_order, user: @@user2, api: @@api2, :set_station => rand(1000..1002), :set_type => rand(1000..1010), :set_char => 600750)}
 		puts "Built out 50 MOs for User2 Api2"
-		50.times{FactoryGirl.create(:market_order, user: @@user2, api: @@corpapi2, :set_station => rand(1000..1020), :set_type => rand(1000..1200), :set_char => 600750)}
+		50.times{FactoryGirl.create(:market_order, user: @@user2, api: @@corpapi2, :set_station => rand(1000..1002), :set_type => rand(1000..1010), :set_char => 600750)}
 		puts "Built out 50 MOs for User2 CorpApi2"
 
 		build(@@user1.id)
+		puts "Build complete."
 	end
 
 	def self.build(user_id)
@@ -63,20 +66,31 @@ module MISBuilder
 					#if it does not contain a model query for the order.
 					#this is done because I am unsure how the index will behave if I use the ro instead of a new variable.
 					order = MarketOrder.where('id = ?', ro.id)
+
 					#assemble a hash
 					temphash["type_id"] = order[0].type_id
 					temphash["station_id"] = order[0].station_id
 					temphash["char_id"] = order[0].char_id
 					temphash["bid"] = order[0].bid
 
-					#and build a new MIS.
+					#build a new MIS
 					new_mis = user[0].market_item_summaries.build(temphash)
 					new_mis.save
+
+					#and associate the order with the MIS.
+					order[0].market_item_summary_id = new_mis.id
+					order[0].save
+					calculate_averages(user[0].id, new_mis.id)
+					puts "Saved new_mis: " + new_mis.id.to_s + ", order_id: " + order[0].id.to_s + ", user_id: " + user[0].id.to_s
 				else
 					#If it contains a model, associate the MO with the matching MIS.
 					order = MarketOrder.where('id = ?', ro.id)
-					order[0].market_item_summary_id = mis.id
+
+					#Assumes mis only ever returns a single item.
+					order[0].market_item_summary_id = mis[0].id
 					order[0].save
+					puts "Updated existing MIS: " + mis[0].id.to_s + ", user_id: " + user[0].id.to_s
+					calculate_averages(user[0].id, mis[0].id)
 				end
 			end
 		end
@@ -105,11 +119,20 @@ module MISBuilder
 		#Trigger: Order and Wallet APIs
 		#Attributes touched:
 		#It's possible to use database aggregate functions to generate the average prices. Average % markup up is looking like it will still require logic. Not sure on that just yet though.
+		##########
+		#This entire method can be optimized by returning the values instead of iniating another save. It is very likely that any method calling this one would be in the process of creating, updating or otherwise need to save the MIS.
+		##########
 
+		#Query for the MIS and store it in a local array.
 		mis = MarketItemSummary.where('id = ?', market_item_summary_id)
-		rmo = MarketOrder.where('market_item_summary_id = ?', market_item_summary_id)
 
-		#Client.select('avg(price) as price, type_id, station_id, char_id').group('type_id').group('station_id').group('char_id').where('user_id = 8')
-		MarketOrder.select('avg(price)as price').group('market_item_summary_id = ?', market_item_summary_id)
+		#Use an aggregate function to calculate and extract the average sale price of all active orders associated with the MIS.
+		asp = MarketOrder.select('avg(price) as price').where('market_item_summary_id = ? AND order_state = 0', market_item_summary_id)[0].price.to_f
+
+		#Update the MIS's ASP value.
+		mis[0].average_sale_price = asp
+
+		#Save the updated MIS.
+		mis[0].save
 	end
 end
