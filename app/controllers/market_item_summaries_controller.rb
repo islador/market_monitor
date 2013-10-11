@@ -1,0 +1,2 @@
+class MarketItemSummariesController < ApplicationController
+end
