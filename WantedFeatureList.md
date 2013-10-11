@@ -1,13 +1,14 @@
 # Wanted Feature List
 
-# Prioritized List
+# Old Prioritized List
 
 1. User Account API Validated Authentication
 2. User Profile Page
-3. Market Stock Level Monitoring
-4. Market Velocity Calculating
-5. Contract Monitoring
-6. Item in Transit Monitoring
+3. (14) Market Item Summary Views
+4. Market Stock Level Monitoring
+5. Market Velocity Calculating
+6. Contract Monitoring
+7. Item in Transit Monitoring
 
 
 ## Full List
@@ -81,3 +82,20 @@
   * Display user account page.
   * Allows editing of all attributes except email.
   * Displays a list of which APIs are accessible to the application.
+
+14. Market Item Summary Views
+  * Views are switched by selecting filters from drop downs.
+  * View 1 - Overview
+    * The Overview provides an overview of all characters, markets (stations), corp and character Market Item Summaries.
+  * View 2 - Market Filtered MIS
+    * The Market Filtered MIS displays all market summaries belonging to the user in a given station. This includes orders summaries for corporation and characters.
+  * View 3 - Character Filtered MIS
+    * The Character Filtered MIS displays all market summaries belonging to a specific character. This includes any order summaries associated with that character, regardless of whether they're listed for corp or character.
+  * View 4 - Corp filtered MIS
+    * The Corp Filtered MIS displays all market summaries belonging to a specific corporation. This includes any order summaries associated with that corporation, regardless of whether they're listed by character A or character B.
+  * View 5 - Character Orders Only MIS
+    * The Character Orders Only MIS displays all market summaries belonging to a specific character that are associated with character. This does not include any corporation orders. This does include all other orders belonging to that character.
+  * Since views are selected via drop down menus, combinations may be used to selectively filter down through the data.
+
+15. Market Item Summary View Searches
+  * A field to search for item summaries.
