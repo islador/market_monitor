@@ -36,7 +36,7 @@ describe "CacheTimers" do
 				#Test that ApiActiveChecker.checkactive builds a new CacheTimes model.
 			end.not_to change(CacheTimes, :count)
 			#Test that the CacheTimes model used was destroyed by CacheTimers.checktimes
-			expect(CacheTimes.find(timer.id)).to be_nil
+			expect(CacheTimes.where(:id => timer.id)).to have(0).record
 		end
 	end
 
