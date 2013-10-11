@@ -44,7 +44,7 @@ module CorpMarketOrders
 
 	def self.input_orders(api_id,cache_time_id)
 		#Assemble a hash for use in inserting into the database.
-		@temphash = {"user_id" => nil, "api_id" => nil, "market_summary_id" => nil, "order_id" => nil, "char_id" => nil, "station_id" => nil, "vol_entered" => nil, "vol_remaining" => nil, "min_volume" => nil, "order_state" => nil, "type_id" => nil, "reach" => nil, "account_key" => nil, "duration" => nil, "escrow" => nil, "price" => nil, "bid" => nil, "issued" => nil }
+		@temphash = {"user_id" => nil, "api_id" => nil, "market_item_summary_id" => nil, "order_id" => nil, "char_id" => nil, "station_id" => nil, "vol_entered" => nil, "vol_remaining" => nil, "min_volume" => nil, "order_state" => nil, "type_id" => nil, "reach" => nil, "account_key" => nil, "duration" => nil, "escrow" => nil, "price" => nil, "bid" => nil, "issued" => nil }
 		#puts "Built temphash CorpMarketOrders.input_orders(id)"
 		#Extract the active status from the database.
 		@active = Api.find_by_id(api_id).active
