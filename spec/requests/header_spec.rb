@@ -22,6 +22,7 @@ describe "HeaderPages" do
 			it {should have_link('APIs')}
 			it {should have_link('Enroll new Api')}
 			it {should have_link('API List')}
+			it {should have_link('Item Order Summaries')}
 
 		end
 
