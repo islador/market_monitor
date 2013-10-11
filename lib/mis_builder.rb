@@ -126,11 +126,21 @@ module MISBuilder
 		#Query for the MIS and store it in a local array.
 		mis = MarketItemSummary.where('id = ?', market_item_summary_id)
 
-		#Use an aggregate function to calculate and extract the average sale price of all active orders associated with the MIS.
+		#Use an average aggregate function to calculate and extract the average sale price of all active orders associated with the MIS.
 		asp = MarketOrder.select('avg(price) as price').where('market_item_summary_id = ? AND order_state = 0', market_item_summary_id)[0].price.to_f
+		#Use a total aggregate function to calculate and extract the total volume entered of all active orders associated with the MIS.
+		tve = MarketOrder.select('total(vol_entered) as vol_entered').where('market_item_summary_id = ? AND order_state = 0', market_item_summary_id)[0].vol_entered
+		#Use a total aggregate function to calculate and extract the total volume remaining of all active orders associated with the MIS.
+		tvr = MarketOrder.select('total(vol_remaining) as vol_remaining').where('market_item_summary_id = ? AND order_state = 0', market_item_summary_id)[0].vol_remaining
 
 		#Update the MIS's ASP value.
 		mis[0].average_sale_price = asp
+
+		#Update the MIS's TVE value
+		mis[0].total_vol_entered = tve
+		
+		#Update the MIS's TVR value
+		mis[0].total_vol_remaining = tvr
 
 		#Save the updated MIS.
 		mis[0].save
