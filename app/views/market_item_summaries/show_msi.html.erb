@@ -1,17 +1,139 @@
 <% provide(:title, 'Item Order Summaries') %>
-<ol>
-<li>Market Item Summary Views
-<ul><li>Views are switched by selecting filters from drop downs.</li>
-<li>View 1 - Overview</li>
-<li>The Overview provides an overview of all characters, markets (stations), corp and character Market Item Summaries.</li>
-<li>View 2 - Market Filtered MIS</li>
-<li>The Market Filtered MIS displays all market summaries belonging to the user in a given station. This includes orders summaries for corporation and characters.</li>
-<li>View 3 - Character Filtered MIS</li>
-<li>The Character Filtered MIS displays all market summaries belonging to a specific character. This includes any order summaries associated with that character, regardless of whether they're listed for corp or character.</li>
-<li>View 4 - Corp filtered MIS</li>
-<li>The Corp Filtered MIS displays all market summaries belonging to a specific corporation. This includes any order summaries associated with that corporation, regardless of whether they're listed by character A or character B.</li>
-<li>View 5 - Character Orders Only MIS</li>
-<li>The Character Orders Only MIS displays all market summaries belonging to a specific character that are associated with character. This does not include any corporation orders. This does include all other orders belonging to that character.</li>
-<li>Since views are selected via drop down menus, combinations may be used to selectively filter down through the data.</li></ul></li>
-</ol>
 
+<div class="dropdowns">
+  <select class="station_select"> <!-- Selects are dynamically populated by where statements run against the user's MIS -->
+    <option>All Stations</option> <!-- The top option is the default option -->
+    <option>1</option> <!-- When a selection is made, the query used to generate the tables below is modified -->
+    <option>2</option> <!-- It should be possible to add additional queries via additional select statments. -->
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+  </select>
+
+  <select class="listing_character">
+    <option>All Characters</option>
+  </select>
+
+  <select class="owner">
+    <option>All Owners</option>
+  </select>
+
+  <select class="type">
+    <option>Buy/Sell</option>
+  </select>
+</div>
+
+<div class="corptable"> <!-- Remove the entire div if behavior rules say there are no corp summaries shown. -->
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <h2>Corporation Item Summaries</h2>
+      </tr>
+    </thead>
+    <tr>
+      <table class="table table-bordered"> <!-- Table within a table allows for easy use of conditional formatting. -->
+        <tr><!-- Rows within this table are individual MIS, they need to be dynamic -->
+          <td><b>Heavy Ion Blasters</b></td>
+          <td>Station I-NGI8 V - I-NAGA STOLE MY BIKE</td>
+          <td>Listing Character islador</td>
+          <td>Owner Frontier Explorer's League</td>
+          <td>Type Sell</td>
+          <tr>
+            <td>APP 1,230,531.22</td>
+            <td>ASP 1,460,124.00</td>
+            <td>APM 20.23%</td>
+            <td>TVE 340</td>
+            <td>TVR 123</td>
+          </tr>
+        </tr>
+
+        <tr><!-- Rows within this table are individual MIS, they need to be dynamic -->
+          <td><b>Heavy Ion Blasters</b></td>
+          <td>Station I-NGI8 V - I-NAGA STOLE MY BIKE</td>
+          <td>Listing Character islador</td>
+          <td>Owner Frontier Explorer's League</td>
+          <td>Type Sell</td>
+          <tr>
+            <td>APP 1,230,531.22</td>
+            <td>ASP 1,460,124.00</td>
+            <td>APM 20.23%</td>
+            <td>TVE 340</td>
+            <td>TVR 123</td>
+          </tr>
+        </tr>
+        <tr><!-- Rows within this table are individual MIS, they need to be dynamic -->
+          <td><b>Heavy Ion Blasters</b></td>
+          <td>Station I-NGI8 V - I-NAGA STOLE MY BIKE</td>
+          <td>Listing Character islador</td>
+          <td>Owner Frontier Explorer's League</td>
+          <td>Type Sell</td>
+          <tr>
+            <td>APP 1,230,531.22</td>
+            <td>ASP 1,460,124.00</td>
+            <td>APM 20.23%</td>
+            <td>TVE 340</td>
+            <td>TVR 123</td>
+          </tr>
+        </tr>
+      </table>
+    </tr>
+  </table>
+</div>
+
+<br></br>
+<div class="chartable"> <!-- Remove the entire div if behavior rules say there are no character summaries being shown. -->
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <h2>Character Item Summaries</h2>
+      </tr>
+    </thead>
+    <tr>
+      <table class="table table-bordered"> <!-- Table within a table allows for easy use of conditional formatting. -->
+        <tr><!-- Rows within this table are individual MIS, they need to be dynamic -->
+          <td><b>Heavy Ion Blasters</b></td>
+          <td>Station I-NGI8 V - I-NAGA STOLE MY BIKE</td>
+          <td>Listing Character islador</td>
+          <td>Owner Frontier Explorer's League</td>
+          <td>Type Sell</td>
+          <tr>
+            <td>APP 1,230,531.22</td>
+            <td>ASP 1,460,124.00</td>
+            <td>APM 20.23%</td>
+            <td>TVE 340</td>
+            <td>TVR 123</td>
+          </tr>
+        </tr>
+
+        <tr><!-- Rows within this table are individual MIS, they need to be dynamic -->
+          <td><b>Heavy Ion Blasters</b></td>
+          <td>Station I-NGI8 V - I-NAGA STOLE MY BIKE</td>
+          <td>Listing Character islador</td>
+          <td>Owner Frontier Explorer's League</td>
+          <td>Type Sell</td>
+          <tr>
+            <td>APP 1,230,531.22</td>
+            <td>ASP 1,460,124.00</td>
+            <td>APM 20.23%</td>
+            <td>TVE 340</td>
+            <td>TVR 123</td>
+          </tr>
+        </tr>
+        <tr><!-- Rows within this table are individual MIS, they need to be dynamic -->
+          <td><b>Heavy Ion Blasters</b></td>
+          <td>Station I-NGI8 V - I-NAGA STOLE MY BIKE</td>
+          <td>Listing Character islador</td>
+          <td>Owner Frontier Explorer's League</td>
+          <td>Type Sell</td>
+          <tr>
+            <td>APP 1,230,531.22</td>
+            <td>ASP 1,460,124.00</td>
+            <td>APM 20.23%</td>
+            <td>TVE 340</td>
+            <td>TVR 123</td>
+          </tr>
+        </tr>
+      </table>
+    </tr>
+  </table>
+</div>
