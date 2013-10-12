@@ -20,6 +20,6 @@
 
 require 'spec_helper'
 
-describe MarketItemSummaries do
+describe MarketItemSummary do
   pending "add some examples to (or delete) #{__FILE__}"
 end

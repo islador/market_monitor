@@ -40,9 +40,11 @@ module MISBuilder
 	def self.build(user_id)
 		#Trigger: Order API
 		#Attributes touched: type_id, station_id, char_id, entity, vol_entered, vol_remaining
-		#Basic Concept: Iterate thorugh all MOs tied to the user. Compare each MO's type_id to the users existing
-		#MS type_ids. If a match is found, check that the station_id, char_id, and entity match as well. If all match
-		#set that MO's market_item_summary_id to the MS's id. If any of them do not match, create a new MS with those values.
+
+		#It is faster to do single large multi-row inserts rather then multiple single row inserts. the rails ORM may handle this
+		#for me, do some research, then keep this in mind for refactoring.
+		#Source: http://stackoverflow.com/questions/1793169/which-is-faster-multiple-single-inserts-or-one-multiple-row-insert
+
 		
 		#Assemble a hash for use in building new MIS
 		temphash = {"type_id" => nil, "station_id" => nil, "char_id" => nil, "entity" => nil, "bid" => nil}
