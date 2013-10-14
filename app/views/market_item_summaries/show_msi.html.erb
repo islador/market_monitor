@@ -1,28 +1,43 @@
 <% provide(:title, 'Item Order Summaries') %>
 
 
-<% station_list = MarketItemSummary.where('user_id = :userID', {userID: 1}).pluck('station_id').uniq %>
+
 
 <div class="dropdowns">
   <select class="station_select"> <!-- Selects are dynamically populated by where statements run against the user's MIS -->
+    <% station_list = MarketItemSummary.where('user_id = :userID', {userID: current_user.id}).pluck('station_id').uniq %>
     <option>All Stations</option> <!-- The top option is the default option -->
-    <option>1</option> <!-- When a selection is made, the query used to generate the tables below is modified -->
-    <option>2</option> <!-- It should be possible to add additional queries via additional select statments. -->
-    <option>3</option>
-    <option>4</option>
-    <option>5</option>
+    <% station_list.each do |s|%>
+      <option> <%=s.to_s%> </option> <!-- Builds the selection list for stations. This uses raw IDs, these need to be turned into station names. -->
+    <% end %>
   </select>
 
+
   <select class="listing_character">
+    <% char_list = MarketItemSummary.where('user_id = :userID', {userID: current_user.id}).pluck('char_id').uniq %>
     <option>All Characters</option>
+    <% char_list.each do |c| %>
+      <option> <%=c.to_s%> </option>
+    <% end %>
   </select>
 
   <select class="owner">
+    <% owner_list = MarketItemSummary.where('user_id = :userID', {userID: current_user.id}).pluck('char_id') %>
+    <!-- owner_list can't be populated because there is currently no local source of corporationIDs or corporation names. -->
+    <!-- The data must be sourced from the APIs and stored. This should be possible at time of enrollment -->
     <option>All Owners</option>
   </select>
 
   <select class="type">
+    <% type_list = MarketItemSummary.where('user_id = :userID', {userID: current_user.id}).pluck('bid').uniq %>
     <option>Buy/Sell</option>
+    <% type_list.each do |t| %>
+      <% if t.to_s.eql? "false" %>
+        <option>Sell</option>
+      <% else %>
+        <option>Buy</option>
+      <% end %>
+    <% end %>
   </select>
 </div>
 
