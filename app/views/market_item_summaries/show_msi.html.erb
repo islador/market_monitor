@@ -1,5 +1,8 @@
 <% provide(:title, 'Item Order Summaries') %>
 
+
+<% station_list = MarketItemSummary.where('user_id = :userID', {userID: 1}).pluck('station_id').uniq %>
+
 <div class="dropdowns">
   <select class="station_select"> <!-- Selects are dynamically populated by where statements run against the user's MIS -->
     <option>All Stations</option> <!-- The top option is the default option -->
