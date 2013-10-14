@@ -29,6 +29,10 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: {minimum: 10}
   validates :password_confirmation, presence: true
 
+  def list_mis
+    MarketItemSummary.where("user_id = ?", id)
+  end
+
   private
 
   	def create_remember_token
