@@ -12,4 +12,6 @@
 #Basic model for holding character IDs and Names for use in owner filtering on mis_show.
 class Character < ActiveRecord::Base
   attr_accessible :char_id, :name
+
+  belongs_to :user
 end

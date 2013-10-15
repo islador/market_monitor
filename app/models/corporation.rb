@@ -12,4 +12,6 @@
 #Basic model for holding corporation IDs and Names for use in owner filtering on mis_show.
 class Corporation < ActiveRecord::Base
   attr_accessible :corp_id, :name
+
+  belongs_to :user
 end
