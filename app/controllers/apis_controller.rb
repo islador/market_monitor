@@ -30,6 +30,8 @@ class ApisController < ApplicationController
         @api.entity = 1
       end
 
+      #Design a way to populate character and corporation tables at time of API ingest.
+
       #Set the API to Active since it provided an accessmask.
       @api.active = 1
       
