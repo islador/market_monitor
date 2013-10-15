@@ -20,7 +20,7 @@ FactoryGirl.define do
 		active 1
 		user
 
-		factory :corporation do
+		factory :corp_api do
 			accessmask 10489856
 			entity 1
 		end
@@ -101,5 +101,17 @@ FactoryGirl.define do
 		
 		# This factory may not be necesssary because the logic that will create summaries may best be tested by
 		# Feeding raw orders into said logic and testing the output rather then testing pre-made perfect objects.
+	end
+
+	#Builds characters for the character model.
+	factory :character do
+		sequence(:char_id) {|n| n}
+		sequence(:name) {|n| "Character #{n}"}
+	end
+
+	#Builds corporations for the corporation model.
+	factory :corporation do
+		sequence(:corp_id) {|n| n}
+		sequence(:name) {|n| "Corporation #{n}"}
 	end
 end
