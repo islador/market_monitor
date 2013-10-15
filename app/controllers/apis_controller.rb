@@ -9,6 +9,9 @@ class ApisController < ApplicationController
   @@accessmasks = []
   @@accessmasks = [71307264, 10489856]
 
+  @@character_hash = {"char_id" => nil, "name" => nil}
+  @@corporation_hash = {"corp_id" => nil, "name" => nil}
+
   def new
   	if signed_in?
   		@api = current_user.apis.build
@@ -30,7 +33,20 @@ class ApisController < ApplicationController
         @api.entity = 1
       end
 
-      #Design a way to populate character and corporation tables at time of API ingest.
+      #Call to character APIs to build character & corporation tables.
+      character_call = api.account.characters
+      character_call.characters.each do |c|
+        @@character_hash["char_id"] = c.characterID
+        @@character_hash["name"] = c.name
+        @@corporation_hash["corp_id"] = c.corporationID
+        @@corporation_hash["name"] = c.corporationName
+
+        @character = current_user.characters.build(@@character_hash)
+        @corporation = current_user.corporations.build(@@corporation_hash)
+
+        @character.save
+        @corporation.save
+      end
 
       #Set the API to Active since it provided an accessmask.
       @api.active = 1
