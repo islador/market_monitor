@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131010180458) do
+ActiveRecord::Schema.define(:version => 20131015193454) do
 
   create_table "apis", :force => true do |t|
     t.integer  "user_id"
@@ -36,6 +36,20 @@ ActiveRecord::Schema.define(:version => 20131010180458) do
   end
 
   add_index "cache_times", ["user_id", "api_id"], :name => "index_cache_times_on_user_id_and_api_id"
+
+  create_table "characters", :force => true do |t|
+    t.string   "name"
+    t.integer  "char_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "corporations", :force => true do |t|
+    t.string   "name"
+    t.integer  "corp_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "market_item_summaries", :force => true do |t|
     t.integer  "user_id"
