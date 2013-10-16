@@ -22,10 +22,23 @@
   </select>
 
   <select class="owner">
-    <% owner_list = MarketItemSummary.where('user_id = :userID', {userID: current_user.id}).pluck('char_id') %>
+    <option>All Owners</option>
+    <% char_list = Character.where('user_id = :userID', {userID: current_user.id}).pluck('name') %>
+    <% corp_list = Corporation.where('user_id = :userID', {userID: current_user.id}).pluck('name') %>
+    <% owner_list = [] %>
+    <% char_list.each do |char| %>
+      <% owner_list.push(char) %>
+    <% end %>
+    <% corp_list.each do |corp| %>
+      <% owner_list.push(corp) %>
+    <% end %>
+    
+    <% owner_list.each do |n| %>
+      <option> <%= n %> </option>
+    <% end %>
     <!-- owner_list can't be populated because there is currently no local source of corporationIDs or corporation names. -->
     <!-- The data must be sourced from the APIs and stored. This should be possible at time of enrollment -->
-    <option>All Owners</option>
+    
   </select>
 
   <select class="type">
