@@ -107,11 +107,13 @@ FactoryGirl.define do
 	factory :character do
 		sequence(:char_id) {|n| n}
 		sequence(:name) {|n| "Character #{n}"}
+		user
 	end
 
 	#Builds corporations for the corporation model.
 	factory :corporation do
 		sequence(:corp_id) {|n| n}
 		sequence(:name) {|n| "Corporation #{n}"}
+		user
 	end
 end
