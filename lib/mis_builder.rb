@@ -11,6 +11,10 @@ module MISBuilder
 		puts "Destroyed all MOs"
 		MarketItemSummary.destroy_all
 		puts "Destroyed all MISs"
+		Character.destroy_all
+		puts "Destroyed all Characters"
+		Corporation.destroy_all
+		puts "Destroyed all Corporations"
 
 		#Then create two new users
 		@@user1 = FactoryGirl.create(:user)
@@ -19,15 +23,25 @@ module MISBuilder
 		#Add APIs
 		@@api1 = FactoryGirl.create(:api, user: @@user1)
 		@@api2 = FactoryGirl.create(:api, user: @@user2)
-		@@corpapi1 = FactoryGirl.create(:corporation, user: @@user1)
-		@@corpapi2 = FactoryGirl.create(:corporation, user: @@user2)
+		@@corpapi1 = FactoryGirl.create(:corp_api, user: @@user1)
+		@@corpapi2 = FactoryGirl.create(:corp_api, user: @@user2)
+
+		#Add Characters
+		@@character1 = FactoryGirl.create(:character, user: @@user1)
+		@@character2 = FactoryGirl.create(:character, user: @@user1)
+		@@character3 = FactoryGirl.create(:character, user: @@user1)
+
+		#Add Corporations
+		@@corporation1 = FactoryGirl.create(:corporation, user: @@user1)
+		@@corporation2 = FactoryGirl.create(:corporation, user: @@user1)
+		@@corporation3 = FactoryGirl.create(:corporation, user: @@user1)
 
 		#Add Market Orders
 		#100 orders for each user, 50 for each API.
-		50.times{FactoryGirl.create(:market_order, user: @@user1, api: @@api1, :set_station => rand(1000..1002), :set_type => rand(1000..1010), :set_char => 600500)}
-		puts "Built out 50 MOs for User1 Api1"
-		50.times{FactoryGirl.create(:market_order, user: @@user1, api: @@corpapi1, :set_station => rand(1000..1002), :set_type => rand(1000..1010), :set_char => 600500)}
-		puts "Built out 50 MOs for User1 CorpApi1"
+		50.times{FactoryGirl.create(:market_order, user: @@user1, api: @@api1, :set_station => rand(1000..1002), :set_type => rand(1000..1010), :set_char => @@character1.char_id)}
+		puts "Built out 50 MOs for User1 Api1 and Character: " + @@character1.name + " (" + @@character1.char_id.to_s + ")"
+		50.times{FactoryGirl.create(:market_order, user: @@user1, api: @@corpapi1, :set_station => rand(1000..1002), :set_type => rand(1000..1010), :set_char => @@character2.char_id)}
+		puts "Built out 50 MOs for User1 CorpApi1 and Character: " + @@character2.name + " (" + @@character2.char_id.to_s + ")"
 		50.times{FactoryGirl.create(:market_order, user: @@user2, api: @@api2, :set_station => rand(1000..1002), :set_type => rand(1000..1010), :set_char => 600750)}
 		puts "Built out 50 MOs for User2 Api2"
 		50.times{FactoryGirl.create(:market_order, user: @@user2, api: @@corpapi2, :set_station => rand(1000..1002), :set_type => rand(1000..1010), :set_char => 600750)}
