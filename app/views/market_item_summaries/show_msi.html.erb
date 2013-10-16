@@ -14,7 +14,12 @@
 
 
   <select class="listing_character">
-    <% char_list = MarketItemSummary.where('user_id = :userID', {userID: current_user.id}).pluck('char_id').uniq %>
+    <% char_list = [] %>
+    <% character_id_list = current_user.market_item_summaries.pluck('char_id').uniq %>
+    <% character_id_list.each do |cil| %>
+      <% char_list.concat(current_user.characters.where('char_id = ?', cil).pluck('name')) %>
+    <% end %>
+    
     <option>All Characters</option>
     <% char_list.each do |c| %>
       <option> <%=c.to_s%> </option>
@@ -22,24 +27,26 @@
   </select>
 
   <select class="owner">
-    <option>All Owners</option>
-
-    <!-- Pluck unique char_id's from MIS belonging to current_user with an entity of 0. Then pluck the name from the character with taht char_id.-->
-    <% char_list = current_user.characters.where('char_id = ?', current_user.market_item_summaries.where('entity = 0').pluck('char_id').uniq).pluck('name') %>
-
-    <!-- Pluck uniq char_id's from MIS belonging to current_user with entity of 1, then pluck the ID from the character with that char_id, then pluck the name from the corporation with that character_id. This ensures only corporation names are listed if there are MIS owned by that corporation. -->
-    <% corp_list = Corporation.where('character_id = ?', current_user.characters.where('char_id = ?', current_user.market_item_summaries.where('entity = 1').pluck('char_id').uniq).pluck('id')).pluck('name') %>
-
-
-    Determine if there are corp MIS, if there are corp MIS for that user, then reach through the characters table to find the corporation of the character listing those orders. Then add those to the array of listed things.
+    <!-- Assemble the arrays necessary for iteration and storage -->
+    <% char_list = [] %>
+    <% corp_list = [] %>
     <% owner_list = [] %>
-    <% char_list.each do |char| %>
-      <% owner_list.push(char) %>
-    <% end %>
-    <% corp_list.each do |corp| %>
-      <% owner_list.push(corp) %>
+
+    <!-- Query the DB to populate the character_id_list and corp_id_list arrays -->
+    <% char_id_list = current_user.market_item_summaries.where('entity = 0').pluck('char_id').uniq %>
+    <% corp_id_list = current_user.market_item_summaries.where('entity = 1').pluck('char_id').uniq %>
+
+    <!-- Iterate through the char_id_list, execute a query for each char_id and pluck the name of that char_id from the database, concating it to the owner_list. -->
+    <% char_id_list.each do |cil| %>
+      <% owner_list.concat(current_user.characters.where('char_id = ?', cil).pluck('name')) %>
     <% end %>
 
+    <!-- Iterate through the corp_id_list, query the DB and pluck the ID for each char_id, then query the Corporation table and pluck each name associated with that character_id and concat it to the owner_list. -->
+    <% corp_id_list.each do |cpil| %>
+      <% owner_list.concat(Corporation.where('character_id = ?', current_user.characters.where('char_id = ?', cpil).pluck('id')).pluck('name')) %>
+    <% end %>
+
+    <option>All Owners</option>
     <% owner_list.each do |n| %>
       <option> <%= n %> </option>
     <% end %>
