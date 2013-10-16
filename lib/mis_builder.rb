@@ -32,9 +32,9 @@ module MISBuilder
 		@@character3 = FactoryGirl.create(:character, user: @@user1)
 
 		#Add Corporations
-		@@corporation1 = FactoryGirl.create(:corporation, user: @@user1)
-		@@corporation2 = FactoryGirl.create(:corporation, user: @@user1)
-		@@corporation3 = FactoryGirl.create(:corporation, user: @@user1)
+		@@corporation1 = FactoryGirl.create(:corporation, character: @@character1)
+		@@corporation2 = FactoryGirl.create(:corporation, character: @@character2)
+		@@corporation3 = FactoryGirl.create(:corporation, character: @@character3)
 
 		#Add Market Orders
 		#100 orders for each user, 50 for each API.

@@ -19,7 +19,6 @@ class User < ActiveRecord::Base
   has_many :market_orders
   has_many :cache_times
   has_many :market_item_summaries
-  has_many :corporations
   has_many :characters
 
   before_save { |user| user.email = email.downcase}

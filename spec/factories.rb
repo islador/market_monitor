@@ -114,6 +114,6 @@ FactoryGirl.define do
 	factory :corporation do
 		sequence(:corp_id) {|n| n}
 		sequence(:name) {|n| "Corporation #{n}"}
-		user
+		character
 	end
 end

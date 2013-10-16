@@ -23,8 +23,15 @@
 
   <select class="owner">
     <option>All Owners</option>
-    <% char_list = Character.where('user_id = :userID', {userID: current_user.id}).pluck('name') %>
-    <% corp_list = Corporation.where('user_id = :userID', {userID: current_user.id}).pluck('name') %>
+
+    <!-- Pluck unique char_id's from MIS belonging to current_user with an entity of 0. Then pluck the name from the character with taht char_id.-->
+    <% char_list = current_user.characters.where('char_id = ?', current_user.market_item_summaries.where('entity = 0').pluck('char_id').uniq).pluck('name') %>
+
+    <!-- Pluck uniq char_id's from MIS belonging to current_user with entity of 1, then pluck the ID from the character with that char_id, then pluck the name from the corporation with that character_id. This ensures only corporation names are listed if there are MIS owned by that corporation. -->
+    <% corp_list = Corporation.where('character_id = ?', current_user.characters.where('char_id = ?', current_user.market_item_summaries.where('entity = 1').pluck('char_id').uniq).pluck('id')).pluck('name') %>
+
+
+    Determine if there are corp MIS, if there are corp MIS for that user, then reach through the characters table to find the corporation of the character listing those orders. Then add those to the array of listed things.
     <% owner_list = [] %>
     <% char_list.each do |char| %>
       <% owner_list.push(char) %>
@@ -32,13 +39,10 @@
     <% corp_list.each do |corp| %>
       <% owner_list.push(corp) %>
     <% end %>
-    
+
     <% owner_list.each do |n| %>
       <option> <%= n %> </option>
     <% end %>
-    <!-- owner_list can't be populated because there is currently no local source of corporationIDs or corporation names. -->
-    <!-- The data must be sourced from the APIs and stored. This should be possible at time of enrollment -->
-    
   </select>
 
   <select class="type">

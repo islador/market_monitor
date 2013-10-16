@@ -42,13 +42,11 @@ class ApisController < ApplicationController
         @@corporation_hash["corp_id"] = c.corporationID
         @@corporation_hash["name"] = c.corporationName
 
-        #Build a character and corporation object for each character returned by the API.
         @character = current_user.characters.build(@@character_hash)
-        @corporation = current_user.corporations.build(@@corporation_hash)
-
-        #Save each character and corporation object to the database.
-        @character.save
-        @corporation.save
+        if @character.save
+          @corporation = @character.corporations.build(@@corporation_hash)
+          @corporation.save
+        end
       end
 
       #Set the API to Active since it provided an accessmask.
