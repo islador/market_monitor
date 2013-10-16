@@ -33,17 +33,20 @@ class ApisController < ApplicationController
         @api.entity = 1
       end
 
-      #Call to character APIs to build character & corporation tables.
+      #Call to character APIs to build character & corporation tables. This should probably be broken out into a separate method.
       character_call = api.account.characters
       character_call.characters.each do |c|
+        #Extract the character IDs and Names from the API, storing them in a hash.
         @@character_hash["char_id"] = c.characterID
         @@character_hash["name"] = c.name
         @@corporation_hash["corp_id"] = c.corporationID
         @@corporation_hash["name"] = c.corporationName
 
+        #Build a character and corporation object for each character returned by the API.
         @character = current_user.characters.build(@@character_hash)
         @corporation = current_user.corporations.build(@@corporation_hash)
 
+        #Save each character and corporation object to the database.
         @character.save
         @corporation.save
       end
