@@ -26,7 +26,8 @@ puts "Items Loading Complete"
 stations = YAML.load_file("#{Rails.root}/db/seed/stations/stations.yml")
 puts "Begining to load stations"
 stations.each do |sta|
-	yaml_station = Station.new("name" => sta["name"], "station_id" => sta["station_id"])
+	# sta contains a hash of symbols, not a hash of strings/ints
+	yaml_station = Station.new("name" => sta[:name], "station_id" => sta[:station_id])
 	yaml_station.save
 	puts "Station Loaded"
 end

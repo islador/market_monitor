@@ -51,6 +51,8 @@ File.open("#{Rails.root}/db/seed/items/items.yml", 'w') do |out|
 		#puts "Volume: " + items[:volume].to_s
 		#puts "MarketGropuID: " + items[:market_group_id].to_s
 
+		#This method of saving an individual hash in YAML creates a .yml file with multiple 'documents' instead of a file with a single document and a bunch of 'maps'. 
+		#Source: http://stackoverflow.com/questions/14714616/parsing-and-composing-yaml
 		meow["name"] = scrub(items[:name])
 		meow["type_id"] = items[:type_id]
 		meow["volume"] = items[:volume]
