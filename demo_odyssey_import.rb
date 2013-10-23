@@ -7,21 +7,6 @@ require 'sqlite3'
 
 #Select from the database
 
-#meow = {"stationID" => nil, "stationName" => nil}
-
-#meow = @odyssey.query("SELECT blueprintTypeID FROM invBlueprintTypes LIMIT 1")
-#meow = @odyssey.query("SELECT stationName FROM staStations LIMIT 1")
-
-#name = @odyssey.query("SELECT typeName FROM invTypes WHERE typeID = 681 LIMIT 1")
-
-#@regions = @odyssey.query('SELECT regionName, regionID FROM mapRegions where regionName != "Unknown";').collect{|row| {:name => row[0], :region_id => row[1]}}
-
-#@regions.each do |re|
-#	#puts re[:name] + " " + re[:region_id]
-#	puts re[:name]
-#	puts re[:region_id]
-#end
-
 #########
 #@stations = @odyssey.query("SELECT stationName, stationID FROM staStations").collect{|row| {:name => row[0], :station_id => row[1]}}
 
@@ -41,12 +26,12 @@ require 'sqlite3'
 #end
 
 puts "Stations Count: " + @stations.count.to_s
-#FileUtils.mkdir_p "#{Rails.root}/db/seed/stations"
-#File.open("#{Rails.root}/db/seed/stations/stations2.yml",'w') do |out|
-#	YAML.dump(@stations, out)
-#end
+FileUtils.mkdir_p "#{Rails.root}/db/seed/stations"
+File.open("#{Rails.root}/db/seed/stations/stations2.yml",'w') do |out|
+	YAML.dump(@stations, out)
+end
 
-#puts "Stations loaded to file."
+puts "Stations loaded to file."
 
 #scrub sourced from http://dotmh.com/post/28975203973/invalid-byte-sequence-in-utf-8
 def scrub string 
@@ -61,10 +46,10 @@ meow = {"name" => nil, "type_id" => nil, "volume" => nil, "market_group_id" => n
 FileUtils.mkdir_p "#{Rails.root}/db/seed/items"
 File.open("#{Rails.root}/db/seed/items/items.yml", 'w') do |out|
 	@items.each do |items|
-		puts "Name: " + scrub(items[:name])
-		puts "TypeID: " + items[:type_id].to_s
-		puts "Volume: " + items[:volume].to_s
-		puts "MarketGropuID: " + items[:market_group_id].to_s
+		#puts "Name: " + scrub(items[:name])
+		#puts "TypeID: " + items[:type_id].to_s
+		#puts "Volume: " + items[:volume].to_s
+		#puts "MarketGropuID: " + items[:market_group_id].to_s
 
 		meow["name"] = scrub(items[:name])
 		meow["type_id"] = items[:type_id]
