@@ -69,12 +69,13 @@ File.open("#{Rails.root}/db/seed/items/items.yml", 'w') do |out|
 		meow["name"] = scrub(items[:name])
 		meow["type_id"] = items[:type_id]
 		meow["volume"] = items[:volume]
-		meow["meow"] = items[:market_group_id]
+		meow["market_group_id"] = items[:market_group_id]
 
 		YAML.dump(meow, out)
 	end
 end
 
+#yehuda katz encoding in rails
 
 
 puts "Items Count: " + @items.count.to_s

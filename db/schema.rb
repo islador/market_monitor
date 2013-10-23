@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131016024332) do
+ActiveRecord::Schema.define(:version => 20131023032327) do
 
   create_table "apis", :force => true do |t|
     t.integer  "user_id"
@@ -51,6 +51,15 @@ ActiveRecord::Schema.define(:version => 20131016024332) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.integer  "character_id"
+  end
+
+  create_table "items", :force => true do |t|
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "name"
+    t.integer  "type_id"
+    t.float    "volume"
+    t.integer  "market_group_id"
   end
 
   create_table "market_item_summaries", :force => true do |t|
@@ -93,6 +102,13 @@ ActiveRecord::Schema.define(:version => 20131016024332) do
   end
 
   add_index "market_orders", ["user_id", "api_id"], :name => "index_market_orders_on_user_id_and_api_id"
+
+  create_table "stations", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "name"
+    t.integer  "station_id"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"
