@@ -15,7 +15,7 @@ puts "Begining to load items."
 items.each do |it|
 	yaml_item = Item.new("name" => it["name"], "type_id" => it["type_id"], "volume" => it["volume"], "market_group_id" => it["market_group_id"])
 	yaml_item.save
-	puts "Item Loaded"
+	puts "Items are %" + (items.index(it) / 136).to_s + " finished."
 end
 puts "Items Loading Complete"
 
@@ -29,6 +29,6 @@ stations.each do |sta|
 	# sta contains a hash of symbols, not a hash of strings/ints
 	yaml_station = Station.new("name" => sta[:name], "station_id" => sta[:station_id])
 	yaml_station.save
-	puts "Station Loaded"
+	puts "Stations are %" + (stations.index(sta) / 51).to_s + " finished."
 end
 puts "Stations Loaded successfully"
