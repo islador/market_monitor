@@ -8,7 +8,7 @@
     <% station_list = current_user.market_item_summaries.pluck('station_id').uniq %>
     <option>All Stations</option> <!-- The top option is the default option -->
     <% station_list.each do |s|%>
-      <option> <%=s.to_s%> </option> <!-- Builds the selection list for stations. This uses raw IDs, these need to be turned into station names. -->
+      <option> <%=Station.where("station_id = ?", s).pluck("name")[0]%> </option>
     <% end %>
   </select>
 
