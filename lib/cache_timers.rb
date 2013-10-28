@@ -34,24 +34,32 @@ module CacheTimers
 				if CacheTimes.find_by_id(n).call_type == 2
 					puts "Fired call_type 2 - CorpMarketOrders.input_orders."
 					CorpMarketOrders.input_orders(CacheTimes.find_by_id(n).api_id, n)
+
+					#Build market item summaries off the newly ingested orders.
+					MISBuilder.build(n.user_id)
 				end
 
 				# If call_type is 3, fire CorpWalletTransactions
 				if CacheTimes.find_by_id(n).call_type == 3
 					puts "Fired call_type 3 - CorpWalletTransactions.retrieve_corp_transactions."
 					CorpWalletTransactions.retrieve_corp_transactions(CacheTimes.find_by_id(n).api_id, n)
+					#MIS averages may need to be calculated when wallet transactions are implemented
 				end
 
 				# If call_type is 4, fire CharacterMarketOrders
 				if CacheTimes.find_by_id(n).call_type == 4
 					puts "Fired call_type 4 - CharMarketOrders.input_char_orders."
 					CharMarketOrders.input_char_orders(CacheTimes.find_by_id(n).api_id, n)
+
+					#Build market item summaries off the newly ingested orders.
+					MISBuilder.build(n.user_id)
 				end
 
 				# If call_type is 5, fire CharacterWalletTransactions
 				if CacheTimes.find_by_id(n).call_type == 5
 					puts "Fired call_type 5 - CharWalletTransactions.retrieve_char_transactions."
 					CharWalletTransactions.retrieve_char_transactions(CacheTimes.find_by_id(n).api_id, n)
+					#MIS averages may need to be calculated when wallet transactions are implemented
 				end
 
 				# Delete the CacheTimes model that initiated this loop.
