@@ -1,6 +1,7 @@
 module MISBuilder
 
 	def self.prepdb
+		#This code is intended for testing purposes only.
 		#This code can be used in specs to make testing this MUCH easier. It may even be duplicable into cache_timers.
 		#Start by deleting anything in the database.
 		User.destroy_all
@@ -59,8 +60,7 @@ module MISBuilder
 	end
 
 	def self.build(user_id)
-		#Trigger: Order API
-		#Attributes touched: type_id, station_id, char_id, entity, vol_entered, vol_remaining
+		#Trigger: CacheTimers.checktimes call_type 2 & call_type 4
 
 		#It is faster to do single large multi-row inserts rather then multiple single row inserts. the rails ORM may handle this
 		#for me, do some research, then keep this in mind for refactoring.
@@ -117,31 +117,9 @@ module MISBuilder
 				end
 			end
 		end
-
-		#fingerprinting would be much faster.
-		#fingerprint = MarketOrder.find_by_id(201).api_id.to_s + MarketOrder.find_by_id(201).station_id.to_s + MarketOrder.find_by_id(201).char_id.to_s + Api.find_by_id(MarketOrder.find_by_id(201).api_id).entity.to_s
-
-		#Batch queries could be better, as with proper where linking to determine what is what.
-
-
-	end
-
-	def self.update(user_id)
-		#Trigger: Order & Wallet APIs
-		#Attributes touched:
-		#Processs: Iterate through all MOs tied to the user. Compare each MO's type_id to the users existing MS type_ids. If a match is #found, check that the station_id, char_id and entity match as well. If all match, set that MO's market_item_summary_id to the MS's 
-		#id. If any of them do not match, create a new MS with those values. Calculate new vol_remaining for each MS by totalling up each
-		#associated MO's vol remaining. Calculate new Averages.
-
-		#This process may be quicker if MS and MOs had a fingerprint column that contained an MD5 hash or something. Thus comparing them wouldn't require so much work.
-
-
 	end
 
 	def self.calculate_averages(user_id, market_item_summary_id)
-		#Trigger: Order and Wallet APIs
-		#Attributes touched:
-		#It's possible to use database aggregate functions to generate the average prices. Average % markup up is looking like it will still require logic. Not sure on that just yet though.
 		##########
 		#This entire method can be optimized by returning the values instead of iniating another save. It is very likely that any method calling this one would be in the process of creating, updating or otherwise need to save the MIS.
 		##########
