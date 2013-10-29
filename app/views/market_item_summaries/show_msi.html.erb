@@ -66,9 +66,8 @@
 </div>
 
 
-<% #Determine if the corp table should be shown or not %>
-<% @mis = current_user.market_item_summaries %>
 <% if current_user.market_item_summaries.pluck('entity').uniq.include?(1)%>
+  <% mis = current_user.market_item_summaries.where('entity = 1') %>
   <div class="corptable"> <!-- Remove the entire div if behavior rules say there are no corp summaries shown. -->
     <table class="table table-bordered">
       <thead>
@@ -79,8 +78,8 @@
       <tr>
         <table class="table table-condensed" style="border-collapse:collapse;"> <!-- Accordioned Table -->
           <tbody>
-            <% @mis.each do |n|%>
-              <tr data-toggle="collapse" data-target=".demo1" data-target="#data4" class="accordion-toggle"> <!-- First 2 rows are the MIS -->
+            <% mis.each do |n|%>
+              <tr data-toggle="collapse" data-target=".demo<%=mis.index(n)%>" data-target="#data4" class="accordion-toggle"> <!-- First 2 rows are the MIS -->
                   <td><b> <%= Item.where("type_id = ?", n.type_id).pluck('name')[0] %> </b></td>
                   <td> <%= Station.where("station_id = ?", n.station_id).pluck('name')[0] %> </td>
                   <td> <%= Character.where("char_id = ?", n.char_id).pluck('name')[0] %> </td>
@@ -92,97 +91,34 @@
                         class="text-error">Buy
                       <% end %> </td>
               </tr>
-              <tr data-toggle="collapse" data-target=".demo1" data-target="#data4" class="accordion-toggle"> <!-- Second line of the MIS -->
+              <tr data-toggle="collapse" data-target=".demo<%=mis.index(n)%>" data-target="#data4" class="accordion-toggle"> <!-- Second line of the MIS -->
                   <td> APP <%= n.average_purchase_price %> </td>
                   <td> ASP <%= n.average_sale_price %> </td>
                   <td> APM <%= n.average_percent_markup %> </td>
                   <td> TVE <%= n.total_vol_entered %> </td>
                   <td> TVR <%= n.total_vol_remaining %> </td>
               </tr>
-              <tr> <!-- Each Row after that with TD's classed as hiddenRow are individual orders -->
-                <td class="hiddenRow">
-                    <div class="accordian-body collapse demo1">Heavy Ion Blaster</div>
-                </td>
-                <td class="hiddenRow">
-                    <div class="accordian-body collapse demo1">1,350,123.22</div>
-                </td>
-                <td class="hiddenRow">
-                    <div class="accordian-body collapse demo1">%markup</div>
-                </td>
-                <td class="hiddenRow">
-                    <div class="accordian-body collapse demo1">150</div>
-                </td>
-                <td class="hiddenRow">
-                    <div class="accordian-body collapse demo1">100</div>
-                </td>
-              </tr>
-              <tr> <!-- Each Row after that with TD's classed as hiddenRow are individual orders -->
-                <td class="hiddenRow">
-                    <div class="accordian-body collapse demo1">Heavy Ion Blaster</div>
-                </td>
-                <td class="hiddenRow">
-                    <div class="accordian-body collapse demo1">1,650,224.84</div>
-                </td>
-                <td class="hiddenRow">
-                    <div class="accordian-body collapse demo1">%markup</div>
-                </td>
-                <td class="hiddenRow">
-                    <div class="accordian-body collapse demo1">150</div>
-                </td>
-                <td class="hiddenRow">
-                    <div class="accordian-body collapse demo1">23</div>
-                </td>
-              </tr>
+              <% mo = MarketOrder.where("market_item_summary_id = ?", n.id) %>
+              <% mo.each do |m| %>
+                <tr> <!-- Each Row after that with TD's classed as hiddenRow are individual orders -->
+                  <td class="hiddenRow">
+                      <div class="accordian-body collapse demo<%=mis.index(n)%>"> <%= Item.where("type_id = ?", m.type_id).pluck('name')[0] %></div>
+                  </td>
+                  <td class="hiddenRow">
+                      <div class="accordian-body collapse demo<%=mis.index(n)%>"> <%= m.price %></div>
+                  </td>
+                  <td class="hiddenRow">
+                      <div class="accordian-body collapse demo<%=mis.index(n)%>">%markup</div>
+                  </td>
+                  <td class="hiddenRow">
+                      <div class="accordian-body collapse demo<%=mis.index(n)%>"> <%= m.vol_entered %></div>
+                  </td>
+                  <td class="hiddenRow">
+                      <div class="accordian-body collapse demo<%=mis.index(n)%>"> <%= m.vol_remaining %></div>
+                  </td>
+                </tr>
+              <% end %>
             <% end %>
-
-            <tr data-toggle="collapse" data-target=".demo2" data-target="#data4" class="accordion-toggle"> <!-- First 2 rows are the MIS -->
-                <td><b>Eagles</b></td>
-                <td>Station I-NGI8 V - I-NAGA STOLE MY BIKE</td>
-                <td>Listing Character islador</td>
-                <td class="text-success">Owner Frontier Explorer's League</td>
-                <td class="text-error">Type Buy</td>
-            </tr>
-            <tr data-toggle="collapse" data-target=".demo2" data-target="#data4" class="accordion-toggle"> <!-- Second line of the MIS -->
-                <td>APP 1,230,531.22</td>
-                <td>ASP 1,460,124.00</td>
-                <td>APM 20.23%</td>
-                <td>TVE 300</td>
-                <td>TVR 123</td>
-            </tr>
-            <tr> <!-- Each Row after that with TD's classed as hiddenRow are individual orders -->
-              <td class="hiddenRow">
-                  <div class="accordian-body collapse demo2">Heavy Ion Blaster</div>
-              </td>
-              <td class="hiddenRow">
-                  <div class="accordian-body collapse demo2">1,350,123.22</div>
-              </td>
-              <td class="hiddenRow">
-                  <div class="accordian-body collapse demo2">%markup</div>
-              </td>
-              <td class="hiddenRow">
-                  <div class="accordian-body collapse demo2">150</div>
-              </td>
-              <td class="hiddenRow">
-                  <div class="accordian-body collapse demo2">100</div>
-              </td>
-            </tr>
-            <tr> <!-- Each Row after that with TD's classed as hiddenRow are individual orders -->
-              <td class="hiddenRow">
-                  <div class="accordian-body collapse demo2">Heavy Ion Blaster</div>
-              </td>
-              <td class="hiddenRow">
-                  <div class="accordian-body collapse demo2">1,350,123.22</div>
-              </td>
-              <td class="hiddenRow">
-                  <div class="accordian-body collapse demo2">%markup</div>
-              </td>
-              <td class="hiddenRow">
-                  <div class="accordian-body collapse demo2">150</div>
-              </td>
-              <td class="hiddenRow">
-                  <div class="accordian-body collapse demo2">100</div>
-              </td>
-            </tr>
           </tbody>
         </table>
       </tr>
@@ -191,114 +127,62 @@
 <% end %>
 
 <br></br>
-<div class="chartable"> <!-- Remove the entire div if behavior rules say there are no character summaries being shown. -->
-  <table class="table table-bordered">
-    <thead>
+<% if current_user.market_item_summaries.pluck('entity').uniq.include?(0)%>
+  <% mis = current_user.market_item_summaries.where('entity = 0') %>
+  <div class="chartable"> <!-- Remove the entire div if behavior rules say there are no character summaries being shown. -->
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <h2>Character Item Summaries</h2>
+        </tr>
+      </thead>
       <tr>
-        <h2>Character Item Summaries</h2>
+        <table class="table table-condensed" style="border-collapse:collapse;"> <!-- Accordioned Table -->
+          <tbody>
+            <% mis.each do |n|%>
+              <tr data-toggle="collapse" data-target=".demo<%=mis.index(n)%>" data-target="#data4" class="accordion-toggle"> <!-- First 2 rows are the MIS -->
+                  <td><b> <%= Item.where("type_id = ?", n.type_id).pluck('name')[0] %> </b></td>
+                  <td> <%= Station.where("station_id = ?", n.station_id).pluck('name')[0] %> </td>
+                  <td> <%= Character.where("char_id = ?", n.char_id).pluck('name')[0] %> </td>
+                  <td class="text-success"> <% char = current_user.characters.where("char_id = ?", n.char_id) %>
+                    <%= Corporation.where("character_id = ?", char).pluck('name')[0] %> </td>
+                  <td <% if n.bid == false %> 
+                        class="text-success">Sell
+                      <% else %>
+                        class="text-error">Buy
+                      <% end %> </td>
+              </tr>
+              <tr data-toggle="collapse" data-target=".demo<%=mis.index(n)%>" data-target="#data4" class="accordion-toggle"> <!-- Second line of the MIS -->
+                  <td> APP <%= n.average_purchase_price %> </td>
+                  <td> ASP <%= n.average_sale_price %> </td>
+                  <td> APM <%= n.average_percent_markup %> </td>
+                  <td> TVE <%= n.total_vol_entered %> </td>
+                  <td> TVR <%= n.total_vol_remaining %> </td>
+              </tr>
+              <% mo = MarketOrder.where("market_item_summary_id = ?", n.id) %>
+              <% mo.each do |m| %>
+                <tr> <!-- Each Row after that with TD's classed as hiddenRow are individual orders -->
+                  <td class="hiddenRow">
+                      <div class="accordian-body collapse demo<%=mis.index(n)%>"> <%= Item.where("type_id = ?", m.type_id).pluck('name')[0] %></div>
+                  </td>
+                  <td class="hiddenRow">
+                      <div class="accordian-body collapse demo<%=mis.index(n)%>"> <%= m.price %></div>
+                  </td>
+                  <td class="hiddenRow">
+                      <div class="accordian-body collapse demo<%=mis.index(n)%>">%markup</div>
+                  </td>
+                  <td class="hiddenRow">
+                      <div class="accordian-body collapse demo<%=mis.index(n)%>"> <%= m.vol_entered %></div>
+                  </td>
+                  <td class="hiddenRow">
+                      <div class="accordian-body collapse demo<%=mis.index(n)%>"> <%= m.vol_remaining %></div>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
       </tr>
-    </thead>
-    <tr>
-      <table class="table table-condensed" style="border-collapse:collapse;"> <!-- Accordioned Table -->
-        <tbody>
-          <tr data-toggle="collapse" data-target=".demo3" data-target="#data4" class="accordion-toggle"> <!-- First 2 rows are the MIS -->
-              <td><b>Heavy Ion Blasters</b></td>
-              <td>Station I-NGI8 V - I-NAGA STOLE MY BIKE</td>
-              <td>Listing Character islador</td>
-              <td class="text-success">Owner Frontier Explorer's League</td>
-              <td class="text-error">Type Sell</td>
-          </tr>
-          <tr data-toggle="collapse" data-target=".demo3" data-target="#data4" class="accordion-toggle"> <!-- Second line of the MIS -->
-              <td>APP 1,230,531.22</td>
-              <td>ASP 1,460,124.00</td>
-              <td>APM 20.23%</td>
-              <td>TVE 300</td>
-              <td>TVR 123</td>
-          </tr>
-          <tr> <!-- Each Row after that with TD's classed as hiddenRow are individual orders -->
-            <td class="hiddenRow">
-                <div class="accordian-body collapse demo3">Heavy Ion Blaster</div>
-            </td>
-            <td class="hiddenRow">
-                <div class="accordian-body collapse demo3">1,350,123.22</div>
-            </td>
-            <td class="hiddenRow">
-                <div class="accordian-body collapse demo3">%markup</div>
-            </td>
-            <td class="hiddenRow">
-                <div class="accordian-body collapse demo3">150</div>
-            </td>
-            <td class="hiddenRow">
-                <div class="accordian-body collapse demo3">100</div>
-            </td>
-          </tr>
-          <tr> <!-- Each Row after that with TD's classed as hiddenRow are individual orders -->
-            <td class="hiddenRow">
-                <div class="accordian-body collapse demo3">Heavy Ion Blaster</div>
-            </td>
-            <td class="hiddenRow">
-                <div class="accordian-body collapse demo3">1,650,224.84</div>
-            </td>
-            <td class="hiddenRow">
-                <div class="accordian-body collapse demo3">%markup</div>
-            </td>
-            <td class="hiddenRow">
-                <div class="accordian-body collapse demo3">150</div>
-            </td>
-            <td class="hiddenRow">
-                <div class="accordian-body collapse demo3">23</div>
-            </td>
-          </tr>
-          <tr data-toggle="collapse" data-target=".demo4" data-target="#data4" class="accordion-toggle"> <!-- First 2 rows are the MIS -->
-              <td><b>Eagles</b></td>
-              <td>Station I-NGI8 V - I-NAGA STOLE MY BIKE</td>
-              <td>Listing Character islador</td>
-              <td class="text-success">Owner Frontier Explorer's League</td>
-              <td class="text-error">Type Buy</td>
-          </tr>
-          <tr data-toggle="collapse" data-target=".demo4" data-target="#data4" class="accordion-toggle"> <!-- Second line of the MIS -->
-              <td>APP 1,230,531.22</td>
-              <td>ASP 1,460,124.00</td>
-              <td>APM 20.23%</td>
-              <td>TVE 300</td>
-              <td>TVR 123</td>
-          </tr>
-          <tr> <!-- Each Row after that with TD's classed as hiddenRow are individual orders -->
-            <td class="hiddenRow">
-                <div class="accordian-body collapse demo4">Heavy Ion Blaster</div>
-            </td>
-            <td class="hiddenRow">
-                <div class="accordian-body collapse demo4">1,350,123.22</div>
-            </td>
-            <td class="hiddenRow">
-                <div class="accordian-body collapse demo4">%markup</div>
-            </td>
-            <td class="hiddenRow">
-                <div class="accordian-body collapse demo4">150</div>
-            </td>
-            <td class="hiddenRow">
-                <div class="accordian-body collapse demo4">100</div>
-            </td>
-          </tr>
-          <tr> <!-- Each Row after that with TD's classed as hiddenRow are individual orders -->
-            <td class="hiddenRow">
-                <div class="accordian-body collapse demo4">Heavy Ion Blaster</div>
-            </td>
-            <td class="hiddenRow">
-                <div class="accordian-body collapse demo4">1,350,123.22</div>
-            </td>
-            <td class="hiddenRow">
-                <div class="accordian-body collapse demo4">%markup</div>
-            </td>
-            <td class="hiddenRow">
-                <div class="accordian-body collapse demo4">150</div>
-            </td>
-            <td class="hiddenRow">
-                <div class="accordian-body collapse demo4">100</div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </tr>
-  </table>
-</div>
+    </table>
+  </div>
+<% end %>
