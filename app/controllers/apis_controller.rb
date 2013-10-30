@@ -56,6 +56,12 @@ class ApisController < ApplicationController
         #Create a new cache times object to query if the key is active.
         @newActiveTimer = CacheTimes.new(user_id: current_user.id, api_id: @api.id, call_type: 1, cached_time: result.cachedUntil)
         @newActiveTimer.save
+
+        #Create a new outpost_builder CacheTimes only if there is not already one in existence.
+        if CacheTimes.where('call_type = 6').empty?
+          @new_outpost_builder_timer = CacheTimes.new(user_id: current_user.id, api_id: @api_id, call_type: 6, cached_time: DateTime.now)
+          @new_outpost_builder_timer.save
+        end
  
         #Create a new cache times object for corp market orders and wallet transactions.
         if @api.entity == 1

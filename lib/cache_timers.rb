@@ -62,6 +62,13 @@ module CacheTimers
 					#MIS averages may need to be calculated when wallet transactions are implemented
 				end
 
+				# If call_type is 6, fire OutpostBuilder, there should only ever be one call_type 6 in the system.
+				if CacheTimes.where('id = ?', n)[0].call_type == 6
+					puts "Fire call_type 6 - OutpostBuilder.add_outposts."
+					OutpostBuilder.add_outposts(CacheTimes.where('id = ?', n)[0].api_id, n)
+
+				end
+
 				# Delete the CacheTimes model that initiated this loop.
 				CacheTimes.destroy(n)
 			end
