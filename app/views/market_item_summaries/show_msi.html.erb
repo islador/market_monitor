@@ -43,7 +43,7 @@
 
     <!-- Iterate through the corp_id_list, query the DB and pluck the ID for each char_id, then query the Corporation table and pluck each name associated with that character_id and concat it to the owner_list. -->
     <% corp_id_list.each do |cpil| %>
-      <% owner_list.concat(Corporation.where('character_id = ?', current_user.characters.where('char_id = ?', cpil).pluck('id')).pluck('name')) %>
+      <% owner_list.concat(Corporation.where('character_id = ?', current_user.characters.where('char_id = ?', cpil).pluck('id')[0]).pluck('name')) %>
     <% end %>
 
     <option>All Owners</option>
@@ -127,6 +127,7 @@
 <% end %>
 
 <br></br>
+
 <% if current_user.market_item_summaries.pluck('entity').uniq.include?(0)%>
   <% mis = current_user.market_item_summaries.where('entity = 0') %>
   <div class="chartable"> <!-- Remove the entire div if behavior rules say there are no character summaries being shown. -->
