@@ -36,7 +36,7 @@ module CacheTimers
 					CorpMarketOrders.input_orders(CacheTimes.find_by_id(n).api_id, n)
 
 					#Build market item summaries off the newly ingested orders.
-					MISBuilder.build(n.user_id)
+					MISBuilder.build(CacheTimes.where("id = ?", n)[0].user_id)
 				end
 
 				# If call_type is 3, fire CorpWalletTransactions
@@ -52,7 +52,7 @@ module CacheTimers
 					CharMarketOrders.input_char_orders(CacheTimes.find_by_id(n).api_id, n)
 
 					#Build market item summaries off the newly ingested orders.
-					MISBuilder.build(n.user_id)
+					MISBuilder.build(CacheTimes.where("id = ?", n)[0].user_id)
 				end
 
 				# If call_type is 5, fire CharacterWalletTransactions
