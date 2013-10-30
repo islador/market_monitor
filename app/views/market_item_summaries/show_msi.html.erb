@@ -1,14 +1,11 @@
 <% provide(:title, 'Item Order Summaries') %>
 
-
-
-
 <div class="dropdowns">
   <select class="station_select"> <!-- Selects are dynamically populated by where statements run against the user's MIS -->
     <% station_list = current_user.market_item_summaries.pluck('station_id').uniq %>
     <option>All Stations</option> <!-- The top option is the default option -->
     <% station_list.each do |s|%>
-      <option> <%=Station.where("station_id = ?", s).pluck("name")[0]%> </option>
+      <option value="<%= "stat" + s.to_s %>"> <%=Station.where("station_id = ?", s).pluck("name")[0]%> </option>
     <% end %>
   </select>
 
@@ -22,7 +19,7 @@
     
     <option>All Characters</option>
     <% char_list.each do |c| %>
-      <option> <%=c.to_s%> </option>
+      <option value="<%= "char" + character_id_list[char_list.index(c.to_s)].to_s %>"> <%=c.to_s%> </option>
     <% end %>
   </select>
 
@@ -31,6 +28,7 @@
     <% char_list = [] %>
     <% corp_list = [] %>
     <% owner_list = [] %>
+    <% inner_hash = {:corp_id => nil, :char_id => nil, :name => nil} %>
 
     <!-- Query the DB to populate the character_id_list and corp_id_list arrays -->
     <% char_id_list = current_user.market_item_summaries.where('entity = 0').pluck('char_id').uniq %>
@@ -38,17 +36,25 @@
 
     <!-- Iterate through the char_id_list, execute a query for each char_id and pluck the name of that char_id from the database, concating it to the owner_list. -->
     <% char_id_list.each do |cil| %>
-      <% owner_list.concat(current_user.characters.where('char_id = ?', cil).pluck('name')) %>
+      <% inner_hash[:corp_id] = nil %>
+      <% inner_hash[:char_id] = cil %>
+      <% inner_hash[:name] = current_user.characters.where('char_id = ?', cil).pluck('name')[0] %>
+      <% owner_list.push(inner_hash.clone) %>
+      <% #owner_list.concat(current_user.characters.where('char_id = ?', cil).pluck('name')) %>
     <% end %>
 
     <!-- Iterate through the corp_id_list, query the DB and pluck the ID for each char_id, then query the Corporation table and pluck each name associated with that character_id and concat it to the owner_list. -->
     <% corp_id_list.each do |cpil| %>
-      <% owner_list.concat(Corporation.where('character_id = ?', current_user.characters.where('char_id = ?', cpil).pluck('id')[0]).pluck('name')) %>
+      <% inner_hash[:char_id] = nil %>
+      <% inner_hash[:corp_id] = cpil %>
+      <% inner_hash[:name] = Corporation.where('character_id = ?', current_user.characters.where('char_id = ?', cpil).pluck('id')).pluck('name')[0] %>
+      <% owner_list.push(inner_hash.clone) %>
+      <% #owner_list.concat(Corporation.where('character_id = ?', current_user.characters.where('char_id = ?', cpil).pluck('id')).pluck('name')) %>
     <% end %>
 
     <option>All Owners</option>
     <% owner_list.each do |n| %>
-      <option> <%= n %> </option>
+      <option value="<% if n[:corp_id]==nil %><%= "char" + n[:char_id].to_s%><% else %><%= "corp" + n[:corp_id].to_s %><% end %>"> <%= n[:name] %> </option>
     <% end %>
   </select>
 
@@ -57,9 +63,9 @@
     <option>Buy/Sell</option>
     <% type_list.each do |t| %>
       <% if t.to_s.eql? "false" %>
-        <option>Sell</option>
+        <option value="false">Sell</option>
       <% else %>
-        <option>Buy</option>
+        <option value="true">Buy</option>
       <% end %>
     <% end %>
   </select>
