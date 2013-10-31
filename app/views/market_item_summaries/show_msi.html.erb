@@ -1,29 +1,29 @@
 <% provide(:title, 'Item Order Summaries') %>
 
 <div class="dropdowns">
-  <select class="station_select"> <!-- Selects are dynamically populated by where statements run against the user's MIS -->
+  <select id="station_select"> <!-- Selects are dynamically populated by where statements run against the user's MIS -->
     <% station_list = current_user.market_item_summaries.pluck('station_id').uniq %>
-    <option>All Stations</option> <!-- The top option is the default option -->
+    <option value="All">All Stations</option> <!-- The top option is the default option -->
     <% station_list.each do |s|%>
       <option value="<%= "stat" + s.to_s %>"> <%=Station.where("station_id = ?", s).pluck("name")[0]%> </option>
     <% end %>
   </select>
 
 
-  <select class="listing_character">
+  <select onChange="dropdownCheck()" id="listing_character">
     <% char_list = [] %>
     <% character_id_list = current_user.market_item_summaries.pluck('char_id').uniq %>
     <% character_id_list.each do |cil| %>
       <% char_list.concat(current_user.characters.where('char_id = ?', cil).pluck('name')) %>
     <% end %>
     
-    <option>All Characters</option>
+    <option value="All">All Characters</option>
     <% char_list.each do |c| %>
       <option value="<%= "char" + character_id_list[char_list.index(c.to_s)].to_s %>"> <%=c.to_s%> </option>
     <% end %>
   </select>
 
-  <select class="owner">
+  <select onChange="dropdownCheck()" id="owner">
     <!-- Assemble the arrays necessary for iteration and storage -->
     <% char_list = [] %>
     <% corp_list = [] %>
@@ -52,15 +52,15 @@
       <% #owner_list.concat(Corporation.where('character_id = ?', current_user.characters.where('char_id = ?', cpil).pluck('id')).pluck('name')) %>
     <% end %>
 
-    <option>All Owners</option>
+    <option value="All">All Owners</option>
     <% owner_list.each do |n| %>
       <option value="<% if n[:corp_id]==nil %><%= "char" + n[:char_id].to_s%><% else %><%= "corp" + n[:corp_id].to_s %><% end %>"> <%= n[:name] %> </option>
     <% end %>
   </select>
 
-  <select class="type">
+  <select onChange="dropdownCheck()" id="type">
     <% type_list = current_user.market_item_summaries.pluck('bid').uniq %>
-    <option>Buy/Sell</option>
+    <option value="All">Buy/Sell</option>
     <% type_list.each do |t| %>
       <% if t.to_s.eql? "false" %>
         <option value="false">Sell</option>
