@@ -10,7 +10,8 @@ class MarketItemSummariesController < ApplicationController
 	    end
 	end
 
-	def populate_tables(user_id)
-		@mis = MarketItemSummary.where('user_id = ?', user_id)
+	def filter()
+		@input = params[:data]
+		flash[:error] = "nice ajax bro"
 	end
 end
