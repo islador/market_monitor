@@ -15,6 +15,7 @@ MarketMonitor::Application.routes.draw do
   match "/apilist", to: 'apis#show'
 
   match "/marketsummaries", to: 'MarketItemSummaries#show'
+  match "/marketsummaries/filter", to: 'MarketItemSummaries#filter'
 
   match "/home", to: 'static_pages#home'
   match "/help", to: 'static_pages#help'
