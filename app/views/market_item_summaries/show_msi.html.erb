@@ -5,7 +5,7 @@
     <% station_list = current_user.market_item_summaries.pluck('station_id').uniq %>
     <option value="All">All Stations</option> <!-- The top option is the default option -->
     <% station_list.each do |s|%>
-      <option value="<%= "stat" + s.to_s %>"> <%=Station.where("station_id = ?", s).pluck("name")[0]%> </option>
+      <option value="<%= s.to_s %>"> <%=Station.where("station_id = ?", s).pluck("name")[0]%> </option>
     <% end %>
   </select>
 
@@ -19,7 +19,7 @@
     
     <option value="All">All Characters</option>
     <% char_list.each do |c| %>
-      <option value="<%= "char" + character_id_list[char_list.index(c.to_s)].to_s %>"> <%=c.to_s%> </option>
+      <option value="<%= character_id_list[char_list.index(c.to_s)].to_s %>"> <%=c.to_s%> </option>
     <% end %>
   </select>
 
@@ -31,19 +31,9 @@
     <% inner_hash = {:corp_id => nil, :char_id => nil, :name => nil} %>
 
     <!-- Query the DB to populate the character_id_list and corp_id_list arrays -->
-    <% char_id_list = current_user.market_item_summaries.where('entity = 0').pluck('char_id').uniq %>
     <% corp_id_list = current_user.market_item_summaries.where('entity = 1').pluck('char_id').uniq %>
 
-    <!-- Iterate through the char_id_list, execute a query for each char_id and pluck the name of that char_id from the database, concating it to the owner_list. -->
-    <% char_id_list.each do |cil| %>
-      <% inner_hash[:corp_id] = nil %>
-      <% inner_hash[:char_id] = cil %>
-      <% inner_hash[:name] = current_user.characters.where('char_id = ?', cil).pluck('name')[0] %>
-      <% owner_list.push(inner_hash.clone) %>
-      <% #owner_list.concat(current_user.characters.where('char_id = ?', cil).pluck('name')) %>
-    <% end %>
-
-    <!-- Iterate through the corp_id_list, query the DB and pluck the ID for each char_id, then query the Corporation table and pluck each name associated with that character_id and concat it to the owner_list. -->
+    <!-- Iterate through the corp_id_list, query the DB and pluck the ID for each char_id, then query the Corporation table and pluck each name associated with that character_id and place it in the corresponding symbol. -->
     <% corp_id_list.each do |cpil| %>
       <% inner_hash[:char_id] = nil %>
       <% inner_hash[:corp_id] = cpil %>
@@ -54,7 +44,7 @@
 
     <option value="All">All Owners</option>
     <% owner_list.each do |n| %>
-      <option value="<% if n[:corp_id]==nil %><%= "char" + n[:char_id].to_s%><% else %><%= "corp" + n[:corp_id].to_s %><% end %>"> <%= n[:name] %> </option>
+      <option value="<%= n[:corp_id].to_s %>"> <%= n[:name] %> </option>
     <% end %>
   </select>
 
