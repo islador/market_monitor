@@ -11,7 +11,11 @@ class MarketItemSummariesController < ApplicationController
 	end
 
 	def filter()
-		@input = params[:data]
+		@input = {"station_id" => nil, "listing_character_id" => nil, "owner_id" => nil, "type" => nil}
+		@input["station_id"] = params[:station_id]
+		@input["listing_character_id"] = params[:listing_character_id]
+		@input["owner_id"] = params[:owner_id]
+		@input["type"] = params[:type]
 
 		#Assemble a hash to standardize queries.
 		input_hash = {stationID: nil, charID: nil, ownerID: nil, bid: nil}
@@ -76,15 +80,9 @@ class MarketItemSummariesController < ApplicationController
 		#Assemble query
 		@mis = current_user.market_item_summaries.where(query_string, input_hash)
 
-
-		format.js   { render :partial => '/market_item_summaries/corporation_table', :content_type => 'text/html' }
-
-
-		format.js   { render :partial => '/market_item_summaries/character_table', :content_type => 'text/html' }
-	end
-
-	def section_owner(owner_id)
-
-
+		respond_to do |format|
+			format.js   { render :partial => '/market_item_summaries/corporation_table', :content_type => 'text/html' }
+			format.js   { render :partial => '/market_item_summaries/character_table', :content_type => 'text/html' }
+		end
 	end
 end
