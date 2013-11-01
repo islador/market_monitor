@@ -30,7 +30,51 @@ $(document).ready(function(){
 	    		listing_character_id: ls, 
 	    		owner_id: ow, 
 	    		type: ty }
-	    	//data: { ss, ls, ow, ty }
+	    });
+	    alert("Unobtrusive!" + ss + ls + ow + ty);
+	});
+
+	$("#listing_character").change(function(){
+		var ss = $("#station_select").val();
+		var ls = $("#listing_character").val();
+		var ow = $("#owner").val();
+		var ty = $("#type").val();
+	    $.ajax({
+	    	url: "marketsummaries/filter", type: "GET",
+	    	data: { station_id: ss, 
+	    		listing_character_id: ls, 
+	    		owner_id: ow, 
+	    		type: ty }
+	    });
+	    alert("Unobtrusive!" + ss + ls + ow + ty);
+	});
+
+	$("#owner").change(function(){
+		var ss = $("#station_select").val();
+		var ls = $("#listing_character").val();
+		var ow = $("#owner").val();
+		var ty = $("#type").val();
+	    $.ajax({
+	    	url: "marketsummaries/filter", type: "GET",
+	    	data: { station_id: ss, 
+	    		listing_character_id: ls, 
+	    		owner_id: ow, 
+	    		type: ty }
+	    });
+	    alert("Unobtrusive!" + ss + ls + ow + ty);
+	});
+
+	$("#type").change(function(){
+		var ss = $("#station_select").val();
+		var ls = $("#listing_character").val();
+		var ow = $("#owner").val();
+		var ty = $("#type").val();
+	    $.ajax({
+	    	url: "marketsummaries/filter", type: "GET",
+	    	data: { station_id: ss, 
+	    		listing_character_id: ls, 
+	    		owner_id: ow, 
+	    		type: ty }
 	    });
 	    alert("Unobtrusive!" + ss + ls + ow + ty);
 	});
