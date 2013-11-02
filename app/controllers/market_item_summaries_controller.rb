@@ -2,8 +2,8 @@ class MarketItemSummariesController < ApplicationController
 	def show
 		if signed_in?
 	      #@apis = current_user.apis.paginate(page: params[:page]) #doesn't appear to be necessary.
+	      @mis = current_user.market_item_summaries
 	      render 'show_msi'
-	      #@mis = MarketItemSummary.where('user_id = ?', user_id)
 	    else
 	      flash[:error] = "You must be signed in to view this page."
 	      redirect_to signin_path

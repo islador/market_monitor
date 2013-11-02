@@ -62,12 +62,13 @@
 </div>
 
 <% #Partialed out for use in AJAX Calls %>
-<% if current_user.market_item_summaries.pluck('entity').uniq.include?(1)%>
+
+<%# if current_user.market_item_summaries.pluck('entity').uniq.include?(1)%>
   <%= render 'corporation_table' %>
-<% end %>
+<%# end %>
 
 <br></br>
 
-<% if current_user.market_item_summaries.pluck('entity').uniq.include?(0)%>
+<%# if current_user.market_item_summaries.pluck('entity').uniq.include?(0)%>
   <%= render 'character_table' %>
-<% end %>
+<%# end %>
