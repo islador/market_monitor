@@ -1,0 +1,5 @@
+//$('#corporationtable').html("<%= raw escape_javascript( render('corporation_table')) %>");
+
+//$('#corporationtable').html("<%= raw escape_javascript( render :partial => 'corporation_table', :locals => {mis: @mis}) %>");
+
+$('#corporationtable').html("<%= render :partial => 'corporation_table', :locals => {mis: @mis} %>");

@@ -64,11 +64,12 @@
 <% #Partialed out for use in AJAX Calls %>
 
 <%# if current_user.market_item_summaries.pluck('entity').uniq.include?(1)%>
-  <%= render 'corporation_table' %>
+  <%= render :partial => 'corporation_table', :locals => {mis: @mis} %>
+  
 <%# end %>
 
 <br></br>
 
 <%# if current_user.market_item_summaries.pluck('entity').uniq.include?(0)%>
-  <%= render 'character_table' %>
+  <%= render :partial => 'character_table' %>
 <%# end %>

@@ -1,17 +1,20 @@
 
-<% #@mis = current_user.market_item_summaries.where('entity = 1') %>
-<div class="corptable"> <!-- Remove the entire div if behavior rules say there are no corp summaries shown. -->
+<%# @mis = current_user.market_item_summaries.where('entity = 1') %>
+<div id="corporationtable" class="corptable"> <!-- Remove the entire div if behavior rules say there are no corp summaries shown. -->
   <table class="table table-bordered">
     <thead>
       <tr>
         <h2>Corporation Item Summaries</h2>
       </tr>
+      <% mis.each do |m| %>
+        <tr> m.type_id.to_s </tr>
+      <% end %>
     </thead>
     <tr>
       <table class="table table-condensed" style="border-collapse:collapse;"> <!-- Accordioned Table -->
         <tbody>
           <% @mis.each do |n|%>
-            <tr data-toggle="collapse" data-target=".demo<%=@mis.index(n)%>" data-target="#data4" class="accordion-toggle"> <!-- First 2 rows are the MIS -->
+            <tr data-toggle="collapse" data-target=".demo<%=@mis.index(n)%>" data-target="#data4" class="accordion-toggle"> <!-- First 2 rows are the @mis -->
                 <td><b> <%= Item.where("type_id = ?", n.type_id).pluck('name')[0] %> </b></td>
                 <td> <%= Station.where("station_id = ?", n.station_id).pluck('name')[0] %> </td>
                 <td> <%= Character.where("char_id = ?", n.char_id).pluck('name')[0] %> </td>
@@ -23,7 +26,7 @@
                       class="text-error">Buy
                     <% end %> </td>
             </tr>
-            <tr data-toggle="collapse" data-target=".demo<%=@mis.index(n)%>" data-target="#data4" class="accordion-toggle"> <!-- Second line of the MIS -->
+            <tr data-toggle="collapse" data-target=".demo<%=@mis.index(n)%>" data-target="#data4" class="accordion-toggle"> <!-- Second line of the @mis -->
                 <td> APP <%= n.average_purchase_price %> </td>
                 <td> ASP <%= n.average_sale_price %> </td>
                 <td> APM <%= n.average_percent_markup %> </td>

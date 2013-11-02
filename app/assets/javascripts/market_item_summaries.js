@@ -31,7 +31,7 @@ $(document).ready(function(){
 	    		owner_id: ow, 
 	    		type: ty }
 	    });
-	    alert("Unobtrusive!" + ss + ls + ow + ty);
+	    //alert("Unobtrusive!" + ss + ls + ow + ty);
 	});
 
 	$("#listing_character").change(function(){
@@ -46,7 +46,7 @@ $(document).ready(function(){
 	    		owner_id: ow, 
 	    		type: ty }
 	    });
-	    alert("Unobtrusive!" + ss + ls + ow + ty);
+	    //alert("Unobtrusive!" + ss + ls + ow + ty);
 	});
 
 	$("#owner").change(function(){
@@ -61,7 +61,7 @@ $(document).ready(function(){
 	    		owner_id: ow, 
 	    		type: ty }
 	    });
-	    alert("Unobtrusive!" + ss + ls + ow + ty);
+	    //alert("Unobtrusive!" + ss + ls + ow + ty);
 	});
 
 	$("#type").change(function(){
@@ -76,6 +76,6 @@ $(document).ready(function(){
 	    		owner_id: ow, 
 	    		type: ty }
 	    });
-	    alert("Unobtrusive!" + ss + ls + ow + ty);
+	    //alert("Unobtrusive!" + ss + ls + ow + ty);
 	});
 });

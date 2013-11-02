@@ -3,6 +3,7 @@ class MarketItemSummariesController < ApplicationController
 		if signed_in?
 	      #@apis = current_user.apis.paginate(page: params[:page]) #doesn't appear to be necessary.
 	      @mis = current_user.market_item_summaries
+	      mis = current_user.market_item_summaries
 	      render 'show_msi'
 	    else
 	      flash[:error] = "You must be signed in to view this page."
@@ -77,12 +78,20 @@ class MarketItemSummariesController < ApplicationController
 		    end
 		end
 
-		#Assemble query
-		@mis = current_user.market_item_summaries.where(query_string, input_hash)
+		#check for blank string
+		if query_string.blank?
+			#in blank, generate an open query
+			@mis = current_user.market_item_summaries
+		else
+			#else generate a focused query.
+			@mis = current_user.market_item_summaries.where(query_string, input_hash)
+		end
+		
+		
 
 		respond_to do |format|
-			format.js   { render :partial => '/market_item_summaries/corporation_table', :content_type => 'text/html' }
-			format.js   { render :partial => '/market_item_summaries/character_table', :content_type => 'text/html' }
+			format.js   #{ render :partial => '/market_item_summaries/corporation_table', :content_type => 'text/html' }
+			format.js   #{ render :partial => '/market_item_summaries/character_table', :content_type => 'text/html' }
 		end
 	end
 end
