@@ -1,14 +1,13 @@
 
 <%# @mis = current_user.market_item_summaries.where('entity = 1') %>
-<div id="corporationtable" class="corptable"> <!-- Remove the entire div if behavior rules say there are no corp summaries shown. -->
+<div class="corptable"> <!-- Remove the entire div if behavior rules say there are no corp summaries shown. -->
   <table class="table table-bordered">
     <thead>
       <tr>
         <h2>Corporation Item Summaries</h2>
       </tr>
-      <% mis.each do |m| %>
-        <tr> m.type_id.to_s </tr>
-      <% end %>
+      <tr><%= mis.count %></tr>
+      <tr><%= meow %></tr>
     </thead>
     <tr>
       <table class="table table-condensed" style="border-collapse:collapse;"> <!-- Accordioned Table -->
