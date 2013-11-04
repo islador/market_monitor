@@ -25,7 +25,7 @@ class MarketItemSummariesController < ApplicationController
 		input_hash[:stationID] = @input["station_id"].eql?("All") ? nil : @input["station_id"]
 		input_hash[:charID] = @input["listing_character_id"].eql?("All") ? nil : @input["listing_character_id"]
 		input_hash[:ownerID] = @input["owner_id"].eql?("All") ? nil : @input["owner_id"]
-		input_hash[:bid] = @input["type"].eql?("false") ? false : true
+		input_hash[:bid] = @input["type"].eql?("All") ? nil : @input["type"].eql?("false") ? false : true
 
 		#Build the query string
 		#query_string
@@ -80,18 +80,20 @@ class MarketItemSummariesController < ApplicationController
 
 		#check for blank string
 		if query_string.blank?
-			#in blank, generate an open query
+			#if blank, generate an open query
 			@mis = current_user.market_item_summaries
+			#mis = current_user.market_item_summaries
+			@meow = "Query String was Blank"
 		else
 			#else generate a focused query.
 			@mis = current_user.market_item_summaries.where(query_string, input_hash)
+			#mis = current_user.market_item_summaries.where(query_string, input_hash)
+			@meow = query_string + input_hash[:stationID].to_s + input_hash[:charID].to_s + input_hash[:ownerID].to_s + input_hash[:bid].to_s
+			#@meow = @mis.count
 		end
-		
-		
 
 		respond_to do |format|
-			format.js   #{ render :partial => '/market_item_summaries/corporation_table', :content_type => 'text/html' }
-			format.js   #{ render :partial => '/market_item_summaries/character_table', :content_type => 'text/html' }
+			format.js
 		end
 	end
 end
