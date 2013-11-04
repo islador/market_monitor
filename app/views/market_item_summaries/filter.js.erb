@@ -1,1 +1,3 @@
-$('#corporationtable').empty().append("meow" + "<%= escape_javascript(render(:partial => 'corporation_table', locals: {mis: @mis, meow: @meow})) %>");
+$('#corporationtable').empty().append("<%= escape_javascript(render(:partial => 'corporation_table', locals: {mis: @mis, meow: @meow})) %>");
+
+$('#charactertable').empty().append("<%= escape_javascript(render(:partial => 'character_table', locals: {mis: @mis, meow: @meow})) %>");

@@ -2,35 +2,26 @@
 //# All this logic will automatically be available in application.js.
 //# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-function dropdownCheck()
-{
-	//var ss = document.getElementById("station_select").selectedIndex;
-	//var ss = document.getElementById("station_select").value;
-	//var ls = document.getElementById("listing_character").value;
-	//var ow = document.getElementById("owner").value;
-	//var ty = document.getElementById("type").value;
-	//alert(ss + " " + ls + " " + ow + " " + ty);
-	//$("#filter").click(function(){
-    //    $.ajax({
-    //    	url: "marketsummaries/filter", type: "GET"
-    //    	data: {station_select : ss, listing_character : ls, owner : ow, type : ty}
-    //    });
-    //});
-}
-
+//Jquery function to call marketsummaries#filter when a select's value is changed.
 $(document).ready(function(){
-	$("#station_select").change(function(){
+	//On change, trigger this function
+	$("#station_select, #listing_character, #owner, #type").change(function(){
+		//Load all select's values into variables
 		var ss = $("#station_select").val();
 		var ls = $("#listing_character").val();
 		var ow = $("#owner").val();
 		var ty = $("#type").val();
+		//Fire an AJAX call to marketsummaries/filter
 	    $.ajax({
 	    	url: "marketsummaries/filter", type: "GET",
+	    	//Pass in each variable as a parameter.
 	    	data: { station_id: ss, 
 	    		listing_character_id: ls, 
 	    		owner_id: ow, 
 	    		type: ty }
 	    });
-	    //alert(ss + ls + ow + ty);
 	});
 });
+
+
+

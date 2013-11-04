@@ -10,7 +10,7 @@
   </select>
 
 
-  <select onChange="dropdownCheck()" id="listing_character">
+  <select id="listing_character">
     <% char_list = [] %>
     <% character_id_list = current_user.market_item_summaries.pluck('char_id').uniq %>
     <% character_id_list.each do |cil| %>
@@ -23,7 +23,7 @@
     <% end %>
   </select>
 
-  <select onChange="dropdownCheck()" id="owner">
+  <select id="owner">
     <!-- Assemble the arrays necessary for iteration and storage -->
     <% char_list = [] %>
     <% corp_list = [] %>
@@ -48,7 +48,7 @@
     <% end %>
   </select>
 
-  <select onChange="dropdownCheck()" id="type">
+  <select id="type">
     <% type_list = current_user.market_item_summaries.pluck('bid').uniq %>
     <option value="All">Buy/Sell</option>
     <% type_list.each do |t| %>
@@ -72,6 +72,8 @@
 
 <br></br>
 
+<div id="charactertable">
 <%# if current_user.market_item_summaries.pluck('entity').uniq.include?(0)%>
-  <%= render :partial => 'character_table' %>
+  <%= render :partial => 'character_table', locals: {mis: @mis, meow: @meow} %>
 <%# end %>
+</div>
