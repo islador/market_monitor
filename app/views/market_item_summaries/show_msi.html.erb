@@ -63,10 +63,12 @@
 
 <% #Partialed out for use in AJAX Calls %>
 
+<div id="corporationtable">
 <%# if current_user.market_item_summaries.pluck('entity').uniq.include?(1)%>
-  <%= render :partial => 'corporation_table', :locals => {mis: @mis} %>
+  <%= render :partial => 'corporation_table', locals: {mis: @mis, meow: @meow}%>
   
 <%# end %>
+</div>
 
 <br></br>
 
