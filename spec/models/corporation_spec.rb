@@ -8,6 +8,13 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  character_id :integer
+#  wallet_0     :string(255)
+#  wallet_1     :string(255)
+#  wallet_2     :string(255)
+#  wallet_3     :string(255)
+#  wallet_4     :string(255)
+#  wallet_5     :string(255)
+#  wallet_6     :string(255)
 #
 
 require 'spec_helper'

@@ -1,24 +1,90 @@
 <% provide(:title, "API List") %>
 
-<div class="span8">
-    <h3>APIs (<%= current_user.apis.count %>)</h3>
-    <% if current_user.apis.any? %>
-      	<ol class="apis">
-        	<% array = current_user.apis %>
-        	<% array.each do |a| %>
-        	
-        		<li>
-	        	<span class="KeyID"> Key ID: <%= a.key_id %></span>
-	        	<span class="VCode"> Verification Code: <%= a.v_code %></span>
-                <span class="AccessMask"> Access Mask: <%= a.accessmask %></span>
-	        	<% if a.entity == 1 %>
-        		<span class="Type"> Type: Corporation </span>
-        		<% else %>
-        		<span class="Type"> Type: Character </span>
-        		<% end %>
-        		<span class="Enrolled"> Enrolled: <%= a.created_at %></span>
-        		</li>
-        	<% end %>
-        </ol>   
-    <% end %>
+<div class="api_list_table">
+  <table class="table table-condensed" style="border-collapse:collapse;">
+    <thead>
+        <h3>APIs (<%= current_user.apis.count %>)</h3>
+        <th style="width: 14%">Key ID</th>
+        <th style="width: 14%">Ver Code</th>
+        <th style="width: 14%">Access Mask</th>
+        <th style="width: 14%">Type</th>
+        <th style="width: 14%"></th>
+        <th style="width: 14%"></th>
+        <th style="width: 14%">Enrolled</th>
+    </thead>
+    <tbody id="char_tbody">
+        <% if current_user.apis.any? %>
+            <% array = current_user.apis %>
+            <% array.each do |a| %>
+              <tr data-toggle="collapse" data-target=".demo<%=array.index(a)%>" data-target="#data4" class="accordion-toggle">
+                    <td class="KeyID"><%= a.key_id %></td>
+                    <td class="VCode"><%= a.v_code %></td>
+                    <td class="AccessMask"><%= a.accessmask %></td>
+                    <% if a.entity == 1 %>
+                        <td class="Type">Corporation </td>
+                        <td class="WalletSelected">WalletSelector</td>
+                    <% else %>
+                        <td class="Type">Character </td>
+                        <td></td>
+                    <% end %>
+                    <td></td>
+                    <td class="Enrolled"><%= a.created_at %></td>
+              </tr>
+              <% if a.entity == 1 %>
+                <tr>
+                  <td class="hiddenRow">
+                      <div class="accordian-body collapse demo<%=array.index(a)%>">
+                        <label class="checkbox">
+                          <input type="checkbox"> &#60; Wallet Name
+                        </label>
+                      </div>
+                  </td>
+                  <td class="hiddenRow">
+                      <div class="accordian-body collapse demo<%=array.index(a)%>">
+                        <label class="checkbox">
+                          <input type="checkbox"> &#60; Wallet Name
+                        </label>
+                      </div>
+                  </td>
+                  <td class="hiddenRow">
+                      <div class="accordian-body collapse demo<%=array.index(a)%>">
+                        <label class="checkbox">
+                          <input type="checkbox"> &#60; Wallet Name
+                        </label>
+                      </div>
+                  </td>
+                  <td class="hiddenRow">
+                      <div class="accordian-body collapse demo<%=array.index(a)%>">
+                        <label class="checkbox">
+                          <input type="checkbox"> &#60; Wallet Name
+                        </label>
+                      </div>
+                  </td>
+                  <td class="hiddenRow">
+                      <div class="accordian-body collapse demo<%=array.index(a)%>">
+                        <label class="checkbox">
+                          <input type="checkbox"> &#60; Wallet Name
+                        </label>
+                      </div>
+                  </td>
+                  <td class="hiddenRow">
+                      <div class="accordian-body collapse demo<%=array.index(a)%>">
+                        <label class="checkbox">
+                          <input type="checkbox"> &#60; Wallet Name
+                        </label>
+                      </div>
+                  </td>
+                  <td class="hiddenRow">
+                      <div class="accordian-body collapse demo<%=array.index(a)%>">
+                        <label class="checkbox">
+                          <input type="checkbox"> &#60; Wallet Name
+                        </label>
+                      </div>
+                  </td>
+                </tr>
+            <% end %>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
 </div>

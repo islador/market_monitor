@@ -59,5 +59,13 @@ textarea {
     padding: 0 !important;
 }
 .table td {
-   text-align: center;   
+   text-align: center;
+   overflow: hidden; 
+}
+.table th {
+  text-align: center;
+  overflow: hidden;
+}
+.table { 
+  table-layout: fixed;
 }

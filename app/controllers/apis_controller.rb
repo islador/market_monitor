@@ -16,7 +16,7 @@ class ApisController < ApplicationController
   end
  
   def create
-    @accessmasks = [71307264, 10489856]
+    @accessmasks = [71307264, 10489864]
  
     @character_hash = {"char_id" => nil, "name" => nil}
     @corporation_hash = {"corp_id" => nil, "name" => nil}
@@ -67,6 +67,20 @@ class ApisController < ApplicationController
         if @api.entity == 1
           @newCorpMarketOrdersTimer = CacheTimes.new(user_id: current_user.id, api_id: @api.id, call_type: 2, cached_time: DateTime.now)
           @newCorpMarketOrdersTimer.save
+
+          #query the corporation_sheet API
+          corp_sheet = api.corporation.corporation_sheet
+          #build a hash to update the existing corporation object iwth
+          division_hash = {:wallet_0 => nil, :wallet_1 => nil, :wallet_2 => nil, :wallet_3 => nil, :wallet_4 => nil, :wallet_5 => nil, :wallet_6 => nil}
+          division_hash[:wallet_0] = "Master"
+          division_hash[:wallet_1] = corp_sheet.wallet_divisions[1].description
+          division_hash[:wallet_2] = corp_sheet.wallet_divisions[2].description
+          division_hash[:wallet_3] = corp_sheet.wallet_divisions[3].description
+          division_hash[:wallet_4] = corp_sheet.wallet_divisions[4].description
+          division_hash[:wallet_5] = corp_sheet.wallet_divisions[5].description
+          division_hash[:wallet_6] = corp_sheet.wallet_divisions[6].description
+          #update the corporation object. update_attributes saves the record.
+          @corporation.update_attributes(division_hash)
  
           @newCorpWalletTransactionsTimer = CacheTimes.new(user_id: current_user.id, api_id: @api.id, call_type: 3, cached_time: DateTime.now)
           @newCorpWalletTransactionsTimer.save
@@ -100,5 +114,9 @@ class ApisController < ApplicationController
       flash[:error] = "You must be signed in to view this page."
       redirect_to signin_path
     end
+  end
+
+  def settings
+    #handle ajax call for APIsettings.  
   end
 end

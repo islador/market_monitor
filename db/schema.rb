@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131023032327) do
+ActiveRecord::Schema.define(:version => 20131106045356) do
 
   create_table "apis", :force => true do |t|
     t.integer  "user_id"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20131023032327) do
     t.integer  "active"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "wallet_id"
   end
 
   add_index "apis", ["user_id", "active"], :name => "index_apis_on_user_id_and_valid"
@@ -51,6 +52,13 @@ ActiveRecord::Schema.define(:version => 20131023032327) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.integer  "character_id"
+    t.string   "wallet_0"
+    t.string   "wallet_1"
+    t.string   "wallet_2"
+    t.string   "wallet_3"
+    t.string   "wallet_4"
+    t.string   "wallet_5"
+    t.string   "wallet_6"
   end
 
   create_table "items", :force => true do |t|

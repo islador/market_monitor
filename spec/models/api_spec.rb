@@ -11,6 +11,7 @@
 #  active     :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  wallet_id  :integer
 #
 
 require 'spec_helper'
