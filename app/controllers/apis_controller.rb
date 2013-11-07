@@ -81,6 +81,9 @@ class ApisController < ApplicationController
           division_hash[:wallet_6] = corp_sheet.wallet_divisions[6].description
           #update the corporation object. update_attributes saves the record.
           @corporation.update_attributes(division_hash)
+
+          #update the api record with the corporation id, this way wallets may be easily retrieved.
+          @api.update_attributes(:corporation_id => @corporation.id)
  
           @newCorpWalletTransactionsTimer = CacheTimes.new(user_id: current_user.id, api_id: @api.id, call_type: 3, cached_time: DateTime.now)
           @newCorpWalletTransactionsTimer.save
@@ -116,7 +119,11 @@ class ApisController < ApplicationController
     end
   end
 
-  def settings
-    #handle ajax call for APIsettings.  
+  def wallet_settings()
+    @corp = Corporation.where("id = ?", Api.where("id = ?", params[:api_id])[0].corporation_id)[0]
+
+    respond_to do |format|
+      format.js
+    end 
   end
 end
