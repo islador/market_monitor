@@ -2,16 +2,17 @@
 #
 # Table name: apis
 #
-#  id         :integer          not null, primary key
-#  user_id    :integer
-#  entity     :integer
-#  key_id     :string(255)
-#  v_code     :string(255)
-#  accessmask :integer
-#  active     :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  wallet_id  :integer
+#  id             :integer          not null, primary key
+#  user_id        :integer
+#  entity         :integer
+#  key_id         :string(255)
+#  v_code         :string(255)
+#  accessmask     :integer
+#  active         :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  wallet_id      :integer
+#  corporation_id :integer
 #
 
 require 'spec_helper'

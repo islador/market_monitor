@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131106045356) do
+ActiveRecord::Schema.define(:version => 20131106232437) do
 
   create_table "apis", :force => true do |t|
     t.integer  "user_id"
@@ -20,9 +20,10 @@ ActiveRecord::Schema.define(:version => 20131106045356) do
     t.string   "v_code"
     t.integer  "accessmask"
     t.integer  "active"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.integer  "wallet_id"
+    t.integer  "corporation_id"
   end
 
   add_index "apis", ["user_id", "active"], :name => "index_apis_on_user_id_and_valid"

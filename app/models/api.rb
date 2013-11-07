@@ -2,16 +2,17 @@
 #
 # Table name: apis
 #
-#  id         :integer          not null, primary key
-#  user_id    :integer
-#  entity     :integer
-#  key_id     :string(255)
-#  v_code     :string(255)
-#  accessmask :integer
-#  active     :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  wallet_id  :integer
+#  id             :integer          not null, primary key
+#  user_id        :integer
+#  entity         :integer
+#  key_id         :string(255)
+#  v_code         :string(255)
+#  accessmask     :integer
+#  active         :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  wallet_id      :integer
+#  corporation_id :integer
 #
 
 # API to Model Map
@@ -24,7 +25,7 @@
 # | | active | Whether the API returned data on the last query. |
 
 class Api < ActiveRecord::Base
-  attr_accessible :accessmask, :key_id, :entity, :v_code, :active
+  attr_accessible :accessmask, :key_id, :entity, :v_code, :active, :corporation_id
 
   belongs_to :user
   has_many :market_orders
