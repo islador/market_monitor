@@ -129,6 +129,8 @@ class ApisController < ApplicationController
   end
 
   def set_wallet()
+    @api = Api.where("id = ?", params[:api_id])[0]
+    
     respond_to do |format|
       format.js
     end
