@@ -122,6 +122,7 @@ class ApisController < ApplicationController
   def wallet_settings()
     @corp = Corporation.where("id = ?", Api.where("id = ?", params[:api_id])[0].corporation_id)[0]
     @index = params[:array_index]
+    @api_id = params[:api_id]
 
     respond_to do |format|
       format.js

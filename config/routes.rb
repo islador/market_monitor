@@ -18,6 +18,7 @@ MarketMonitor::Application.routes.draw do
   match "/marketsummaries/filter", to: 'MarketItemSummaries#filter', via: :get
 
   match "/apis/wallet_settings", to: 'Apis#wallet_settings'
+  match "/apis/set_wallet", to: 'Apis#set_wallet'
 
   match "/home", to: 'static_pages#home'
   match "/help", to: 'static_pages#help'
