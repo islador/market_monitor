@@ -29,8 +29,24 @@ $(document).ready(function(){
 		//This could be improved with a hide() and show() pair, but I was unable to fix the logic loop.
 	});
 
-	$("input[type='checkbox']").change(function(){
-		alert(this.id);
-
+	$("tr[id^='wsets']").on('change', "input[id^='wallet_']", function(){
+		arrayid = this.id.slice(this.id.length -1, this.id.length)
+		if($("input[id^='wallet_']").is(':checked')) {
+			//alert(this.id);
+		} //else if ($("input[id^='wallet_']").is(':unchecked')) {
+		//	alert(this.id);
+		//}
+		var value0 = $("#wallet_0" + arrayid).prop( 'checked' );
+		var value1 = $("#wallet_1" + arrayid).prop( 'checked' );
+		var value2 = $("#wallet_2" + arrayid).prop( 'checked' );
+		var value3 = $("#wallet_3" + arrayid).prop( 'checked' );
+		var value4 = $("#wallet_4" + arrayid).prop( 'checked' );
+		var value5 = $("#wallet_5" + arrayid).prop( 'checked' );
+		var value6 = $("#wallet_6" + arrayid).prop( 'checked' );
+		alert(value0 + " " + value1 + " " + value2 + " " + value3 + " " + value4 + " " + value5 + " " + value6);
+		$.ajax({
+			url: "apis/set_wallet", type: "POST",
+			data: {wallet_0: value0, wallet_1: value1, wallet_2: value2, wallet_3: value3, wallet_4: value4, wallet_5: value5, wallet_6: value6}
+		})
 	});
 });
