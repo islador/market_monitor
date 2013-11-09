@@ -11,7 +11,7 @@
 #  active         :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  wallet_id      :integer
+#  wallet_id      :string(255)
 #  corporation_id :integer
 #
 
@@ -25,7 +25,7 @@
 # | | active | Whether the API returned data on the last query. |
 
 class Api < ActiveRecord::Base
-  attr_accessible :accessmask, :key_id, :entity, :v_code, :active, :corporation_id
+  attr_accessible :accessmask, :key_id, :entity, :v_code, :active, :corporation_id, :wallet_id
 
   belongs_to :user
   has_many :market_orders
