@@ -28,4 +28,9 @@ $(document).ready(function(){
 
 		//This could be improved with a hide() and show() pair, but I was unable to fix the logic loop.
 	});
+
+	$("input[type='checkbox']").change(function(){
+		alert(this.id);
+
+	});
 });

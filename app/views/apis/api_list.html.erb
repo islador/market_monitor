@@ -27,7 +27,9 @@
                         <td class="Type">Character </td>
                         <td></td>
                     <% end %>
-                    <td></td>
+                    <td><%= check_box_tag('wallet_10' + array.index(a).to_s, 0) %>
+                        <%= label_tag('wallet_10', 'Master') %>
+                    </td>
                     <td class="Enrolled"><%= a.created_at %></td>
               </tr>
                 <tr id="wsets<%=array.index(a)%>">

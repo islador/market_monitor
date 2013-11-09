@@ -1,44 +1,31 @@
 <td>
-    <div>
-      <%= check_box_tag('wallet_0' + @index, 0, :onchange, data: { remote: true, url: "apis/set_wallet", update: "selected_wallet" + @index, params: { api_id: @api_id, index: @index, corp: @corp, value: 0 }.to_param} )%>
-      <%= label_tag('wallet_0', 'Master') %>
-      <%#= radio_button_tag(:wallet, "0") %>
-      <%#= label_tag(:wallet_0, "Master") %>
-    </div>
+  <%#= check_box_tag('wallet_0' + @index, 0, :onchange, data: { remote: true, url: "apis/set_wallet", update: "selected_wallet" + @index, params: { api_id: @api_id, index: @index, corp: @corp, value: 0 }.to_param} )%>
+  <%= check_box_tag('wallet_0' + @index, 0) %>
+  <%= label_tag('wallet_0', 'Master') %>
+  <%#= radio_button_tag(:wallet, "0") %>
+  <%#= label_tag(:wallet_0, "Master") %>
 </td>
 <td>
-    <div>
-      <%= check_box_tag('wallet_1' + @index, 1) %>
-      <%= label_tag('walet_1', @corp.wallet_1) %>
-    </div>
+  <%= check_box_tag('wallet_1' + @index, 1) %>
+  <%= label_tag('walet_1', @corp.wallet_1) %>
 </td>
 <td>
-    <div>
-      <%= check_box_tag('wallet_2' + @index, 2) %>
-      <%= label_tag('wallet_2', @corp.wallet_2) %>
-    </div>
+  <%= check_box_tag('wallet_2' + @index, 2) %>
+  <%= label_tag('wallet_2', @corp.wallet_2) %>
 </td>
 <td>
-    <div>
-      <%= check_box_tag('wallet_3' + @index, 3) %>
-      <%= label_tag('wallet_3', @corp.wallet_3) %>
-    </div>
+  <%= check_box_tag('wallet_3' + @index, 3) %>
+  <%= label_tag('wallet_3', @corp.wallet_3) %>
 </td>
 <td>
-    <div>
-      <%= check_box_tag('wallet_4' + @index, 4) %>
-      <%= label_tag('wallet_4', @corp.wallet_4) %>
-    </div>
+  <%= check_box_tag('wallet_4' + @index, 4) %>
+  <%= label_tag('wallet_4', @corp.wallet_4) %>
 </td>
 <td>
-    <div>
-      <%= check_box_tag('wallet_5' + @index, 5) %>
-      <%= label_tag('wallet_5', @corp.wallet_5) %>
-    </div>
+  <%= check_box_tag('wallet_5' + @index, 5) %>
+  <%= label_tag('wallet_5', @corp.wallet_5) %>
 </td>
 <td>
-    <div>
-      <%= check_box_tag('wallet_6' + @index, 6) %>
-      <%= label_tag('wallet_6', @corp.wallet_6) %>
-    </div>
+  <%= check_box_tag('wallet_6' + @index, 6) %>
+  <%= label_tag('wallet_6', @corp.wallet_6) %>
 </td>
