@@ -131,6 +131,28 @@ class ApisController < ApplicationController
 
   def set_wallet()
     @api = Api.where("id = ?", params[:api_id])[0]
+    corp = Corporation.where("id = ?", params[:corp_id])[0]
+    @index = params[:array_index]
+    @input = {}
+    @input = params.slice(:wallet_0, :wallet_1, :wallet_2, :wallet_3, :wallet_4, :wallet_5, :wallet_6)
+    @wallet_names = []
+    @api.wallet_id = @input
+
+    #@api.save
+
+    if @api.save
+    #@wallet_names[0] = "Cock"
+    #@wallet_names[1] = "dildo"
+
+      @input.each do |key, value|
+        if value.eql?("true")
+          #@wallet_names[1] = "Meow"
+          a = corp.method(key)
+          b = a.call
+          @wallet_names.push(b)
+        end
+      end
+    end
     
     respond_to do |format|
       format.js
