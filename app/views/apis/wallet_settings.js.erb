@@ -1,1 +1,1 @@
-$('#wsets<%=@index%>').empty().append("<%= escape_javascript(render(:partial => 'wallet_settings', locals: {corp: @corp, index: @index, api_id: @api_id})) %>");
+$('#wsets<%=@index%>').empty().append("<%= escape_javascript(render(:partial => 'wallet_settings', locals: {corp: @corp, api_id: @api_id})) %>");
