@@ -43,10 +43,12 @@ $(document).ready(function(){
 		var value4 = $("#wallet_4" + arrayid).prop( 'checked' );
 		var value5 = $("#wallet_5" + arrayid).prop( 'checked' );
 		var value6 = $("#wallet_6" + arrayid).prop( 'checked' );
-		alert(value0 + " " + value1 + " " + value2 + " " + value3 + " " + value4 + " " + value5 + " " + value6);
+		var apiID = $("#api").attr('value');
+		var corp = $("#corp").attr('value');
+		//alert(corp + " " + apiID + " " + value0 + " " + value1 + " " + value2 + " " + value3 + " " + value4 + " " + value5 + " " + value6);
 		$.ajax({
 			url: "apis/set_wallet", type: "POST",
-			data: {wallet_0: value0, wallet_1: value1, wallet_2: value2, wallet_3: value3, wallet_4: value4, wallet_5: value5, wallet_6: value6}
+			data: {wallet_0: value0, wallet_1: value1, wallet_2: value2, wallet_3: value3, wallet_4: value4, wallet_5: value5, wallet_6: value6, api_id: apiID, corp_id: corp, array_index: arrayid}
 		})
 	});
 });
