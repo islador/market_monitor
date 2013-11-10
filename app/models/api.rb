@@ -11,7 +11,7 @@
 #  active         :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  wallet_id      :string(255)
+#  wallet_id      :text(255)
 #  corporation_id :integer
 #
 
@@ -30,6 +30,8 @@ class Api < ActiveRecord::Base
   belongs_to :user
   has_many :market_orders
   has_many :cache_times
+
+  serialize :wallet_id, Hash
 
   validates :user_id, presence: true
   validates :key_id, presence: true, uniqueness: true
