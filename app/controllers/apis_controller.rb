@@ -111,8 +111,16 @@ class ApisController < ApplicationController
  
   def show
     if signed_in?
-      #@apis = current_user.apis.paginate(page: params[:page]) #doesn't appear to be necessary.
-      #@wallet_names = 
+      #Query the database for the current user's APIs.
+      @apis = current_user.apis
+      #Build the wallet_names hash to render already set wallet names via the set_wallet partial.
+      @wallet_names = {}
+      @apis.each do |i|
+        #For each API, construct a hash with a key equal to the index of that api in the array of APIs
+        #and a value built by wallet_names using that API's id and corporation_id.
+        @wallet_names.merge!({@apis.index(i) => wallet_names(i.id, i.corporation_id)})
+      end
+
       render 'api_list'
     else
       flash[:error] = "You must be signed in to view this page."
@@ -131,50 +139,61 @@ class ApisController < ApplicationController
   end
 
   def set_wallet()
+    #Retrieve the API record for the given api_id
     @api = Api.where("id = ?", params[:api_id])[0]
+    #Retrieve the corp record for the given corp_id
     corp = Corporation.where("id = ?", params[:corp_id])[0]
-    @index = params[:array_index]
+    #Establish an index array
+    @index = []
+    #Push the array_index param onto the array. Only one is returned, so it has an index of 0
+    @index.push(params[:array_index])
+    #Assemble a new hash by the name of @input
     @input = {}
+    #Populate the @input hash with the key/value pairs of the wallet parameters.
     @input = params.slice(:wallet_0, :wallet_1, :wallet_2, :wallet_3, :wallet_4, :wallet_5, :wallet_6)
+    #Set the @api's wallet_id attribute to the @input hash
     @api.wallet_id = @input
+    #Save the @api object to the database. This calls update_attributes and inserts the @input hash into the wallet_ids column.
     @api.save
-    @wallet_names = wallet_names(params[:api_id], params[:corp_id])
+
+    #Assemble a new hash to contain the wallet names to be sent to the set_wallet partial.
+    @wallet_names = {}
+
+    #For each element in @index
+    @index.each do |i|
+      #Create a new hash with the value of @index as the key and the return of wallet_names as the value
+      @wallet_names.merge!({i => wallet_names(params[:api_id], params[:corp_id])})
+    end
     
-
-    #@api.save
-
-    #if @api.save
-    #@wallet_names[0] = "Cock"
-    #@wallet_names[1] = "dildo"
-
-      #@input.each do |key, value|
-      #  if value.eql?("true")
-          #@wallet_names[1] = "Meow"
-      #    a = corp.method(key)
-      #    b = a.call
-      #    @wallet_names.push(b)
-      #  end
-      #end
-    #end
-    
+    #Reply to the AJAX call, see set_wallet.js.erb.
     respond_to do |format|
       format.js
     end
   end
 
   private
+  # wallet_names is used to generate a given API's already set wallet names.
   def wallet_names(api_id, corp_id)
+    #Retrieve the API record for the given API
     api = Api.where("id = ?", api_id)[0]
+    #Retrieve the Corporation record for the given corp
     corp = Corporation.where("id = ?", corp_id)[0]
+    #Assemble the wallet names hash
     wallet_names = []
 
+    #For each key/value pair in the api's wallet_id hash
     api.wallet_id.each do |key, value|
+      #check if that value is true
       if value.eql?("true")
+        #if it is, set a to the method of the key. Each key value is also the name of an
+        #attribute in the corp model.
         a = corp.method(key)
+        # then add the result of that method call to the wallet_names array.
         wallet_names.push(a.call)
       end
     end
 
+    #Return an array of selected wallet names for that API.
     return wallet_names
   end
 end

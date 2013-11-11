@@ -3,18 +3,18 @@
 <div class="api_list_table">
   <table class="table table-condensed" style="border">
     <thead>
-        <h3>APIs (<%= current_user.apis.count %>)</h3>
+        <h3>APIs (<%= @apis.count %>)</h3>
         <th style="width: 14%">Key ID</th>
         <th style="width: 14%">Ver Code</th>
         <th style="width: 14%">Access Mask</th>
         <th style="width: 14%">Type</th>
-        <th style="width: 14%"></th>
+        <th style="width: 14%">Selected Wallets</th>
         <th style="width: 14%"></th>
         <th style="width: 14%">Enrolled</th>
     </thead>
     <tbody id="char_tbody">
-        <% if current_user.apis.any? %>
-            <% array = current_user.apis %>
+        <% if @apis.any? %>
+            <% array = @apis %>
             <% array.each do |a| %>
               <tr value="<%=a.id%>" id="api<%=array.index(a)%>">
                     <td value="<%=a.id%>" id="meow" class="KeyID"><%= a.key_id %></td>
@@ -22,14 +22,12 @@
                     <td class="AccessMask"><%= a.accessmask %></td>
                     <% if a.entity == 1 %>
                         <td class="Type">Corporation </td>
-                        <td id="selected_wallet<%=array.index(a)%>" class="WalletSelected">Wallet Selector</td>
+                        <td id="selected_wallet<%=array.index(a)%>" class="WalletSelected"><%#=a.wallet_id%><%=render(:partial => 'set_wallet', locals: {wallet_names: @wallet_names, index: array.index(a)})%></td>
                     <% else %>
                         <td class="Type">Character </td>
                         <td></td>
                     <% end %>
-                    <td><%#= check_box_tag('wallet_10' + array.index(a).to_s, 0) %>
-                        <%#= label_tag('wallet_10', 'Master') %>
-                    </td>
+                    <td></td>
                     <td class="Enrolled"><%= a.created_at %></td>
               </tr>
                 <tr id="wsets<%=array.index(a)%>">
