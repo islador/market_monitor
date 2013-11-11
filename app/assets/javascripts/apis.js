@@ -43,8 +43,8 @@ $(document).ready(function(){
 		var value4 = $("#wallet_4" + arrayid).prop( 'checked' );
 		var value5 = $("#wallet_5" + arrayid).prop( 'checked' );
 		var value6 = $("#wallet_6" + arrayid).prop( 'checked' );
-		var apiID = $("#api").attr('value');
-		var corp = $("#corp").attr('value');
+		var apiID = $("#api" + arrayid).attr('value');
+		var corp = $("#corp" + arrayid).attr('value');
 		//alert(corp + " " + apiID + " " + value0 + " " + value1 + " " + value2 + " " + value3 + " " + value4 + " " + value5 + " " + value6);
 		$.ajax({
 			url: "apis/set_wallet", type: "POST",
