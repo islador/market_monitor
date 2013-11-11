@@ -1,1 +1,1 @@
-$('#selected_wallet<%=@index%>').empty().append("<%= escape_javascript(render(:partial => 'set_wallet', locals: {corp: @corp, index: @index, api_id: @api_id, wallet_names: @wallet_names})) %>");
+$('#selected_wallet<%=@index%>').empty().append("<%= escape_javascript(render(:partial => 'set_wallet', locals: {wallet_names: @wallet_names})) %>");
