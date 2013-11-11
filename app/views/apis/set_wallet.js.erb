@@ -1,1 +1,2 @@
-$('#selected_wallet<%=@index%>').empty().append("<%= escape_javascript(render(:partial => 'set_wallet', locals: {wallet_names: @wallet_names})) %>");
+// Delete and rewrite the data contained in the selected_wallet element matching the @index value. Render the set_wallet partial in it's place with the new @wallet_names variable and the new @index variable. See the set_wallet partial for more info.
+$('#selected_wallet<%=@index[0]%>').empty().append("<%= escape_javascript(render(:partial => 'set_wallet', locals: {wallet_names: @wallet_names, index: @index[0]})) %>");
