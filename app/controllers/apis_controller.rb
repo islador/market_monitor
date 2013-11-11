@@ -112,6 +112,7 @@ class ApisController < ApplicationController
   def show
     if signed_in?
       #@apis = current_user.apis.paginate(page: params[:page]) #doesn't appear to be necessary.
+      #@wallet_names = 
       render 'api_list'
     else
       flash[:error] = "You must be signed in to view this page."
@@ -135,27 +136,45 @@ class ApisController < ApplicationController
     @index = params[:array_index]
     @input = {}
     @input = params.slice(:wallet_0, :wallet_1, :wallet_2, :wallet_3, :wallet_4, :wallet_5, :wallet_6)
-    @wallet_names = []
     @api.wallet_id = @input
+    @api.save
+    @wallet_names = wallet_names(params[:api_id], params[:corp_id])
+    
 
     #@api.save
 
-    if @api.save
+    #if @api.save
     #@wallet_names[0] = "Cock"
     #@wallet_names[1] = "dildo"
 
-      @input.each do |key, value|
-        if value.eql?("true")
+      #@input.each do |key, value|
+      #  if value.eql?("true")
           #@wallet_names[1] = "Meow"
-          a = corp.method(key)
-          b = a.call
-          @wallet_names.push(b)
-        end
-      end
-    end
+      #    a = corp.method(key)
+      #    b = a.call
+      #    @wallet_names.push(b)
+      #  end
+      #end
+    #end
     
     respond_to do |format|
       format.js
     end
+  end
+
+  private
+  def wallet_names(api_id, corp_id)
+    api = Api.where("id = ?", api_id)[0]
+    corp = Corporation.where("id = ?", corp_id)[0]
+    wallet_names = []
+
+    api.wallet_id.each do |key, value|
+      if value.eql?("true")
+        a = corp.method(key)
+        wallet_names.push(a.call)
+      end
+    end
+
+    return wallet_names
   end
 end
