@@ -1,9 +1,6 @@
 <td id="api<%=@index%>" value="<%=@api_id%>">
-  <%#= check_box_tag('wallet_0' + @index, 0, :onchange, data: { remote: true, url: "apis/set_wallet", update: "selected_wallet" + @index, params: { api_id: @api_id, index: @index, corp: @corp, value: 0 }.to_param} )%>
   <%= check_box_tag('wallet_0' + @index, 0) %>
   <%= label_tag('wallet_0', 'Master') %>
-  <%#= radio_button_tag(:wallet, "0") %>
-  <%#= label_tag(:wallet_0, "Master") %>
 </td>
 <td id="corp<%=@index%>" value="<%=@corp.id%>">
   <%= check_box_tag('wallet_1' + @index, 1) %>
