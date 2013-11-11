@@ -121,6 +121,8 @@ class ApisController < ApplicationController
         @wallet_names.merge!({@apis.index(i) => wallet_names(i.id, i.corporation_id)})
       end
 
+      #@wallet_names is a hash of arrays because this allows the hash to be deconstructed by the _set_wallet partial and for the values to be properly placed on the api_list page regardless of which path the _set_wallet partial was called from.
+
       render 'api_list'
     else
       flash[:error] = "You must be signed in to view this page."
@@ -132,6 +134,7 @@ class ApisController < ApplicationController
     @corp = Corporation.where("id = ?", Api.where("id = ?", params[:api_id])[0].corporation_id)[0]
     @index = params[:array_index]
     @api_id = params[:api_id]
+    @api = Api.where("id = ?", @api_id)[0]
 
     respond_to do |format|
       format.js
@@ -151,6 +154,7 @@ class ApisController < ApplicationController
     @input = {}
     #Populate the @input hash with the key/value pairs of the wallet parameters.
     @input = params.slice(:wallet_0, :wallet_1, :wallet_2, :wallet_3, :wallet_4, :wallet_5, :wallet_6)
+    #@input = {:wallet_0 => params[:wallet_0], :wallet_1 => params[:wallet_1], :wallet_2 => params[:wallet_2], :wallet_3 => params[:wallet_3], :wallet_4 => params[:wallet_4], :wallet_5 => params[:wallet_5], :wallet_6 => params[:wallet_6]}
     #Set the @api's wallet_id attribute to the @input hash
     @api.wallet_id = @input
     #Save the @api object to the database. This calls update_attributes and inserts the @input hash into the wallet_ids column.

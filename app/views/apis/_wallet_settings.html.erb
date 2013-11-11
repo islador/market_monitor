@@ -1,28 +1,28 @@
 <td id="api<%=@index%>" value="<%=@api_id%>">
-  <%= check_box_tag('wallet_0' + @index, 0) %>
+  <%= check_box_tag('wallet_0' + @index, 0, @api.wallet_id[:wallet_0].to_bool) %>
   <%= label_tag('wallet_0', 'Master') %>
 </td>
 <td id="corp<%=@index%>" value="<%=@corp.id%>">
-  <%= check_box_tag('wallet_1' + @index, 1) %>
+  <%= check_box_tag('wallet_1' + @index, 1, @api.wallet_id[:wallet_1].to_bool) %>
   <%= label_tag('walet_1', @corp.wallet_1) %>
 </td>
 <td>
-  <%= check_box_tag('wallet_2' + @index, 2) %>
+  <%= check_box_tag('wallet_2' + @index, 2, @api.wallet_id[:wallet_2].to_bool) %>
   <%= label_tag('wallet_2', @corp.wallet_2) %>
 </td>
 <td>
-  <%= check_box_tag('wallet_3' + @index, 3) %>
+  <%= check_box_tag('wallet_3' + @index, 3, @api.wallet_id[:wallet_3].to_bool) %>
   <%= label_tag('wallet_3', @corp.wallet_3) %>
 </td>
 <td>
-  <%= check_box_tag('wallet_4' + @index, 4) %>
+  <%= check_box_tag('wallet_4' + @index, 4, @api.wallet_id[:wallet_4].to_bool) %>
   <%= label_tag('wallet_4', @corp.wallet_4) %>
 </td>
 <td>
-  <%= check_box_tag('wallet_5' + @index, 5) %>
+  <%= check_box_tag('wallet_5' + @index, 5, @api.wallet_id[:wallet_5].to_bool) %>
   <%= label_tag('wallet_5', @corp.wallet_5) %>
 </td>
 <td>
-  <%= check_box_tag('wallet_6' + @index, 6) %>
+  <%= check_box_tag('wallet_6' + @index, 6, @api.wallet_id[:wallet_6].to_bool) %>
   <%= label_tag('wallet_6', @corp.wallet_6) %>
 </td>
