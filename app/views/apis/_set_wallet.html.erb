@@ -1,5 +1,17 @@
-<%#= @wallet_names.length %>
-<%#= @wallet_names[0] %>
-<% @wallet_names.each do |n| %>
-	<%= n %>
+<%# For each key/value pair%>
+<% @wallet_names.each do |key, value| %>
+	<%# check if the key is equal to the index value. %>
+	<% if key == index %>
+		<%# if it is, for each element in the value aray %>
+		<% value.each do |n| %>
+			<%# check if the value index is less then the total length of the array %>
+			<% if value.index(n) < value.length-1 %>
+				<%# if so, render the value and append a comma %>
+				<%= n + "," %>
+			<% else %>
+				<%# else, just render the value. This keeps the formatting nice. %>
+				<%= n %>
+			<% end %>
+		<% end %>
+	<% end %>
 <% end %>
